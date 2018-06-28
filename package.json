@@ -1,0 +1,20 @@
+{
+  "name": "room-manager",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "parcel ./src/index.html",
+    "build": "parcel build ./src/index.html"
+  },
+  "author": "Gürhan Mermer <g.mermer@emakina.com.tr>",
+  "license": "ISC",
+  "dependencies": {
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "node-sass": "^4.9.0",
+    "parcel-bundler": "^1.9.3",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1"
+  }
+}
