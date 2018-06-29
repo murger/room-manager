@@ -1,0 +1,14 @@
+@font-face {
+	font-family: 'Museo';
+	src: url('../../assets/fonts/museo500.woff2') format('woff2'),
+	url('../../assets/fonts/museo500.woff') format('woff');
+	font-weight: 500;
+	font-style: normal;
+}
+
+@mixin font($family: Sans-serif, $weight: 300, $size: 1.0em, $height: 1) {
+  font-size: $size;
+  font-family: $family;
+  font-weight: $weight;
+  line-height: $height;
+}

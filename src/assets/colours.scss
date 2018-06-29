@@ -1,0 +1,12 @@
+$colours: (
+  gray-lt: #c8c8c8,
+  gray: #969696,
+  gray-dk: #646464,
+  green: #8cc63f,
+  blue: #008fd4,
+  orange: #f7931e
+);
+
+@function c($key) {
+  @return map-get($colours, $key);
+}
