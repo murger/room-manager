@@ -4,7 +4,7 @@ html, body {
 	user-select: none;
 }
 
-section {
+main {
 	width: 1024px;
 	height: 600px;
 	position: absolute;
@@ -13,7 +13,7 @@ section {
 	background-color: white;
 	transform: translate(-50%, -50%);
 
-	.dark {
+	&.occupied {
 		background-color: black;
 	}
 }

@@ -7,7 +7,7 @@ export class Header extends React.Component {
 			<header>
 				<div className="logo" />
 				<div className="option">
-					<div className="contact">John Doe</div>
+					<button className="book">Book Now</button>
 				</div>
 			</header>
 		);

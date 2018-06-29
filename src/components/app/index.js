@@ -1,17 +1,17 @@
 import React from 'react';
 import { Header } from '../header';
-import { Main } from '../main';
+import { Status } from '../status';
 import { Ticker } from '../ticker';
 import './index.scss';
 
 export class App extends React.Component {
     render () {
 		return (
-			<section>
+			<main className="occupiedx">
 				<Header />
-				<Main />
+				<Status />
 				<Ticker />
-			</section>
+			</main>
 		);
 	}
 };
