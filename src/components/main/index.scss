@@ -1,0 +1,27 @@
+@import '../../assets/colours.scss';
+@import '../../assets/fonts.scss';
+
+main {
+	width: 100%;
+	height: calc(100% - (90px + 40px * 2) - 130px - 20px);
+	padding-bottom: 20px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+
+	.current {
+		max-width: 60%;
+		color: black;
+		letter-spacing: -1px;
+		text-align: center;
+		@include font('Museo', 500, 58px);
+	}
+
+	.remainder {
+		padding-top: 16px;
+		color: c(gray);
+		letter-spacing: -1px;
+		@include font('Museo', 500, 32px);
+	}
+}
