@@ -32,7 +32,39 @@ header {
 		.contact {
 			color: c(gray);
 			letter-spacing: -1px;
-			@include font('Museo', 500, 32px, 1);
+			@include font('Museo', 300, 32px, 1);
+		}
+
+		button {
+			padding: 22px 28px;
+			margin: 0px;
+			letter-spacing: -1px;
+			@include font('Museo', 300, 32px, 1);
+			border: 1px solid transparent;
+			border-radius: 12px;
+			outline: none;
+
+			&.book {
+				color: white;
+				background-color: c(green);
+				border: 1px solid c(green);
+
+				&:active {
+					background-color: c(blue);
+					border-color: c(blue);
+				}
+			}
+
+			&.cancel {
+				color: c(gray-dk);
+				background-color: transparent;
+				border: 1px solid c(gray);
+
+				&:active {
+					color: white;
+					background-color: c(gray);
+				}
+			}
 		}
 	}
 }

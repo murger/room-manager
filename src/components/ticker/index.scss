@@ -1,25 +1,23 @@
 @import '../../assets/colours.scss';
 @import '../../assets/fonts.scss';
 
-footer {
+section {
 	width: 100%;
 	height: 130px;
 	position: relative;
 	text-align: center;
 
-	.hour {
-		width: 30px;
+	.tick {
+		width: 2px;
 		height: 48px;
-		margin: 32px 30px;
-		margin-bottom: 0;
+		margin: 0 44px;
+		margin-top: 36px;
 		padding-top: 28px + 18px;
 		display: inline-block;
 		position: relative;
-		text-align: center;
-		color: c(gray);
-		@include font('Verdana', 100, 21px);
 
 		&:before {
+			content: '';
 			width: 2px;
 			height: 28px;
 			margin: 0 auto;
@@ -27,7 +25,63 @@ footer {
 			top: 0px;
 			left: calc(50% - 1px);
 			background-color: c(gray-lt);
-			content: '';
+		}
+
+		&:after {
+			content: attr(data-id);
+			width: 32px;
+			height: 28px;
+			margin: 0 auto;
+			position: absolute;
+			top: 28px + 16px;
+			left: calc(50% - 32px / 2);
+			color: c(gray);
+			@include font('Verdana', 100, 21px);
+		}
+	}
+
+	$tipSize: 10px;
+	$eventColour: c(blue);
+
+	.schedule {
+		width: calc(100% - 62px * 2);
+		height: 18px;
+		position: absolute;
+		left: 62px;
+		top: 40px;
+
+		span {
+			height: 100%;
+			position: absolute;
+			background-image:
+				linear-gradient(
+					to right,
+					transparent,
+					transparent #{$tipSize},
+					#{$eventColour} #{$tipSize},
+					#{$eventColour} calc(100% - #{$tipSize}),
+					transparent calc(100% - #{$tipSize})
+				);
+
+			&:before, &:after {
+				content: '';
+				width: 0;
+				height: 0;
+				position: absolute;
+				top: 0px;
+				border-top: 9px solid transparent;
+				border-bottom: 9px solid transparent;
+			}
+
+			&:before {
+				left: 0px;
+				border-right: $tipSize solid #{$eventColour};
+			}
+
+			&:after {
+				right: 0px;
+				border-left: $tipSize solid #{$eventColour};
+			}
 		}
 	}
 }

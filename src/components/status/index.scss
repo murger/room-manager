@@ -1,7 +1,7 @@
 @import '../../assets/colours.scss';
 @import '../../assets/fonts.scss';
 
-main {
+article {
 	width: 100%;
 	height: calc(100% - (90px + 40px * 2) - 130px - 20px);
 	padding-bottom: 20px;
@@ -19,9 +19,9 @@ main {
 	}
 
 	.remainder {
-		padding-top: 16px;
+		padding-top: 12px;
 		color: c(gray);
 		letter-spacing: -1px;
-		@include font('Museo', 500, 32px);
+		@include font('Museo', 300, 32px);
 	}
 }
