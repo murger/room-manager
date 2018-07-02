@@ -6,7 +6,6 @@ export class Ticker extends React.Component {
         super(props);
 
         this.state = {
-            hours: [9, 10, 11, 12, 1, 2, 3, 4, 5, 6, 7],
             schedule: null
         };
     }
@@ -15,7 +14,7 @@ export class Ticker extends React.Component {
 		return (
 			<section>
 				<span className="mark" style={{ left: 90 * 2.2 }} />
-				{this.state.hours.map((hour, index) =>
+				{this.props.hours.map((hour, index) =>
 					<div className="tick" key={index} data-id={hour} />
 				)}
 				<div className="schedule">
