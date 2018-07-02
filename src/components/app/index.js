@@ -9,15 +9,22 @@ export class App extends React.Component {
         super(props);
 
         this.state = {
-            occupied: null
+        	occupied: true,
+            current: {
+            	title: 'HR & Technical Interview',
+	            contact: 'John Everton Doe'
+	        }
         };
     }
 
     render () {
+    	let isOccupied = this.state.occupied,
+    		current = this.state.current;
+
 		return (
-			<main className="occupiedx">
-				<Header />
-				<Status />
+			<main className={(isOccupied ? 'occupied' : '')}>
+				<Header contact={(isOccupied) ? current.contact : null} />
+				<Status event={(isOccupied) ? current.title : null} />
 				<Ticker hours={[...Array(11).keys()].map((x) =>
 					(x + 9 > 12) ? x - 3 : x + 9
 				)} />
