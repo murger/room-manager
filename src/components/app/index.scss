@@ -1,3 +1,6 @@
+@import '../../assets/colours.scss';
+@import '../../assets/fonts.scss';
+
 html, body {
 	margin: 0;
 	background-color: #333;
@@ -15,5 +18,17 @@ main {
 
 	&.occupied {
 		background-color: black;
+
+		header .logo {
+			background-image: url('../../assets/images/logo-white.svg');
+		}
+
+		article .current {
+			color: white;
+		}
+
+		section .mark {
+			border-top-color: white;
+		}
 	}
 }

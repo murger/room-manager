@@ -7,7 +7,10 @@ export class Header extends React.Component {
 			<header>
 				<div className="logo" />
 				<div className="option">
-					<button className="book">Book Now</button>
+				{(this.props.contact)
+					? <div className="contact">{ this.props.contact }</div>
+					: <button className="book">Book Now</button>
+				}
 				</div>
 			</header>
 		);

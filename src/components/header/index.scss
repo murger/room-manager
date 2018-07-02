@@ -41,7 +41,7 @@ header {
 			letter-spacing: -1px;
 			@include font('Museo', 300, 32px, 1);
 			border: 1px solid transparent;
-			border-radius: 12px;
+			border-radius: 6px;
 			outline: none;
 
 			&.book {
