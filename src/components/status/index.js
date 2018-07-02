@@ -6,7 +6,7 @@ export class Status extends React.Component {
 		return (
 			<article>
 				<div className="current">Available</div>
-				<div className="remainder">47 mins</div>
+				<div className="remainder">17 mins</div>
 			</article>
 		);
 	}
