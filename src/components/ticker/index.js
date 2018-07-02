@@ -14,6 +14,7 @@ export class Ticker extends React.Component {
     render () {
 		return (
 			<section>
+				<span className="mark" style={{ left: 90 * 2.2 }} />
 				{this.state.hours.map((hour, index) =>
 					<div className="tick" key={index} data-id={hour} />
 				)}
