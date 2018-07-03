@@ -11,7 +11,8 @@ class App extends React.Component {
 
         this.state = {
         	schedule: null,
-            current: null
+            current: null,
+            time: Date.now()
         };
     }
 
@@ -19,6 +20,7 @@ class App extends React.Component {
     	let services = this.props.services,
     		room = this.props.room;
 
+        // Fetch schedule
         services.schedule.getEvents(room).then((schedule) => {
             this.setState({ schedule: schedule });
 
@@ -26,14 +28,24 @@ class App extends React.Component {
 	            this.setState({ current: event });
 	        });
         });
+
+        // Set refresh interval
+        this.interval = setInterval(() => {
+            this.setState({ time: Date.now() })
+        }, this.props.refresh);
 	}
+
+    componentWillUnmount() {
+        clearInterval(this.interval);
+    }
 
     render () {
     	let schedule = this.state.schedule,
-    		current = this.state.current;
+    		current = this.state.current,
+            time = this.state.time;
 
 		return (!schedule) ? null : (
-			<main className={(current ? 'busy' : '')}>
+			<main className={(current ? 'busy' : '')} data-time={time}>
 				<Header current={current} />
 				<Status current={current} room={this.props.room} />
 				<Ticker schedule={schedule} />
