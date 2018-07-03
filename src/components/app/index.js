@@ -2,35 +2,50 @@ import React from 'react';
 import { Header } from '../header';
 import { Status } from '../status';
 import { Ticker } from '../ticker';
+import injectServices from '../../services/inject';
 import './index.scss';
 
-export class App extends React.Component {
+class App extends React.Component {
     constructor (props) {
         super(props);
 
-        console.log(process.env.NODE_ENV);
-
         this.state = {
-            current: {
-            	title: 'HR & Technical Interview',
-	            contact: 'John Everton Doe',
-	            start: '2018-07-03T10:00:00.000Z',
-	            end: '2018-07-03T13:00:00.000Z'
-	        }
+        	schedule: null,
+            current: null
         };
     }
 
-    render () {
-    	let current = null && this.state.current;
+    componentDidMount () {
+    	let services = this.props.services,
+    		room = this.props.room;
 
-		return (
-			<main className={(current ? 'busy' : '')}>
-				<Header current={current} />
-				<Status current={current} until="2018-07-03T12:00:00.000Z" />
-				<Ticker range={[...Array(11).keys()].map((x) =>
-					(x + 9 > 12) ? x - 3 : x + 9
-				)} />
-			</main>
-		);
+        services.schedule.getEvents(room).then((schedule) => {
+            this.setState({ schedule: schedule });
+
+	        services.schedule.getCurrentEvent(room).then((event) => {
+	            this.setState({ current: event });
+	        });
+        });
+	}
+
+    render () {
+    	let schedule = this.state.schedule,
+    		current = this.state.current;
+
+    	if (schedule && current) {
+			return (
+				<main className={(current ? 'busy' : '')}>
+					<Header current={current} />
+					<Status current={current} remainder={null} />
+					<Ticker range={[...Array(11).keys()].map((x) =>
+						(x + 9 > 12) ? x - 3 : x + 9
+					)} />
+				</main>
+			);
+		} else {
+    		return '';
+		}
 	}
 };
+
+export default injectServices(App);

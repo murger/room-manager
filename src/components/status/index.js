@@ -3,9 +3,7 @@ import './index.scss';
 
 export class Status extends React.Component {
     render () {
-    	let now = new Date(),
-    		end = new Date(this.props.until),
-    		remainder = Math.ceil((end.getTime() - now.getTime()) / (1000 * 60));
+    	let remainder = this.props.remainder || this.props.current.remainder;
 
 		return (
 			<article>
