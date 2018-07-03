@@ -1,6 +1,6 @@
 import React from 'react';
 import { Header } from '../header';
-import { Status } from '../status';
+import Status from '../status';
 import { Ticker } from '../ticker';
 import injectServices from '../../services/inject';
 import './index.scss';
@@ -32,19 +32,13 @@ class App extends React.Component {
     	let schedule = this.state.schedule,
     		current = this.state.current;
 
-    	if (schedule && current) {
-			return (
-				<main className={(current ? 'busy' : '')}>
-					<Header current={current} />
-					<Status current={current} remainder={null} />
-					<Ticker range={[...Array(11).keys()].map((x) =>
-						(x + 9 > 12) ? x - 3 : x + 9
-					)} />
-				</main>
-			);
-		} else {
-    		return '';
-		}
+		return (!schedule) ? null : (
+			<main className={(current ? 'busy' : '')}>
+				<Header current={current} />
+				<Status current={current} room={this.props.room} />
+				<Ticker schedule={schedule} />
+			</main>
+		);
 	}
 };
 
