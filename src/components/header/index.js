@@ -3,14 +3,15 @@ import './index.scss';
 
 export class Header extends React.Component {
     render () {
+    	let current = this.props.current;
+
 		return (
 			<header>
 				<div className="logo" />
 				<div className="option">
-				{(this.props.current)
-					? <div className="contact">{ this.props.current.contact }</div>
-					: <button className="book">Book this room</button>
-				}
+					{ (current)
+						? <div className="contact">{ current.contact }</div>
+						: <button className="book">Book this room</button> }
 				</div>
 			</header>
 		);

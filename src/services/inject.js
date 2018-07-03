@@ -8,7 +8,7 @@ let isDev = (process.env.NODE_ENV === 'development'),
 const injectServices = (Component) => {
     return class ServicedComponent extends React.Component {
         render () {
-            return <Component {...this.props} services={services}/>
+            return <Component {...this.props} services={services} />
         }
     }
 };

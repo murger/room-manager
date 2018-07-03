@@ -1,10 +1,10 @@
 export default class EventEntity {
-    constructor (props) {
-        this._id = props.id;
-        this._title = props.title;
-        this._contact = props.contact;
-        this._start = props.start;
-        this._end = props.end;
+    constructor (item) {
+        this._id = item.id;
+        this._title = item.title;
+        this._contact = item.contact;
+        this._start = item.start;
+        this._end = item.end;
     }
 
     get id () {
@@ -48,5 +48,12 @@ export default class EventEntity {
             end = this.end.getTime();
 
         return Math.ceil((end - now) / (1000 * 60));
+    };
+
+    get until () {
+        let now = Date.now(),
+            start = this.start.getTime();
+
+        return Math.ceil((start - now) / (1000 * 60));
     };
 }
