@@ -14,7 +14,7 @@ export class Ticker extends React.Component {
 		return (
 			<section>
 				<span className="mark" style={{ left: 90 * 2.2 }} />
-				{this.props.hours.map((hour, index) =>
+				{this.props.range.map((hour, index) =>
 					<div className="tick" key={index} data-id={hour} />
 				)}
 				<div className="schedule">

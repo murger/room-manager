@@ -7,9 +7,9 @@ export class Header extends React.Component {
 			<header>
 				<div className="logo" />
 				<div className="option">
-				{(this.props.contact)
-					? <div className="contact">{ this.props.contact }</div>
-					: <button className="book">Book Now</button>
+				{(this.props.current)
+					? <div className="contact">{ this.props.current.contact }</div>
+					: <button className="book">Book this room</button>
 				}
 				</div>
 			</header>
