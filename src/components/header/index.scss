@@ -36,22 +36,23 @@ header {
 		}
 
 		button {
-			padding: 22px 28px;
 			margin: 0px;
+			padding: 20px 30px;
+			padding-top: 22px;
 			letter-spacing: -1px;
 			@include font('Museo', 300, 32px, 1);
 			border: 1px solid transparent;
-			border-radius: 6px;
+			border-radius: 12px;
 			outline: none;
 
 			&.book {
-				color: white;
-				background-color: c(green);
-				border: 1px solid c(green);
+				color: c(blue);
+				background-color: transparent;
+				border: 1px solid c(blue);
 
 				&:active {
+					color: white;
 					background-color: c(blue);
-					border-color: c(blue);
 				}
 			}
 

@@ -8,24 +8,26 @@ export class App extends React.Component {
     constructor (props) {
         super(props);
 
+        console.log(process.env.NODE_ENV);
+
         this.state = {
-        	occupied: true,
             current: {
             	title: 'HR & Technical Interview',
-	            contact: 'John Everton Doe'
+	            contact: 'John Everton Doe',
+	            start: '2018-07-03T10:00:00.000Z',
+	            end: '2018-07-03T13:00:00.000Z'
 	        }
         };
     }
 
     render () {
-    	let isOccupied = this.state.occupied,
-    		current = this.state.current;
+    	let current = null && this.state.current;
 
 		return (
-			<main className={(isOccupied ? 'occupied' : '')}>
-				<Header contact={(isOccupied) ? current.contact : null} />
-				<Status event={(isOccupied) ? current.title : null} />
-				<Ticker hours={[...Array(11).keys()].map((x) =>
+			<main className={(current ? 'busy' : '')}>
+				<Header current={current} />
+				<Status current={current} until="2018-07-03T12:00:00.000Z" />
+				<Ticker range={[...Array(11).keys()].map((x) =>
 					(x + 9 > 12) ? x - 3 : x + 9
 				)} />
 			</main>

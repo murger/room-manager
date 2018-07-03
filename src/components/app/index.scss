@@ -16,7 +16,7 @@ main {
 	background-color: white;
 	transform: translate(-50%, -50%);
 
-	&.occupied {
+	&.busy {
 		background-color: black;
 
 		header .logo {
