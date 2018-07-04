@@ -15,11 +15,11 @@ article {
 		color: black;
 		letter-spacing: -1px;
 		text-align: center;
-		@include font('Museo', 500, 58px);
+		@include font('Museo', 500, 58px, 1.25);
 	}
 
 	.remainder {
-		padding-top: 16px;
+		padding-top: 8px;
 		color: c(gray);
 		letter-spacing: -1px;
 		@include font('Museo', 300, 32px);

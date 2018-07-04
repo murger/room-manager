@@ -8,14 +8,14 @@ export default class ScheduleServiceMockup extends ScheduleService {
             today = now.toISOString().split('T')[0],
             events = [{
                 id: 97328,
-                title: 'Some Boring Meeting',
-                contact: 'The Incredible Hulk',
+                title: 'Most Boring Meeting in the Wyvern Tavern',
+                contact: 'Nick Shanks',
                 start: today + 'T06:00:00.000Z',
                 end: today + 'T07:30:00.000Z'
             }, {
                 id: 34478,
                 title: 'HR & Technical Interview',
-                contact: 'John Doe',
+                contact: 'John Everton Doe',
                 start: today + 'T07:30:00.000Z',
                 end: today + 'T09:15:00.000Z'
             }, {
@@ -31,7 +31,7 @@ export default class ScheduleServiceMockup extends ScheduleService {
                 start: today + 'T12:15:00.000Z',
                 end: today + 'T14:00:00.000Z'
             }, {
-                id: 43536,
+                id: 34573,
                 title: 'Closer than a Galaxy',
                 contact: 'George McGregor',
                 start: today + 'T14:30:00.000Z',
