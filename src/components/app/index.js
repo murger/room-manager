@@ -15,7 +15,7 @@ class App extends React.Component {
         };
     }
 
-    componentDidMount () {
+    componentWillMount () {
     	let services = this.props.services,
     		room = this.props.room;
 

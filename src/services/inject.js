@@ -1,9 +1,8 @@
 import React from 'react';
 import index from './';
-import mocks from './mocks';
+import mockup from './mockup';
 
-let isDev = (process.env.NODE_ENV === 'development'),
-	services = (isDev) ? mocks : index;
+let services = (process.env.mockup) ? mockup : index;
 
 const injectServices = (Component) => {
     return class ServicedComponent extends React.Component {
