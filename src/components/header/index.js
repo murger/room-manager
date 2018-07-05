@@ -1,7 +1,7 @@
 import React from 'react';
 import './index.scss';
 
-export class Header extends React.Component {
+class Header extends React.Component {
     render () {
     	let current = this.props.current;
 
@@ -18,3 +18,5 @@ export class Header extends React.Component {
 		);
 	}
 };
+
+export default Header;

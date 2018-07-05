@@ -1,7 +1,7 @@
 import React from 'react';
 import './index.scss';
 
-export class Ticker extends React.Component {
+class Ticker extends React.Component {
 	constructor (props) {
 		super(props);
 
@@ -26,7 +26,8 @@ export class Ticker extends React.Component {
 				xO = this.state.range[0],
 				xH = this.state.hourWidth,
 				left = ((start.getHours() - xO) * xH) + ((start.getMinutes() * xH) / 60),
-				width = Math.ceil((end.getTime() - start.getTime()) / (1000 * 60)) * (90 / 60);
+				width = Math.ceil((end.getTime() - start.getTime()) /
+					(1000 * 60)) * (90 / 60);
 
 			return (
 				<li key={i} style={{ left, width }}><span /></li>
@@ -54,3 +55,5 @@ export class Ticker extends React.Component {
 		);
 	}
 };
+
+export default Ticker;
