@@ -24,15 +24,16 @@ class Status extends React.Component {
 		let next = this.state.next,
 			remainder = (current)
 				? current.remainder
-				: (next) ? next.until : -1
+				: (next) ? next.until : -1,
+			showHrs = (remainder > 120),
+			total = (showHrs) ? Math.round(remainder / 60) : remainder,
+			label = (showHrs) ? 'hr' : 'min';
 
 		if (remainder < 0) {
 			return null;
 		}
 
-		return (remainder < 120)
-			? [remainder, 'mins'].join(' ')
-			: [Math.round(remainder / 60), 'hrs'].join(' ');
+		return [total, label + (total > 1 ? 's' : '')].join(' ');
 	}
 
 	render () {

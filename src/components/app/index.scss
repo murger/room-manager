@@ -16,13 +16,13 @@ main {
 	left: 50%;
 	background-color: white;
 	transform: translate(-50%, -50%);
-	@include transition(background-color);
+	@include transition(0s, 1s, background-color);
 
 	&.busy {
 		background-color: black;
 
 		header .logo { opacity: 0; }
-		header .logo--alt { opacity: 1; }
+		header .logo--white { opacity: 1; }
 
 		article .current {
 			color: white;

@@ -8,7 +8,7 @@ class Header extends React.Component {
 		return (
 			<header>
 				<div className="logo" />
-				<div className="logo--alt" />
+				<div className="logo--white" />
 				<div className="option">
 					{ (current)
 						? <p className="contact">{ current.contact }</p>

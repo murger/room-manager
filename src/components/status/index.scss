@@ -24,11 +24,11 @@ article {
 		display: -webkit-box;
 		overflow: hidden;
 		text-overflow: ellipsis;
-		@include transition(color);
+		@include transition(0.25s, 1.25s, color);
 	}
 
 	.remainder {
-		padding-top: 8px;
+		padding-top: 10px;
 		color: c(gray);
 		letter-spacing: -1px;
 		@include font('Museo', 300, 32px);
