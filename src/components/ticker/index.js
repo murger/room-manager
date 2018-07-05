@@ -36,14 +36,18 @@ export class Ticker extends React.Component {
 
 	render () {
 		let now = new Date(),
+			hrs = now.getHours(),
 			xO = this.state.range[0],
+			xT = this.state.range.slice(-1)[0] + 12,
 			xH = this.state.hourWidth,
 			xHand = ((now.getHours() - xO) * xH) + ((now.getMinutes() * xH) / 60);
 
-		// TODO: limit marker movement
 		return (
 			<section>
-				<em className="marker" style={{ left: xHand }} />
+				<em className="marker" style={{
+					left: xHand,
+					opacity: +(hrs >= xO || hrs < xT)
+				}} />
 				<ol className="range">{ this.renderTicks(this.state.range) }</ol>
 				<ol className="schedule">{ this.renderSchedule() }</ol>
 			</section>
