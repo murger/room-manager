@@ -18,19 +18,19 @@ article {
 		color: black;
 		letter-spacing: -1px;
 		text-align: center;
-		@include font('Museo', 500, 58px, 68px);
+		@include font('Museo', 500, 62px, 68px);
 		-webkit-box-orient: vertical;
 		-webkit-line-clamp: 2;
 		display: -webkit-box;
 		overflow: hidden;
 		text-overflow: ellipsis;
-		@include transition(0.25s, 1s, color);
+		@include transition(0.25s, 0.72s, color);
 	}
 
 	.remainder {
-		padding-top: 10px;
+		padding-top: 12px;
 		color: c(gray);
 		letter-spacing: -1px;
-		@include font('Museo', 300, 32px);
+		@include font('Museo', 300, 34px);
 	}
 }

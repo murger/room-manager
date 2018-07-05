@@ -47,7 +47,7 @@ class Ticker extends React.Component {
 			<section>
 				<em className="marker" style={{
 					left: xHand,
-					opacity: +(hrs >= xO || hrs < xT)
+					opacity: +(hrs >= xO && hrs < xT)
 				}} />
 				<ol className="range">{ this.renderTicks(this.state.range) }</ol>
 				<ol className="schedule">{ this.renderSchedule() }</ol>
