@@ -1,0 +1,10 @@
+@mixin font($family: Sans-serif, $weight: 300, $size: 1.0em, $height: 1) {
+	font-size: $size;
+	font-family: $family;
+	font-weight: $weight;
+	line-height: $height;
+}
+
+@mixin transition($property) {
+	transition: #{$property} 0.8s ease;
+}

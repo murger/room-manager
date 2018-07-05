@@ -1,3 +1,4 @@
+@import '../../assets/mixins.scss';
 @import '../../assets/colours.scss';
 @import '../../assets/fonts.scss';
 
@@ -15,19 +16,19 @@ main {
 	left: 50%;
 	background-color: white;
 	transform: translate(-50%, -50%);
+	@include transition(background-color);
 
 	&.busy {
 		background-color: black;
 
-		header .logo {
-			background-image: url('../../assets/images/logo-white.svg');
-		}
+		header .logo { opacity: 0; }
+		header .logo--alt { opacity: 1; }
 
 		article .current {
 			color: white;
 		}
 
-		section .mark {
+		section .marker {
 			border-top-color: white;
 		}
 	}

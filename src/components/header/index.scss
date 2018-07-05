@@ -1,3 +1,4 @@
+@import '../../assets/mixins.scss';
 @import '../../assets/colours.scss';
 @import '../../assets/fonts.scss';
 
@@ -13,9 +14,17 @@ header {
 		position: absolute;
 		top: 0px;
 		left: 0px;
+		opacity: 1;
 		background-image: url('../../assets/images/logo.svg');
 		background-repeat: no-repeat;
 		background-position: center;
+		@include transition(opacity);
+
+		&--alt {
+			@extend .logo;
+			opacity: 0;
+			background-image: url('../../assets/images/logo-white.svg');
+		}
 	}
 
 	.option {

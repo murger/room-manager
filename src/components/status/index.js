@@ -40,12 +40,12 @@ class Status extends React.Component {
 
 		return (
 			<article>
-				<div className="current">
+				<h1 className="current">
 					{ (current) ? current.title : 'Available' }
-				</div>
-				<div className="remainder">
+				</h1>
+				<time className="remainder">
 					{ this.renderRemainder(current) }
-				</div>
+				</time>
 			</article>
 		);
 	}
