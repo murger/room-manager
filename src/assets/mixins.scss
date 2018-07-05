@@ -5,11 +5,9 @@
 	line-height: $height;
 }
 
-@mixin transition($properties...) {
+@mixin transition($delay, $duration, $properties...) {
 	$list: ();
-	$duration: 0.75s;
 	$easing: ease;
-	$delay: null;
 
 	@each $prop in $properties {
  		$list: append($list, #{$prop} $duration $easing $delay, comma);

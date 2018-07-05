@@ -18,9 +18,9 @@ header {
 		background-image: url('../../assets/images/logo.svg');
 		background-repeat: no-repeat;
 		background-position: center;
-		@include transition(opacity);
+		@include transition(0.25s, 0.75s, opacity);
 
-		&--alt {
+		&--white {
 			@extend .logo;
 			opacity: 0;
 			background-image: url('../../assets/images/logo-white.svg');
