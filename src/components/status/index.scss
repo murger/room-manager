@@ -24,7 +24,7 @@ article {
 		display: -webkit-box;
 		overflow: hidden;
 		text-overflow: ellipsis;
-		@include transition(0.25s, 1.25s, color);
+		@include transition(0.25s, 1s, color);
 	}
 
 	.remainder {

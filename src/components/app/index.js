@@ -17,22 +17,25 @@ class App extends React.Component {
 
     componentWillMount () {
     	let services = this.props.services,
-    		room = this.props.room;
+    		room = this.props.room,
+            delay = this.props.refresh,
+            setCurrentEvent = () => {
+                services.schedule.getCurrentEvent(room).then((event) => {
+                    this.setState({ current: event });
+                });
+            }
 
         // Fetch schedule
         services.schedule.getEvents(room).then((schedule) => {
             this.setState({ schedule: schedule });
+            setCurrentEvent();
         });
 
         // Refresh at an interval
-        this.interval = setInterval(() => {
-            services.schedule.getCurrentEvent(room).then((event) => {
-                this.setState({ current: event });
-            });
-        }, this.props.refresh);
+        this.interval = setInterval(() => setCurrentEvent(), delay);
 	}
 
-    componentWillUnmount() {
+    componentWillUnmount () {
         clearInterval(this.interval);
     }
 
