@@ -7,7 +7,7 @@
 
 @mixin transition($properties...) {
 	$list: ();
-	$duration: 0.8s;
+	$duration: 0.75s;
 	$easing: ease;
 	$delay: null;
 

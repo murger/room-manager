@@ -1,7 +1,7 @@
 import React from 'react';
-import { Header } from '../header';
+import Header from '../header';
 import Status from '../status';
-import { Ticker } from '../ticker';
+import Ticker from '../ticker';
 import injectServices from '../../services/inject';
 import './index.scss';
 
@@ -22,12 +22,9 @@ class App extends React.Component {
         // Fetch schedule
         services.schedule.getEvents(room).then((schedule) => {
             this.setState({ schedule: schedule });
-            services.schedule.getCurrentEvent(room).then((event) => {
-                this.setState({ current: event });
-            });
         });
 
-        // Set refresh interval
+        // Refresh at an interval
         this.interval = setInterval(() => {
             services.schedule.getCurrentEvent(room).then((event) => {
                 this.setState({ current: event });
