@@ -1,3 +1,4 @@
+@import '../../assets/mixins.scss';
 @import '../../assets/colours.scss';
 @import '../../assets/fonts.scss';
 
@@ -12,10 +13,18 @@ article {
 
 	.current {
 		max-width: 60%;
+		max-height: calc(68px * 2);
+		margin: 0;
 		color: black;
 		letter-spacing: -1px;
 		text-align: center;
-		@include font('Museo', 500, 58px, 1.25);
+		@include font('Museo', 500, 58px, 68px);
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 2;
+		display: -webkit-box;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		@include transition(color);
 	}
 
 	.remainder {

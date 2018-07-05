@@ -8,33 +8,33 @@ export default class ScheduleServiceMockup extends ScheduleService {
             today = now.toISOString().split('T')[0],
             events = [{
                 id: 97328,
-                title: 'Most Boring Meeting in the Wyvern Tavern',
-                contact: 'Nick Shanks',
+                title: 'Somewhat Boring Meeting in the Morning',
+                contact: 'Burgundy Flemming',
                 start: today + 'T06:00:00.000Z',
-                end: today + 'T07:30:00.000Z'
+                end: today + 'T07:15:00.000Z'
             }, {
                 id: 34478,
                 title: 'HR & Technical Interview',
-                contact: 'John Everton Doe',
-                start: today + 'T07:30:00.000Z',
-                end: today + 'T09:15:00.000Z'
+                contact: 'Jonquil Von Haggerston',
+                start: today + 'T07:15:00.000Z',
+                end: today + 'T09:00:00.000Z'
             }, {
                 id: 37493,
                 title: 'Weekly Catchup',
-                contact: 'Samantha Jones',
+                contact: 'Inverness McKenzie',
                 start: today + 'T10:00:00.000Z',
-                end: today + 'T11:45:00.000Z'
+                end: today + 'T12:00:00.000Z'
             }, {
                 id: 43536,
                 title: 'Once Upon a Time',
-                contact: 'James Hemmingway',
-                start: today + 'T12:15:00.000Z',
-                end: today + 'T14:00:00.000Z'
+                contact: 'Bartholomew Shoe',
+                start: today + 'T12:00:00.000Z',
+                end: today + 'T13:30:00.000Z'
             }, {
                 id: 34573,
-                title: 'Closer than a Galaxy',
-                contact: 'George McGregor',
-                start: today + 'T14:30:00.000Z',
+                title: 'Happily Ever After',
+                contact: 'Girth Wiedenbauer',
+                start: today + 'T14:00:00.000Z',
                 end: today + 'T15:30:00.000Z'
             }];
 

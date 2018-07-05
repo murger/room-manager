@@ -8,9 +8,10 @@ export class Header extends React.Component {
 		return (
 			<header>
 				<div className="logo" />
+				<div className="logo--alt" />
 				<div className="option">
 					{ (current)
-						? <div className="contact">{ current.contact }</div>
+						? <p className="contact">{ current.contact }</p>
 						: <button className="book">Book this room</button> }
 				</div>
 			</header>

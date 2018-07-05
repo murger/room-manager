@@ -13,38 +13,39 @@ export class Ticker extends React.Component {
 		}
 	}
 
-    renderTicks (range) {
+	renderTicks (range) {
 		return range.map((hour, i) =>
-			<div className="tick" key={i} data-id={hour} />
+			<li key={i} data-id={hour} />
 		);
-    }
+	}
 
-    renderSchedule () {
+	renderSchedule () {
 		return this.props.schedule.map((event, i) => {
 			let start = event.start,
 				end = event.end,
-				xH = this.state.hourWidth,
 				xO = this.state.range[0],
+				xH = this.state.hourWidth,
 				left = ((start.getHours() - xO) * xH) + ((start.getMinutes() * xH) / 60),
-				width = ((end.getTime() - start.getTime()) / (1000 * 60)) * (90 / 60);
+				width = Math.ceil((end.getTime() - start.getTime()) / (1000 * 60)) * (90 / 60);
 
 			return (
-				<span key={i} style={{ left, width }} />
+				<li key={i} style={{ left, width }}><span /></li>
 			);
 		});
-    }
+	}
 
-    render () {
-    	let now = new Date(),
-    		xH = this.state.hourWidth,
+	render () {
+		let now = new Date(),
 			xO = this.state.range[0],
-    		xM = ((now.getHours() - xO) * xH) + ((now.getMinutes() * xH) / 60);
+			xH = this.state.hourWidth,
+			xHand = ((now.getHours() - xO) * xH) + ((now.getMinutes() * xH) / 60);
 
+		// TODO: limit marker movement
 		return (
 			<section>
-				<span className="mark" style={{ left: xM }} />
-				{ this.renderTicks(this.state.range) }
-				<div className="schedule">{ this.renderSchedule() }</div>
+				<em className="marker" style={{ left: xHand }} />
+				<ol className="range">{ this.renderTicks(this.state.range) }</ol>
+				<ol className="schedule">{ this.renderSchedule() }</ol>
 			</section>
 		);
 	}
