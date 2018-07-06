@@ -49,7 +49,7 @@ class Status extends React.Component {
 			? this.renderBooking()
 			: <article>
 				<h1 className="current">
-					{ (current) ? current.title : 'Available' }
+					{ (current) ? (current.title || 'Occupied') : 'Available' }
 				</h1>
 				<time className="remainder">
 					{ this.renderRemainder() }

@@ -22,7 +22,10 @@ class App extends React.Component {
             schedule = this.props.services.schedule,
             getCurrentEvent = () => {
                 schedule.getCurrentEvent(room).then((event) => {
-                    this.setState({ current: event });
+                    this.setState({
+                        current: event,
+                        isBooking: (event) ? false : this.state.isBooking
+                    });
                 });
             },
             getNextEvent = () => {
@@ -51,7 +54,8 @@ class App extends React.Component {
     }
 
     render () {
-    	let schedule = this.state.schedule,
+    	let room = this.props.room,
+            schedule = this.state.schedule,
     		current = this.state.current,
             next = this.state.next,
             isBooking = this.state.isBooking;
@@ -59,6 +63,7 @@ class App extends React.Component {
 		return (!schedule) ? null : (
 			<main className={(current ? 'busy' : '')}>
 				<Header
+                    room={room}
                     current={current}
                     isBooking={isBooking}
                     setBooking={this.setBooking.bind(this)} />
