@@ -4,8 +4,8 @@
 
 article {
 	width: 100%;
-	height: calc(100% - (90px + 40px * 2) - 130px - 24px);
-	padding-bottom: 24px;
+	height: calc(100% - (90px + 40px * 2) - 130px - 50px);
+	padding-bottom: 50px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -28,9 +28,33 @@ article {
 	}
 
 	.remainder {
-		padding-top: 18px;
+		padding-top: 14px;
 		color: c(gray);
 		letter-spacing: -1px;
 		@include font('Museo', 300, 34px);
+	}
+
+	.options {
+		padding: 0;
+		margin: 0;
+		list-style: none;
+
+		li {
+			margin: 0 70px;
+			display: inline-block;
+			text-align: center;
+			letter-spacing: -1px;
+			@include font('Museo', 600, 86px);
+
+			&.is-disabled { color: c(gray); }
+
+			span {
+				margin: 8px auto;
+				display: block;
+				color: c(gray);
+				letter-spacing: -1px;
+				@include font('Museo', 300, 34px);
+			}
+		}
 	}
 }
