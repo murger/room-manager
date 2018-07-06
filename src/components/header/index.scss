@@ -18,7 +18,7 @@ header {
 		background-image: url('../../assets/images/logo.svg');
 		background-repeat: no-repeat;
 		background-position: center;
-		@include transition(0.25s, 0.75s, opacity);
+		@include transition(0.25s, 0.5s, opacity);
 
 		&--white {
 			@extend .logo;
