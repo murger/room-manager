@@ -3,52 +3,58 @@ import injectServices from '../../services/inject';
 import './index.scss';
 
 class Status extends React.Component {
-	constructor (props) {
-		super(props);
+	calcRemainder () {
+		let current = this.props.current,
+			next = this.props.next;
 
-		this.state = {
-			next: null
-		};
+		return (current)
+			? current.remainder
+			: (next) ? next.until : -1;
 	}
 
-	componentWillMount () {
-		let services = this.props.services,
-			room = this.props.room;
-
-		services.schedule.getNextEvent(room).then((event) => {
-			this.setState({ next: event });
-		});
-	}
-
-	renderRemainder (current) {
-		let next = this.state.next,
-			remainder = (current)
-				? current.remainder
-				: (next) ? next.until : -1,
-			showHrs = (remainder > 120),
-			total = (showHrs) ? Math.round(remainder / 60) : remainder,
+	renderRemainder () {
+		let rem = this.calcRemainder(),
+			showHrs = (rem > 120),
+			total = (showHrs) ? Math.round(rem / 60) : rem,
 			label = (showHrs) ? 'hr' : 'min';
 
-		if (remainder < 0) {
-			return null;
-		}
-
-		return [total, label + (total > 1 ? 's' : '')].join(' ');
+		return (rem < 0)
+			? null
+			: [total, label + (total > 1 ? 's' : '')].join(' ');
 	}
 
-	render () {
-		let current = this.props.current;
+	renderBooking () {
+		let rem = this.calcRemainder();
 
 		return (
 			<article>
+				<ul className="options">
+				{[15, 30, 60].map((dur, i) =>
+					<li key={i}
+						className={(!rem || rem <= dur) ? 'is-disabled' : ''}>
+						{ dur }
+						<span>mins</span>
+					</li>
+				)}
+				</ul>
+			</article>
+		);
+	}
+
+	render () {
+		let current = this.props.current,
+			isBooking = this.props.isBooking;
+
+		return (isBooking)
+			? this.renderBooking()
+			: <article>
 				<h1 className="current">
 					{ (current) ? current.title : 'Available' }
 				</h1>
 				<time className="remainder">
-					{ this.renderRemainder(current) }
+					{ this.renderRemainder() }
 				</time>
-			</article>
-		);
+			</article>;
 	}
 };
 

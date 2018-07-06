@@ -23,13 +23,11 @@ main {
 
 		header .logo { opacity: 0; }
 		header .logo--white { opacity: 1; }
-
-		article .current {
-			color: white;
-		}
-
-		section .marker {
-			border-top-color: white;
+		article .current { color: white; }
+		section {
+			.marker { border-top-color: white; }
+			.range li:before { background-color: c(gray-dk); }
+			.range li:after { color: c(gray); }
 		}
 	}
 }

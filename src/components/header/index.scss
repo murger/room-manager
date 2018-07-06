@@ -50,14 +50,14 @@ header {
 			padding-top: 22px;
 			letter-spacing: -1px;
 			@include font('Museo', 300, 32px, 1);
-			border: 1px solid transparent;
-			border-radius: 12px;
+			border: 2px solid transparent;
+			border-radius: 9px;
 			outline: none;
 
 			&.book {
 				color: c(blue);
 				background-color: transparent;
-				border: 1px solid c(blue);
+				border-color: c(blue);
 
 				&:active {
 					color: white;
@@ -66,13 +66,13 @@ header {
 			}
 
 			&.cancel {
-				color: c(gray-dk);
+				color: black;
 				background-color: transparent;
-				border: 1px solid c(gray);
+				border-color: black;
 
 				&:active {
 					color: white;
-					background-color: c(gray);
+					background-color: black;
 				}
 			}
 		}

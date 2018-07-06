@@ -11,42 +11,62 @@ class App extends React.Component {
 
         this.state = {
         	schedule: null,
-            current: null
+            current: null,
+            next: null,
+            isBooking: false
         };
     }
 
     componentWillMount () {
-    	let services = this.props.services,
-    		room = this.props.room,
-            delay = this.props.refresh,
-            setCurrentEvent = () => {
-                services.schedule.getCurrentEvent(room).then((event) => {
+    	let room = this.props.room,
+            schedule = this.props.services.schedule,
+            getCurrentEvent = () => {
+                schedule.getCurrentEvent(room).then((event) => {
                     this.setState({ current: event });
                 });
-            }
+            },
+            getNextEvent = () => {
+                schedule.getNextEvent(room).then((event) => {
+                    this.setState({ next: event });
+                });
+            };
 
         // Fetch schedule
-        services.schedule.getEvents(room).then((schedule) => {
+        schedule.getEvents(room).then((schedule) => {
             this.setState({ schedule: schedule });
-            setCurrentEvent();
+            getCurrentEvent();
+            getNextEvent();
         });
 
         // Refresh at an interval
-        this.interval = setInterval(() => setCurrentEvent(), delay);
+        this.interval = setInterval(() => getCurrentEvent(), this.props.refresh);
 	}
 
     componentWillUnmount () {
         clearInterval(this.interval);
     }
 
+    setBooking (state) {
+        this.setState({ isBooking: state });
+    }
+
     render () {
     	let schedule = this.state.schedule,
-    		current = this.state.current;
+    		current = this.state.current,
+            next = this.state.next,
+            isBooking = this.state.isBooking;
 
 		return (!schedule) ? null : (
 			<main className={(current ? 'busy' : '')}>
-				<Header current={current} />
-				<Status current={current} room={this.props.room} />
+				<Header
+                    current={current}
+                    isBooking={isBooking}
+                    setBooking={this.setBooking.bind(this)} />
+				<Status
+                    next={next}
+                    current={current}
+                    isBooking={isBooking}
+                    setBooking={this.setBooking.bind(this)} />
 				<Ticker schedule={schedule} />
 			</main>
 		);
