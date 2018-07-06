@@ -19,7 +19,8 @@ class Header extends React.Component {
 	}
 
     render () {
-    	let current = this.props.current;
+    	let current = this.props.current,
+    		room = this.props.room;
 
 		return (
 			<header>
@@ -27,7 +28,7 @@ class Header extends React.Component {
 				<div className="logo--white" />
 				<div className="option">
 					{ (current)
-						? <p className="contact">{ current.contact }</p>
+						? <p className="contact">{ current.contact || `MR${room}` }</p>
 						: this.renderBookingControls() }
 				</div>
 			</header>
