@@ -17,7 +17,7 @@ section {
 		border-right: 12px solid transparent;
 		border-top: 12px solid black;
 		transform: translateX(-12px + 62px);
-		@include transition(0.25s, 0.75s, opacity, border-color, left);
+		@include transition(0.25s, 0.5s, opacity, border-color, left);
 	}
 
 	.range {
