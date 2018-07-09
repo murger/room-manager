@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../header';
 import Status from '../status';
-import Ticker from '../ticker';
+import Timeline from '../timeline';
 import injectServices from '../../services/inject';
 import './index.scss';
 
@@ -72,7 +72,7 @@ class App extends React.Component {
                     current={current}
                     isBooking={isBooking}
                     setBooking={this.setBooking.bind(this)} />
-				<Ticker schedule={schedule} />
+				<Timeline schedule={schedule} />
 			</main>
 		);
 	}
