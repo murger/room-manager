@@ -40,16 +40,28 @@ article {
 		list-style: none;
 
 		li {
-			margin: 0 70px;
+			margin: 0 40px;
+			padding: 20px 30px;
 			display: inline-block;
 			text-align: center;
 			letter-spacing: -1px;
 			@include font('Museo', 600, 86px);
+			border-radius: 9px;
+
+			&:active:not(.is-disabled) {
+				color: white;
+				background-color: c(blue);
+
+				span {
+					color: inherit;
+				}
+			}
 
 			&.is-disabled { color: c(gray); }
 
 			span {
 				margin: 8px auto;
+				margin-bottom: 0;
 				display: block;
 				color: c(gray);
 				letter-spacing: -1px;
