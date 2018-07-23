@@ -7,30 +7,33 @@ class Header extends React.Component {
 	}
 
 	renderBookingControls () {
-		let isBooking = this.props.isBooking;
-
-		return (isBooking)
+		return (this.props.isBooking)
 			? <button
 				className="cancel"
-				onClick={() => this.setBooking(false)}>Cancel</button>
+				onClick={() => this.setBooking(false)}>Go back</button>
 			: <button
 				className="book"
-				onClick={() => this.setBooking(true)}>Book this room</button>;
+				onClick={() => this.setBooking(true)}>Book a meeting</button>;
 	}
 
     render () {
     	let current = this.props.current,
-    		room = this.props.room;
+    		room = this.props.room,
+    		option;
+
+    	if (this.props.isPosting) {
+    		option = <p className="contact">Setting up&hellip;</p>;
+    	} else if (current) {
+    		option = <p className="contact">{ current.contact || room }</p>;
+    	} else {
+    		option = this.renderBookingControls();
+    	}
 
 		return (
 			<header>
 				<div className="logo" />
 				<div className="logo--white" />
-				<div className="option">
-					{ (current)
-						? <p className="contact">{ current.contact || `MR${room}` }</p>
-						: this.renderBookingControls() }
-				</div>
+				<div className="option">{ option }</div>
 			</header>
 		);
 	}

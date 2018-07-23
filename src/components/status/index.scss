@@ -11,9 +11,31 @@ article {
 	align-items: center;
 	justify-content: center;
 
+	.loading {
+		display: inline-block;
+		width: 80px;
+		height: 80px;
+
+		@keyframes dual-ring {
+			0% { transform: rotate(0deg); }
+			100% { transform: rotate(360deg); }
+		}
+
+		&:after {
+			content: '';
+			display: block;
+			width: calc(100% - 8px * 2);
+			height: calc(100% - 8px * 2);
+			border-radius: 50%;
+			border: 8px solid c(gray);
+			border-color: c(gray) transparent c(gray) transparent;
+			animation: dual-ring 1.33s linear infinite;
+		}
+	}
+
 	.current {
 		max-width: 65%;
-		max-height: calc(68px * 2);
+		max-height: calc(72px * 2);
 		margin: 0;
 		color: black;
 		letter-spacing: -1px;
@@ -50,7 +72,7 @@ article {
 
 			&:active:not(.is-disabled) {
 				color: white;
-				background-color: c(blue);
+				background-color: black;
 
 				span {
 					color: inherit;

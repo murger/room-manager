@@ -3,15 +3,17 @@ import EventEntity from '../entities/event';
 export default class ScheduleService {
     constructor () {
         // TODO: keep an internal cache
-        this._data = null;
+        this.data = null;
+        this.api = 'https://meeting-room-api-emakinatr.herokuapp.com/api/v1';
     }
 
     getEvents (room) {
-        return fetch('https://127.0.0.1/api/v1/schedule/' + room, {
-            mode: 'cors'
-        }).then(response => {
-            return response.json();
-        }).then(data => {
+        return fetch(this.api + '/schedule/' + room, {
+            mode: 'cors',
+            cache: 'no-cache'
+        }).then(res => res.json())
+        .catch(err => console.error(err))
+        .then(data => {
             let schedule = [];
 
             for (let item of data) {
@@ -43,5 +45,17 @@ export default class ScheduleService {
                 return (start < now && end > now);
             });
         });
+    }
+
+    sendBookingRequest (room, mins) {
+        return fetch(this.api + '/schedule/' + room, {
+            mode: 'cors',
+            method: 'POST',
+            cache: 'no-cache',
+            body: JSON.stringify({ mins }),
+            headers: { 'Content-Type': 'application/json; charset=UTF-8' }
+        })
+        .catch(err => console.error(err))
+        .then(response => (response.status === 200));
     }
 }

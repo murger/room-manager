@@ -3,6 +3,10 @@ import injectServices from '../../services/inject';
 import './index.scss';
 
 class Status extends React.Component {
+	sendRequest (mins) {
+		this.props.sendRequest(mins);
+	}
+
 	calcRemainder () {
 		let current = this.props.current,
 			next = this.props.next;
@@ -23,16 +27,17 @@ class Status extends React.Component {
 			: [total, label + (total > 1 ? 's' : '')].join(' ');
 	}
 
-	renderBooking () {
+	renderOptions () {
 		let rem = this.calcRemainder();
 
 		return (
 			<article>
 				<ul className="options">
-				{[15, 30, 60].map((dur, i) =>
+				{[15, 30, 60].map((mins, i) =>
 					<li key={i}
-						className={(!rem || rem <= dur) ? 'is-disabled' : ''}>
-						{ dur }
+						onClick={() => this.sendRequest(mins)}
+						className={(rem > 0 && rem <= mins) ? 'is-disabled' : ''}>
+						{ mins }
 						<span>mins</span>
 					</li>
 				)}
@@ -41,20 +46,33 @@ class Status extends React.Component {
 		);
 	}
 
-	render () {
-		let current = this.props.current,
-			isBooking = this.props.isBooking;
+	renderCurrent () {
+		let current = this.props.current;
 
-		return (isBooking)
-			? this.renderBooking()
-			: <article>
+		return (
+			<article>
 				<h1 className="current">
 					{ (current) ? (current.title || 'Occupied') : 'Available' }
 				</h1>
 				<time className="remainder">
 					{ this.renderRemainder() }
 				</time>
-			</article>;
+			</article>
+		);
+	}
+
+	render () {
+		if (this.props.isPosting) {
+			return (
+				<article>
+					<i class="loading" />
+				</article>
+			);
+		}
+
+		return (this.props.isBooking)
+			? this.renderOptions()
+			: this.renderCurrent();
 	}
 };
 
