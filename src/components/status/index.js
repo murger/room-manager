@@ -47,12 +47,13 @@ class Status extends React.Component {
 	}
 
 	renderCurrent () {
-		let current = this.props.current;
+		let current = this.props.current,
+			title = this.props.title;
 
 		return (
 			<article>
 				<h1 className="current">
-					{ (current) ? (current.title || 'Occupied') : 'Available' }
+					{ (current) ? (current.title || 'Occupied') : title }
 				</h1>
 				<time className="remainder">
 					{ this.renderRemainder() }

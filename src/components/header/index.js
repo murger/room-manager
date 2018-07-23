@@ -13,18 +13,16 @@ class Header extends React.Component {
 				onClick={() => this.setBooking(false)}>Go back</button>
 			: <button
 				className="book"
-				onClick={() => this.setBooking(true)}>Book a meeting</button>;
+				onClick={() => this.setBooking(true)}>Start a meeting</button>;
 	}
 
     render () {
-    	let current = this.props.current,
-    		title = this.props.title,
-    		option;
+    	let option;
 
     	if (this.props.isPosting) {
-    		option = <p className="contact">Saving&hellip;</p>;
-    	} else if (current) {
-    		option = <p className="contact">{ current.contact || title }</p>;
+    		option = <p className="detail">Sending&hellip;</p>;
+    	} else if (this.props.current) {
+    		option = <p className="detail">{ this.props.title }</p>;
     	} else {
     		option = this.renderBookingControls();
     	}

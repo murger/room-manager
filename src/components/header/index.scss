@@ -38,10 +38,12 @@ header {
 		align-items: flex-end;
 		justify-content: center;
 
-		.contact {
-			color: c(gray);
+		.detail {
+			padding-top: 2px;
+			padding-right: 16px;
+			color: c(gray-dk);
 			letter-spacing: -1px;
-			@include font('Museo', 300, 32px, 1);
+			@include font('Museo', 300, 34px, 1);
 		}
 
 		button {
@@ -49,7 +51,7 @@ header {
 			padding: 18px 30px;
 			padding-top: 20px;
 			letter-spacing: -1px;
-			@include font('Museo', 300, 32px, 1);
+			@include font('Museo', 300, 34px, 1);
 			border: 2px solid transparent;
 			border-radius: 9px;
 			outline: none;
