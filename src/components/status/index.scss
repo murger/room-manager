@@ -27,8 +27,8 @@ article {
 			width: calc(100% - 8px * 2);
 			height: calc(100% - 8px * 2);
 			border-radius: 50%;
-			border: 8px solid c(gray);
-			border-color: c(gray) transparent c(gray) transparent;
+			border: 8px solid transparent;
+			border-color: c(gray-dk) transparent c(gray-dk) transparent;
 			animation: dual-ring 1.33s linear infinite;
 		}
 	}
