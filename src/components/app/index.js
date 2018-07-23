@@ -47,8 +47,10 @@ class App extends React.Component {
         });
 
         // Refresh at an interval
-        this.interval = setInterval(() =>
-            getCurrentEvent(), this.props.refresh);
+        this.interval = setInterval(() => {
+            // TODO: if new day, get schedule
+            getCurrentEvent();
+        }, this.props.refresh);
 	}
 
     setBooking (state) {
@@ -73,9 +75,14 @@ class App extends React.Component {
         this.setPosting(true);
 
         schedule.sendBookingRequest(room, mins).then((success) => {
-            schedule.getEvents(room).then((schedule) => {
-                this.setState({ schedule: schedule });
-            });
+            if (success) {
+                schedule.getEvents(room).then((schedule) => {
+                    this.setState({ schedule: schedule });
+                    schedule.getCurrentEvent(room).then((event) => {
+                        this.setState({ current: event });
+                    });
+                });
+            }
 
             this.setBooking(false);
             this.setPosting(false);
@@ -83,27 +90,23 @@ class App extends React.Component {
     }
 
     render () {
-    	let schedule = this.state.schedule,
-    		current = this.state.current,
-            isBooking = this.state.isBooking,
-            isPosting = this.state.isPosting;
-
-		return (!schedule) ? null : (
-			<main className={(current ? 'busy' : '')}>
+    	return (!this.state.schedule) ? null : (
+			<main className={(this.state.current ? 'busy' : '')}>
 				<Header
                     title={this.props.title}
-                    current={current}
-                    isBooking={isBooking}
-                    isPosting={isPosting}
+                    current={this.state.current}
+                    isBooking={this.state.isBooking}
+                    isPosting={this.state.isPosting}
                     setBooking={this.setBooking.bind(this)} />
 				<Status
+                    title={this.props.title}
                     next={this.state.next}
-                    current={current}
-                    isBooking={isBooking}
-                    isPosting={isPosting}
+                    current={this.state.current}
+                    isBooking={this.state.isBooking}
+                    isPosting={this.state.isPosting}
                     setBooking={this.setBooking.bind(this)}
                     sendRequest={this.sendRequest.bind(this)} />
-				<Timeline schedule={schedule} />
+				<Timeline schedule={this.state.schedule} />
 			</main>
 		);
 	}
