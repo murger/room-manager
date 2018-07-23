@@ -18,13 +18,13 @@ class Header extends React.Component {
 
     render () {
     	let current = this.props.current,
-    		room = this.props.room,
+    		title = this.props.title,
     		option;
 
     	if (this.props.isPosting) {
-    		option = <p className="contact">Setting up&hellip;</p>;
+    		option = <p className="contact">Saving&hellip;</p>;
     	} else if (current) {
-    		option = <p className="contact">{ current.contact || room }</p>;
+    		option = <p className="contact">{ current.contact || title }</p>;
     	} else {
     		option = this.renderBookingControls();
     	}

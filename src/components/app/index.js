@@ -18,6 +18,10 @@ class App extends React.Component {
         };
     }
 
+    componentWillUnmount () {
+        clearInterval(this.interval);
+    }
+
     componentWillMount () {
     	let room = this.props.room,
             schedule = this.props.services.schedule,
@@ -47,14 +51,10 @@ class App extends React.Component {
             getCurrentEvent(), this.props.refresh);
 	}
 
-    componentWillUnmount () {
-        clearInterval(this.interval);
-    }
-
     setBooking (state) {
         this.setState({ isBooking: state });
 
-        if (state) {
+        if (state === true) {
             this.timeout = setTimeout(() =>
                 this.setState({ isBooking: false }), this.props.timeout);
         } else if (this.timeout) {
@@ -77,28 +77,27 @@ class App extends React.Component {
                 this.setState({ schedule: schedule });
             });
 
+            this.setBooking(false);
             this.setPosting(false);
         });
     }
 
     render () {
-    	let room = this.props.room,
-            schedule = this.state.schedule,
+    	let schedule = this.state.schedule,
     		current = this.state.current,
-            next = this.state.next,
             isBooking = this.state.isBooking,
             isPosting = this.state.isPosting;
 
 		return (!schedule) ? null : (
 			<main className={(current ? 'busy' : '')}>
 				<Header
-                    room={room}
+                    title={this.props.title}
                     current={current}
                     isBooking={isBooking}
                     isPosting={isPosting}
                     setBooking={this.setBooking.bind(this)} />
 				<Status
-                    next={next}
+                    next={this.state.next}
                     current={current}
                     isBooking={isBooking}
                     isPosting={isPosting}
