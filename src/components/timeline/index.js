@@ -7,20 +7,20 @@ class Timeline extends React.Component {
 
 		this.state = {
 			widthPerHour: 90,
-			timeSpan: [...Array(11).keys()].map((x) => {
+			timespan: [...Array(11).keys()].map((x) => {
 				return (x + 9 > 12) ? x - 3 : x + 9;
 			})
 		}
 	}
 
 	renderTicks () {
-		return this.state.timeSpan.map((hour, i) =>
+		return this.state.timespan.map((hour, i) =>
 			<li key={i} data-id={hour} />
 		);
 	}
 
 	renderSchedule () {
-		let hourFirst = this.state.timeSpan[0],
+		let hourFirst = this.state.timespan[0],
 			xHour = this.state.widthPerHour;
 
 		return this.props.events.map((event, i) => {
@@ -37,11 +37,11 @@ class Timeline extends React.Component {
 		});
 	}
 
-	calcHandStyles () {
+	calcHandStyle () {
 		let now = new Date(),
 			hourNow = now.getHours(),
-			hourFirst = this.state.timeSpan[0],
-			hourLast = this.state.timeSpan.slice(-1)[0] + 12,
+			hourFirst = this.state.timespan[0],
+			hourLast = this.state.timespan.slice(-1)[0] + 12,
 			xHour = this.state.widthPerHour,
 			xHand = ((hourNow - hourFirst) * xHour) +
 				((now.getMinutes() * xHour) / 60);
@@ -55,7 +55,7 @@ class Timeline extends React.Component {
 	render () {
 		return (
 			<section>
-				<em className="marker" style={this.calcHandStyles()} />
+				<em className="hand" style={this.calcHandStyle()} />
 				<ol className="range">{ this.renderTicks() }</ol>
 				<ol className="schedule">{ this.renderSchedule() }</ol>
 			</section>

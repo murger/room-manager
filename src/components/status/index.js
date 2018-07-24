@@ -1,5 +1,4 @@
 import React from 'react';
-import injectServices from '../../services/inject';
 import './index.scss';
 
 class Status extends React.Component {
@@ -8,16 +7,16 @@ class Status extends React.Component {
 			next = this.props.next;
 
 		return (current)
-			? current.remainder * -1
+			? -current.remainder
 			: (next)
 				? next.until
 				: Infinity;
 	}
 
 	isOptionViable (mins) {
-		let rem = this.calcRemainder();
+		let remainder = this.calcRemainder();
 
-		return (rem > mins);
+		return (mins < remainder);
 	}
 
 	sendBookingRequest (mins) {
@@ -27,13 +26,14 @@ class Status extends React.Component {
 	}
 
 	renderRemainder () {
-		let rem = Math.abs(this.calcRemainder()),
-			showHrs = (rem > 120),
-			total = (showHrs) ? Math.round(rem / 60) : rem,
-			label = (showHrs) ? 'hr' : 'min';
+		let remainder = Math.abs(this.calcRemainder()),
+			showHrs = (remainder > 120),
+			total = (showHrs) ? Math.round(remainder / 60) : remainder,
+			label = (showHrs) ? 'hr' : 'min',
+			suffix = (total > 1) ? 's' : '';
 
-		return (isFinite(rem))
-			? [total, label + (total > 1 ? 's' : '')].join(' ')
+		return (isFinite(remainder))
+			? [total, label + suffix].join(' ')
 			: null;
 	}
 
@@ -55,13 +55,14 @@ class Status extends React.Component {
 	}
 
 	renderCurrent () {
-		let current = this.props.current,
-			title = this.props.title;
+		let current = this.props.current;
 
 		return (
 			<article>
 				<h1 className="current">
-					{ (current) ? (current.title || 'Occupied') : title }
+					{ (current)
+						? (current.title || 'Occupied')
+						: this.props.title }
 				</h1>
 				<time className="remainder">
 					{ this.renderRemainder() }
@@ -74,7 +75,7 @@ class Status extends React.Component {
 		if (this.props.isLoading) {
 			return (
 				<article>
-					<i className="loading" />
+					<span className="loading" />
 				</article>
 			);
 		}
@@ -85,4 +86,4 @@ class Status extends React.Component {
 	}
 };
 
-export default injectServices(Status);
+export default Status;
