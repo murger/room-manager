@@ -13,7 +13,7 @@ class App extends React.Component {
         	events: null,
             current: null,
             next: null,
-            isOptionsVisible: false,
+            isOptsVisible: false,
             isLoading: true
         };
     }
@@ -32,14 +32,13 @@ class App extends React.Component {
             schedule = this.props.services.schedule;
 
         schedule.getToday(id).then((events) => {
-            let current = schedule.getCurrentEvent(),
-                next = schedule.getNextEvent();
+            let current = schedule.getCurrentEvent();
 
             this.setState({
                 events: events,
                 current: current,
-                next: next,
-                isOptionsVisible: (current) ? false : this.state.isOptionsVisible
+                next: schedule.getNextEvent(),
+                isOptsVisible: (current) ? false : this.state.isOptsVisible
             });
 
             if (callback && callback instanceof Function) {
@@ -49,11 +48,12 @@ class App extends React.Component {
     }
 
     showOptions (state) {
-        this.setState({ isOptionsVisible: state });
+        this.setState({ isOptsVisible: state });
 
+        // Hide options on a timeout
         if (state === true) {
             this.timeout = setTimeout(() =>
-                this.setState({ isOptionsVisible: false }), this.props.timeout);
+                this.setState({ isOptsVisible: false }), this.props.timeout);
         } else if (this.timeout) {
             clearTimeout(this.timeout);
         }
@@ -63,21 +63,20 @@ class App extends React.Component {
         this.setState({ isLoading: state });
     }
 
-    postBooking (mins) {
+    sendBookingRequest (mins) {
         let id = this.props.id,
             schedule = this.props.services.schedule;
 
         this.setLoading(true);
 
-        schedule.sendBookingRequest(id, mins).then((success) => {
-            if (!success) {
-                return this.setLoading(false);
-            }
-
-            this.getSchedule(() => {
-                this.showOptions(false);
-                this.setLoading(false);
+        schedule.sendBookingRequest(id, mins).then((data) => {
+            // Set as current
+            (data) && this.setState({
+                current: schedule.setCurrentEvent(data)
             });
+
+            this.showOptions(false);
+            this.setLoading(false);
         });
     }
 
@@ -87,16 +86,16 @@ class App extends React.Component {
 				<Header
                     title={this.props.title}
                     current={this.state.current}
-                    isOptionsVisible={this.state.isOptionsVisible}
+                    isOptsVisible={this.state.isOptsVisible}
                     isLoading={this.state.isLoading}
                     showOptions={this.showOptions.bind(this)} />
 				<Status
                     title={this.props.title}
                     next={this.state.next}
                     current={this.state.current}
-                    isOptionsVisible={this.state.isOptionsVisible}
+                    isOptsVisible={this.state.isOptsVisible}
                     isLoading={this.state.isLoading}
-                    postBooking={this.postBooking.bind(this)} />
+                    sendBookingRequest={this.sendBookingRequest.bind(this)} />
 				<Timeline events={this.state.events} />
 			</main>
 		);
