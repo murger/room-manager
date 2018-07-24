@@ -69,7 +69,7 @@ class Status extends React.Component {
 	}
 
 	render () {
-		if (this.props.isPosting) {
+		if (this.props.isLoading) {
 			return (
 				<article>
 					<i className="loading" />

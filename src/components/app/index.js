@@ -14,7 +14,7 @@ class App extends React.Component {
             current: null,
             next: null,
             isBooking: false,
-            isPosting: false
+            isLoading: true
         };
     }
 
@@ -44,6 +44,7 @@ class App extends React.Component {
             this.setState({ schedule: schedule });
             getCurrentEvent();
             getNextEvent();
+            setTimeout(() => this.setLoading(false), 999);
         });
 
         // Refresh at an interval
@@ -64,15 +65,15 @@ class App extends React.Component {
         }
     }
 
-    setPosting (state) {
-        this.setState({ isPosting: state });
+    setLoading (state) {
+        this.setState({ isLoading: state });
     }
 
     sendRequest (mins) {
         let room = this.props.room,
             schedule = this.props.services.schedule;
 
-        this.setPosting(true);
+        this.setLoading(true);
 
         schedule.sendBookingRequest(room, mins).then((success) => {
             if (success) {
@@ -85,7 +86,7 @@ class App extends React.Component {
             }
 
             this.setBooking(false);
-            this.setPosting(false);
+            this.setLoading(false);
         });
     }
 
@@ -96,14 +97,14 @@ class App extends React.Component {
                     title={this.props.title}
                     current={this.state.current}
                     isBooking={this.state.isBooking}
-                    isPosting={this.state.isPosting}
+                    isLoading={this.state.isLoading}
                     setBooking={this.setBooking.bind(this)} />
 				<Status
                     title={this.props.title}
                     next={this.state.next}
                     current={this.state.current}
                     isBooking={this.state.isBooking}
-                    isPosting={this.state.isPosting}
+                    isLoading={this.state.isLoading}
                     setBooking={this.setBooking.bind(this)}
                     sendRequest={this.sendRequest.bind(this)} />
 				<Timeline schedule={this.state.schedule} />
