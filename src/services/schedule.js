@@ -9,13 +9,13 @@ export default class ScheduleService {
         this.api = 'https://meeting-room-api-emakinatr.herokuapp.com/api/v1';
     }
 
-    getEvents (room) {
-        if (this.cache && Date.now() < (this.updated + this.expiry)) {
+    getToday (id, force) {
+        if (this.cache && !force && Date.now() < (this.updated + this.expiry)) {
             return Promise.resolve(this.cache);
         }
 
         if (!this._promise) {
-            return fetch(this.api + '/schedule/' + room, {
+            return fetch(this.api + '/schedule/' + id, {
                 mode: 'cors',
                 cache: 'no-cache'
             })
@@ -29,7 +29,7 @@ export default class ScheduleService {
                 }
 
                 this.updated = Date.now();
-                // console.log('ScheduleService', this.updated);
+                console.log('ScheduleService', this.updated);
 
                 return this.cache;
             });
@@ -38,31 +38,27 @@ export default class ScheduleService {
         return this._promise;
     }
 
-    getNextEvent (room) {
+    getCurrentEvent () {
         let now = Date.now();
 
-        return this.getEvents(room).then((schedule) => {
-            return schedule.find((event) => {
-                return (event.start.getTime() > now);
-            });
+        return this.cache.find((event) => {
+            let start = event.start.getTime(),
+                end = event.end.getTime();
+
+            return (start < now && end > now);
         });
     }
 
-    getCurrentEvent (room) {
+    getNextEvent () {
         let now = Date.now();
 
-        return this.getEvents(room).then((schedule) => {
-            return schedule.find((event) => {
-                let start = event.start.getTime(),
-                    end = event.end.getTime();
-
-                return (start < now && end > now);
-            });
+        return this.cache.find((event) => {
+            return (event.start.getTime() > now);
         });
     }
 
-    sendBookingRequest (room, mins) {
-        return fetch(this.api + '/schedule/' + room, {
+    sendBookingRequest (id, mins) {
+        return fetch(this.api + '/schedule/' + id, {
             mode: 'cors',
             method: 'POST',
             cache: 'no-cache',
@@ -70,6 +66,8 @@ export default class ScheduleService {
             headers: { 'Content-Type': 'application/json; charset=UTF-8' }
         })
         .catch(err => console.error(err))
-        .then(response => (response.status === 200));
+        .then(response => {
+            return (response.status > 200 && response.status < 300)
+        });
     }
 }
