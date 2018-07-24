@@ -10,10 +10,10 @@ class App extends React.Component {
         super(props);
 
         this.state = {
-        	schedule: null,
+        	events: null,
             current: null,
             next: null,
-            isBooking: false,
+            isOptionsVisible: false,
             isLoading: true
         };
     }
@@ -23,39 +23,37 @@ class App extends React.Component {
     }
 
     componentDidMount () {
-    	let room = this.props.room,
-            schedule = this.props.services.schedule,
-            getCurrentEvent = () => schedule.getCurrentEvent(room).then((event) => {
-                this.setState({
-                    current: event,
-                    isBooking: (event) ? false : this.state.isBooking
-                });
-            }),
-            getNextEvent = () => schedule.getNextEvent(room).then((event) => {
-                this.setState({ next: event });
-            });
-
-        // Fetch schedule
-        schedule.getEvents(room).then((events) => {
-            this.setState({ schedule: events });
-            getCurrentEvent();
-            getNextEvent();
-            setTimeout(() => this.setLoading(false), 999);
-        });
-
-        // Refresh at an interval
-        this.timer = setInterval(() => {
-            // TODO: if new day, get schedule
-            getCurrentEvent();
-        }, this.props.refresh);
+        this.getSchedule(() => this.setLoading(false));
+        this.timer = setInterval(() => this.getSchedule(), this.props.refresh);
 	}
 
-    setBooking (state) {
-        this.setState({ isBooking: state });
+    getSchedule (callback) {
+        let id = this.props.id,
+            schedule = this.props.services.schedule;
+
+        schedule.getToday(id).then((events) => {
+            let current = schedule.getCurrentEvent(),
+                next = schedule.getNextEvent();
+
+            this.setState({
+                events: events,
+                current: current,
+                next: next,
+                isOptionsVisible: (current) ? false : this.state.isOptionsVisible
+            });
+
+            if (callback && callback instanceof Function) {
+                callback();
+            }
+        });
+    }
+
+    showOptions (state) {
+        this.setState({ isOptionsVisible: state });
 
         if (state === true) {
             this.timeout = setTimeout(() =>
-                this.setState({ isBooking: false }), this.props.timeout);
+                this.setState({ isOptionsVisible: false }), this.props.timeout);
         } else if (this.timeout) {
             clearTimeout(this.timeout);
         }
@@ -65,45 +63,41 @@ class App extends React.Component {
         this.setState({ isLoading: state });
     }
 
-    sendRequest (mins) {
-        let room = this.props.room,
+    postBooking (mins) {
+        let id = this.props.id,
             schedule = this.props.services.schedule;
 
         this.setLoading(true);
 
-        schedule.sendBookingRequest(room, mins).then((success) => {
-            if (success) {
-                schedule.getEvents(room).then((events) => {
-                    this.setState({ schedule: events });
-                    schedule.getCurrentEvent(room).then((event) => {
-                        this.setState({ current: event });
-                    });
-                });
+        schedule.sendBookingRequest(id, mins).then((success) => {
+            if (!success) {
+                return this.setLoading(false);
             }
 
-            this.setBooking(false);
-            this.setLoading(false);
+            this.getSchedule(() => {
+                this.showOptions(false);
+                this.setLoading(false);
+            });
         });
     }
 
     render () {
-    	return (!this.state.schedule) ? null : (
+    	return (!this.state.events) ? null : (
 			<main className={(this.state.current ? 'busy' : '')}>
 				<Header
                     title={this.props.title}
                     current={this.state.current}
-                    isBooking={this.state.isBooking}
+                    isOptionsVisible={this.state.isOptionsVisible}
                     isLoading={this.state.isLoading}
-                    setBooking={this.setBooking.bind(this)} />
+                    showOptions={this.showOptions.bind(this)} />
 				<Status
                     title={this.props.title}
                     next={this.state.next}
                     current={this.state.current}
-                    isBooking={this.state.isBooking}
+                    isOptionsVisible={this.state.isOptionsVisible}
                     isLoading={this.state.isLoading}
-                    setBooking={this.setBooking.bind(this)}
-                    sendRequest={this.sendRequest.bind(this)} />
-				<Timeline schedule={this.state.schedule} />
+                    postBooking={this.postBooking.bind(this)} />
+				<Timeline events={this.state.events} />
 			</main>
 		);
 	}

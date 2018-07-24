@@ -8,24 +8,26 @@ class Status extends React.Component {
 			next = this.props.next;
 
 		return (current)
-			? current.remainder
-			: (next) ? next.until : -1;
+			? current.remainder * -1
+			: (next)
+				? next.until
+				: Infinity;
 	}
 
-	isOptionDisabled (mins) {
+	isOptionViable (mins) {
 		let rem = this.calcRemainder();
 
-		return (rem > 0 && rem <= mins);
+		return (rem > mins);
 	}
 
-	sendRequest (mins) {
-		if (!this.isOptionDisabled(mins)) {
-			this.props.sendRequest(mins);
+	postBooking (mins) {
+		if (this.isOptionViable(mins)) {
+			this.props.postBooking(mins);
 		}
 	}
 
 	renderRemainder () {
-		let rem = this.calcRemainder(),
+		let rem = Math.abs(this.calcRemainder()),
 			showHrs = (rem > 120),
 			total = (showHrs) ? Math.round(rem / 60) : rem,
 			label = (showHrs) ? 'hr' : 'min';
@@ -41,8 +43,8 @@ class Status extends React.Component {
 				<ul className="options">
 				{[15, 30, 60].map((mins, i) =>
 					<li key={i}
-						onClick={() => this.sendRequest(mins)}
-						className={this.isOptionDisabled(mins) ? 'is-disabled' : ''}>
+						onClick={() => this.postBooking(mins)}
+						className={!this.isOptionViable(mins) ? 'is-disabled' : ''}>
 						{ mins }
 						<span>mins</span>
 					</li>
@@ -77,7 +79,7 @@ class Status extends React.Component {
 			);
 		}
 
-		return (this.props.isBooking)
+		return (this.props.isOptionsVisible)
 			? this.renderOptions()
 			: this.renderCurrent();
 	}

@@ -23,7 +23,7 @@ class Timeline extends React.Component {
 		let hourFirst = this.state.timeSpan[0],
 			xHour = this.state.widthPerHour;
 
-		return this.props.schedule.map((event, i) => {
+		return this.props.events.map((event, i) => {
 			let start = event.start,
 				end = event.end,
 				left = ((start.getHours() - hourFirst) * xHour) +

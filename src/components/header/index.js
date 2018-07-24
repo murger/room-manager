@@ -2,18 +2,18 @@ import React from 'react';
 import './index.scss';
 
 class Header extends React.Component {
-	setBooking (state) {
-		this.props.setBooking(state);
+	showOptions (state) {
+		this.props.showOptions(state);
 	}
 
 	renderBookingControls () {
-		return (this.props.isBooking)
+		return (this.props.isOptionsVisible)
 			? <button
 				className="cancel"
-				onClick={() => this.setBooking(false)}>Go back</button>
+				onClick={() => this.showOptions(false)}>Go back</button>
 			: <button
 				className="book"
-				onClick={() => this.setBooking(true)}>Start a meeting</button>;
+				onClick={() => this.showOptions(true)}>Start a meeting</button>;
 	}
 
     render () {
