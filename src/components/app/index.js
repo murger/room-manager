@@ -19,10 +19,10 @@ class App extends React.Component {
     }
 
     componentWillUnmount () {
-        clearInterval(this.interval);
+        clearInterval(this.timer);
     }
 
-    componentWillMount () {
+    componentDidMount () {
     	let room = this.props.room,
             schedule = this.props.services.schedule,
             getCurrentEvent = () => {
@@ -47,7 +47,7 @@ class App extends React.Component {
         });
 
         // Refresh at an interval
-        this.interval = setInterval(() => {
+        this.timer = setInterval(() => {
             // TODO: if new day, get schedule
             getCurrentEvent();
         }, this.props.refresh);
