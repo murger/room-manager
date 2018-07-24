@@ -19,8 +19,8 @@ class Header extends React.Component {
     render () {
     	let option;
 
-    	if (this.props.isPosting) {
-    		option = <p className="detail">Sending&hellip;</p>;
+    	if (this.props.isLoading) {
+    		option = <p className="detail">Loading&hellip;</p>;
     	} else if (this.props.current) {
     		option = <p className="detail">{ this.props.title }</p>;
     	} else {
