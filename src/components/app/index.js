@@ -25,23 +25,19 @@ class App extends React.Component {
     componentDidMount () {
     	let room = this.props.room,
             schedule = this.props.services.schedule,
-            getCurrentEvent = () => {
-                schedule.getCurrentEvent(room).then((event) => {
-                    this.setState({
-                        current: event,
-                        isBooking: (event) ? false : this.state.isBooking
-                    });
+            getCurrentEvent = () => schedule.getCurrentEvent(room).then((event) => {
+                this.setState({
+                    current: event,
+                    isBooking: (event) ? false : this.state.isBooking
                 });
-            },
-            getNextEvent = () => {
-                schedule.getNextEvent(room).then((event) => {
-                    this.setState({ next: event });
-                });
-            };
+            }),
+            getNextEvent = () => schedule.getNextEvent(room).then((event) => {
+                this.setState({ next: event });
+            });
 
         // Fetch schedule
-        schedule.getEvents(room).then((schedule) => {
-            this.setState({ schedule: schedule });
+        schedule.getEvents(room).then((events) => {
+            this.setState({ schedule: events });
             getCurrentEvent();
             getNextEvent();
             setTimeout(() => this.setLoading(false), 999);
@@ -77,8 +73,8 @@ class App extends React.Component {
 
         schedule.sendBookingRequest(room, mins).then((success) => {
             if (success) {
-                schedule.getEvents(room).then((schedule) => {
-                    this.setState({ schedule: schedule });
+                schedule.getEvents(room).then((events) => {
+                    this.setState({ schedule: events });
                     schedule.getCurrentEvent(room).then((event) => {
                         this.setState({ current: event });
                     });

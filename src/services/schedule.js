@@ -2,26 +2,40 @@ import EventEntity from '../entities/event';
 
 export default class ScheduleService {
     constructor () {
-        // TODO: keep an internal cache
-        this.data = null;
+        this._promise = null;
+        this.cache = null;
+        this.updated = null;
+        this.expiry = 1000 * 5;
         this.api = 'https://meeting-room-api-emakinatr.herokuapp.com/api/v1';
     }
 
     getEvents (room) {
-        return fetch(this.api + '/schedule/' + room, {
-            mode: 'cors',
-            cache: 'no-cache'
-        }).then(res => res.json())
-        .catch(err => console.error(err))
-        .then(data => {
-            let schedule = [];
+        if (this.cache && Date.now() < (this.updated + this.expiry)) {
+            return Promise.resolve(this.cache);
+        }
 
-            for (let item of data) {
-                schedule.push(new EventEntity(item));
-            }
+        if (!this._promise) {
+            return fetch(this.api + '/schedule/' + room, {
+                mode: 'cors',
+                cache: 'no-cache'
+            })
+            .then(res => res.json())
+            .catch(err => console.error(err))
+            .then(data => {
+                this.cache = [];
 
-            return schedule;
-        });
+                for (let item of data) {
+                    this.cache.push(new EventEntity(item));
+                }
+
+                this.updated = Date.now();
+                // console.log('ScheduleService', this.updated);
+
+                return this.cache;
+            });
+        }
+
+        return this._promise;
     }
 
     getNextEvent (room) {
