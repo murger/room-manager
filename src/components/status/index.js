@@ -3,10 +3,6 @@ import injectServices from '../../services/inject';
 import './index.scss';
 
 class Status extends React.Component {
-	sendRequest (mins) {
-		this.props.sendRequest(mins);
-	}
-
 	calcRemainder () {
 		let current = this.props.current,
 			next = this.props.next;
@@ -14,6 +10,18 @@ class Status extends React.Component {
 		return (current)
 			? current.remainder
 			: (next) ? next.until : -1;
+	}
+
+	isOptionDisabled (mins) {
+		let rem = this.calcRemainder();
+
+		return (rem > 0 && rem <= mins);
+	}
+
+	sendRequest (mins) {
+		if (!this.isOptionDisabled(mins)) {
+			this.props.sendRequest(mins);
+		}
 	}
 
 	renderRemainder () {
@@ -28,15 +36,13 @@ class Status extends React.Component {
 	}
 
 	renderOptions () {
-		let rem = this.calcRemainder();
-
 		return (
 			<article>
 				<ul className="options">
 				{[15, 30, 60].map((mins, i) =>
 					<li key={i}
 						onClick={() => this.sendRequest(mins)}
-						className={(rem > 0 && rem <= mins) ? 'is-disabled' : ''}>
+						className={this.isOptionDisabled(mins) ? 'is-disabled' : ''}>
 						{ mins }
 						<span>mins</span>
 					</li>
@@ -66,7 +72,7 @@ class Status extends React.Component {
 		if (this.props.isPosting) {
 			return (
 				<article>
-					<i class="loading" />
+					<i className="loading" />
 				</article>
 			);
 		}

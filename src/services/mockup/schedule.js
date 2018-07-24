@@ -28,7 +28,7 @@ export default class ScheduleServiceMockup extends ScheduleService {
                 id: 43536,
                 title: 'Once Upon a Time',
                 contact: 'Bartholomew Shoe',
-                start: today + 'T12:00:00.000Z',
+                start: today + 'T13:00:00.000Z',
                 end: today + 'T13:45:00.000Z'
             }, {
                 id: 34573,
