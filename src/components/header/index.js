@@ -7,7 +7,7 @@ class Header extends React.Component {
 	}
 
 	renderBookingControls () {
-		return (this.props.isOptionsVisible)
+		return (this.props.isOptsVisible)
 			? <button
 				className="cancel"
 				onClick={() => this.showOptions(false)}>Go back</button>
