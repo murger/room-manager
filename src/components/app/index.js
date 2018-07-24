@@ -84,15 +84,15 @@ class App extends React.Component {
     	return (!this.state.events) ? null : (
 			<main className={(this.state.current ? 'busy' : '')}>
 				<Header
-                    title={this.props.title}
                     current={this.state.current}
+                    title={this.props.title}
                     isOptsVisible={this.state.isOptsVisible}
                     isLoading={this.state.isLoading}
                     showOptions={this.showOptions.bind(this)} />
 				<Status
-                    title={this.props.title}
                     next={this.state.next}
                     current={this.state.current}
+                    title={this.props.title}
                     isOptsVisible={this.state.isOptsVisible}
                     isLoading={this.state.isLoading}
                     sendBookingRequest={this.sendBookingRequest.bind(this)} />
