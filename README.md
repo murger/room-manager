@@ -10,15 +10,16 @@ room's daily timeline.
 We've opt'ed for a simple look in order to blend in, light mode (white
 background) denotes the room is available, displaying the room's title in the
 middle and how long till the next meeting. Dark mode signifies the room is
-currently occupied.
+occupied, displaying the current event title and a remainder.
 
 <img src="https://s15.postimg.cc/yrktdnh2z/room-manager.png" width="420">
 
 ## Run it
 
-We're using [Parcel](https://parceljs.org/) to bundle the project, in order to
-run it with the built-in mockup data, use the command `npm run dev`. Ff you'd
-rather test it through the API,  use `npm run stage`.
+We're using [Parcel](https://parceljs.org/) to bundle the project, have a `npm i`
+to get the dependencies first, then in order to run it with the built-in mockup
+data, use the command `npm run dev`. If you'd rather test it through the API,
+use `npm run stage`.
 
 You may find room details within `src/index.js` where `id` is the calendar ID of
 the room and `title` is the display name. We've kept these hardcoded rather than
