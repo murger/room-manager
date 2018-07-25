@@ -28,12 +28,12 @@ export default class ScheduleServiceMockup extends ScheduleService {
                 title: 'Happily Ever After in the Discotheque',
                 contact: 'Bartholomew Shoe',
                 start: today + 'T11:00:00.000Z',
-                end: today + 'T12:45:00.000Z'
+                end: today + 'T12:30:00.000Z'
             }, {
                 id: 34573,
                 title: 'Once Upon a Time',
                 contact: 'Girth Wiedenbauer',
-                start: today + 'T14:00:00.000Z',
+                start: today + 'T13:00:00.000Z',
                 end: today + 'T14:30:00.000Z'
             }];
 

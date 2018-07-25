@@ -3,7 +3,8 @@
 This is a solution we've been working on, to be able to utilise our meeting
 rooms more efficiently and without having to check on the calendar first. It
 allows booking a room on the spot, as well as providing a quick glance into the
-room's daily timeline.
+room's daily timeline and most importantly, we can now see even from a distance
+whether the room is available or not.
 
 ## UI
 
