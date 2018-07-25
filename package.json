@@ -14,13 +14,10 @@
 	"dependencies": {
 		"babel-preset-env": "^1.7.0",
 		"babel-preset-react": "^6.24.1",
-		"core-js": "^2.5.7",
 		"node-sass": "^4.9.0",
 		"parcel-bundler": "^1.9.3",
-		"promise-polyfill": "^8.0.0",
 		"react": "^16.4.1",
-		"react-dom": "^16.4.1",
-		"whatwg-fetch": "^2.0.4"
+		"react-dom": "^16.4.1"
 	},
 	"devDependencies": {
 		"cross-env": "^5.2.0",
