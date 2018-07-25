@@ -44,7 +44,7 @@ class App extends React.Component {
             if (callback && callback instanceof Function) {
                 callback();
             }
-        });
+        }).catch(err => console.log(err));
     }
 
     showOptions (state) {
@@ -77,7 +77,7 @@ class App extends React.Component {
 
             this.showOptions(false);
             this.setLoading(false);
-        });
+        }).catch(err => console.log(err));
     }
 
     render () {
