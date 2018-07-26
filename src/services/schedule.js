@@ -23,7 +23,6 @@ export default class ScheduleService {
                 mode: 'cors',
                 cache: 'no-cache'
             })
-            .catch(err => console.error(err))
             .then(res => res.json())
             .then(data => {
                 this._cache = [];
@@ -69,7 +68,6 @@ export default class ScheduleService {
             body: JSON.stringify({ mins }),
             headers: { 'Content-Type': 'application/json; charset=UTF-8' }
         })
-        .catch((err) => console.error(err))
         .then((response) => {
             if (response.ok) { return response.json(); }
             else { return false; }
