@@ -15,8 +15,8 @@ class App extends React.Component {
             next: null,
             isOptsVisible: false,
             isLoading: true,
-            hasError: false,
-            hasConnection: true
+            isConnected: true,
+            hasError: false
         };
     }
 
@@ -41,10 +41,12 @@ class App extends React.Component {
                     current: current,
                     events: (events) ? events : this.state.events,
                     isOptsVisible: (current) ? false : this.state.isOptsVisible,
-                    hasConnection: connection
+                    isConnected: connection
                 });
 
-                (callback instanceof Function) && callback();
+                if (callback instanceof Function) {
+                    callback();
+                }
             };
 
         schedule.getToday(id)
@@ -62,8 +64,8 @@ class App extends React.Component {
                 hasError: false
             }), this.props.reset);
         } else if (this.reset) {
-            clearTimeout(this.reset);
             this.setState({ hasError: false });
+            clearTimeout(this.reset);
         }
     }
 
@@ -102,7 +104,7 @@ class App extends React.Component {
                     title={this.props.title}
                     isOptsVisible={this.state.isOptsVisible}
                     isLoading={this.state.isLoading}
-                    hasConnection={this.state.hasConnection}
+                    isConnected={this.state.isConnected}
                     toggleOptions={this.toggleOptions.bind(this)} />
 				<Status
                     next={this.state.next}

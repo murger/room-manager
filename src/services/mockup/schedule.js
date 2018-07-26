@@ -27,7 +27,7 @@ export default class ScheduleServiceMockup extends ScheduleService {
                 id: 43536,
                 title: 'Happily Ever After in the Discotheque',
                 contact: 'Bartholomew Shoe',
-                start: today + 'T11:00:00.000Z',
+                start: today + 'T11:30:00.000Z',
                 end: today + 'T12:30:00.000Z'
             }, {
                 id: 34573,
