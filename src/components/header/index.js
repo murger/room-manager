@@ -30,8 +30,7 @@ class Header extends React.Component {
 		return (
 			<header>
 				<div className="logo" />
-				<span className="connection"
-					data-status={this.props.hasConnection} />
+				<span className="connection" data-status={this.props.isConnected} />
 				<div className="option">{ option }</div>
 			</header>
 		);
