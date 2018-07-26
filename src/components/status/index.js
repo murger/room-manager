@@ -72,6 +72,14 @@ class Status extends React.Component {
 	}
 
 	render () {
+		if (this.props.hasError && this.props.isOptsVisible) {
+			return (
+				<article>
+					<p className="error">{ this.props.hasError }</p>
+				</article>
+			);
+		}
+
 		if (this.props.isLoading) {
 			return (
 				<article>

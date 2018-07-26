@@ -10,11 +10,13 @@ class App extends React.Component {
         super(props);
 
         this.state = {
-        	events: null,
+        	events: [],
             current: null,
             next: null,
             isOptsVisible: false,
-            isLoading: true
+            isLoading: true,
+            hasError: false,
+            hasConnection: true
         };
     }
 
@@ -23,7 +25,7 @@ class App extends React.Component {
     }
 
     componentDidMount () {
-        this.getSchedule(() => this.setLoading(false));
+        this.getSchedule(() => this.setState({ isLoading: false }));
         this.timer = setInterval(() => this.getSchedule(), this.props.refresh);
 	}
 
@@ -38,63 +40,82 @@ class App extends React.Component {
                 events: events,
                 current: current,
                 next: schedule.getNextEvent(),
-                isOptsVisible: (current) ? false : this.state.isOptsVisible
+                isOptsVisible: (current) ? false : this.state.isOptsVisible,
+                hasConnection: true
             });
 
-            if (callback && callback instanceof Function) {
-                callback();
-            }
+            if (callback instanceof Function) { callback(); }
+        }).catch((err) => {
+            let current = schedule.getCurrentEvent();
+
+            this.setState({
+                hasConnection: false,
+                current: (current) ? current : this.state.current,
+            });
+
+            if (callback instanceof Function) { callback(); }
         });
     }
 
-    showOptions (state) {
+    toggleOptions (state) {
         this.setState({ isOptsVisible: state });
 
         // Hide options on a timeout
         if (state === true) {
-            this.timeout = setTimeout(() =>
-                this.setState({ isOptsVisible: false }), this.props.timeout);
+            this.timeout = setTimeout(() => this.setState({
+                isOptsVisible: false,
+                hasError: false
+            }), this.props.timeout);
         } else if (this.timeout) {
             clearTimeout(this.timeout);
+            this.setState({ hasError: false });
         }
-    }
-
-    setLoading (state) {
-        this.setState({ isLoading: state });
     }
 
     sendBookingRequest (mins) {
         let id = this.props.id,
             schedule = this.props.services.schedule;
 
-        this.setLoading(true);
+        this.setState({ isLoading: true });
 
         schedule.sendBookingRequest(id, mins).then((data) => {
-            // Set as current
-            (data) && this.setState({
-                current: schedule.setCurrentEvent(data)
+            if (data) {
+                this.toggleOptions(false);
+                this.setState({
+                    isLoading: false,
+                    current: schedule.setCurrentEvent(data)
+                });
+            } else {
+                this.setState({
+                    isLoading: false,
+                    hasError: 'Room unavailable.'
+                });
+            }
+        }).catch((err) => {
+            this.setState({
+                isLoading: false,
+                hasError: 'Network unreachable.'
             });
-
-            this.showOptions(false);
-            this.setLoading(false);
         });
     }
 
     render () {
-    	return (!this.state.events) ? null : (
+    	return (
 			<main className={(this.state.current ? 'busy' : '')}>
 				<Header
                     current={this.state.current}
                     title={this.props.title}
                     isOptsVisible={this.state.isOptsVisible}
                     isLoading={this.state.isLoading}
-                    showOptions={this.showOptions.bind(this)} />
+                    hasConnection={this.state.hasConnection}
+                    toggleOptions={this.toggleOptions.bind(this)} />
 				<Status
                     next={this.state.next}
                     current={this.state.current}
                     title={this.props.title}
                     isOptsVisible={this.state.isOptsVisible}
                     isLoading={this.state.isLoading}
+                    hasError={this.state.hasError}
                     sendBookingRequest={this.sendBookingRequest.bind(this)} />
 				<Timeline events={this.state.events} />
 			</main>

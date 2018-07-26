@@ -22,8 +22,8 @@ main {
 	&.busy {
 		background-color: black;
 
-		header .logo { opacity: 0; }
-		header .logo--white { opacity: 1; }
+		header .logo,
+		header .connection { filter: invert(1); }
 		article .current { color: white; }
 		section {
 			.hand { border-top-color: c(white-ish); }

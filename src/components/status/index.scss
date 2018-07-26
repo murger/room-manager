@@ -33,6 +33,13 @@ article {
 		}
 	}
 
+	.error {
+		color: c(gray);
+		letter-spacing: -1px;
+		text-align: center;
+		@include font('Museo', 300, 42px, 48px);
+	}
+
 	.current {
 		max-width: 65%;
 		max-height: calc(72px * 2);

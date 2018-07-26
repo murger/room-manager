@@ -2,27 +2,27 @@ import React from 'react';
 import './index.scss';
 
 class Header extends React.Component {
-	showOptions (state) {
-		this.props.showOptions(state);
+	toggleOptions (state) {
+		this.props.toggleOptions(state);
 	}
 
 	renderBookingControls () {
 		return (this.props.isOptsVisible)
 			? <button
 				className="cancel"
-				onClick={() => this.showOptions(false)}>Go back</button>
+				onClick={() => this.toggleOptions(false)}>Go back</button>
 			: <button
 				className="book"
-				onClick={() => this.showOptions(true)}>Start a meeting</button>;
+				onClick={() => this.toggleOptions(true)}>Start a meeting</button>;
 	}
 
     render () {
     	let option;
 
-    	if (this.props.isLoading) {
-    		option = <p>Loading&hellip;</p>;
-    	} else if (this.props.current) {
+    	if (this.props.current) {
     		option = <p>{ this.props.title }</p>;
+    	} else if (this.props.isLoading) {
+    		option = <p>Loading...</p>;
     	} else {
     		option = this.renderBookingControls();
     	}
@@ -30,7 +30,8 @@ class Header extends React.Component {
 		return (
 			<header>
 				<div className="logo" />
-				<div className="logo--white" />
+				<span className="connection"
+					data-status={this.props.hasConnection} />
 				<div className="option">{ option }</div>
 			</header>
 		);
