@@ -21,14 +21,10 @@ main {
 
 	&.busy {
 		background-color: black;
-
-		header .logo,
-		header .connection { filter: invert(1); }
-		article .current { color: white; }
-		section {
-			.hand { border-top-color: c(white-ish); }
-			.range li:before { background-color: c(gray-dk); }
-			.range li:after { color: c(gray); }
-		}
+		--image-filter: invert(1);
+		--event-color: white;
+		--hand-color: #{c(white-ish)};
+		--tick-color: #{c(gray-dk)};
+		--hour-color: #{c(gray)};
 	}
 }

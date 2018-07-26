@@ -44,7 +44,7 @@ article {
 		max-width: 65%;
 		max-height: calc(72px * 2);
 		margin: 0;
-		color: black;
+		color: var(--event-color, black);
 		letter-spacing: -1px;
 		text-align: center;
 		@include font('Museo', 500, 64px, 72px);

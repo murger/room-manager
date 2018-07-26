@@ -15,7 +15,7 @@ section {
 		top: 6px;
 		border-left: 12px solid transparent;
 		border-right: 12px solid transparent;
-		border-top: 12px solid black;
+		border-top: 12px solid var(--hand-color, black);
 		transform: translateX(-12px + 62px);
 		@include transition(0.25s, 0.5s, opacity, border-color, left);
 	}
@@ -44,7 +44,7 @@ section {
 				position: absolute;
 				top: 0px;
 				left: calc(50% - 1px);
-				background-color: c(gray-lt);
+				background-color: var(--tick-color, c(gray-lt));
 				@include transition(0.25s, 0.5s, background-color);
 			}
 
@@ -56,7 +56,7 @@ section {
 				position: absolute;
 				top: 28px + 16px;
 				left: calc(50% - 32px / 2);
-				color: black;
+				color: var(--hour-color, black);
 				@include font('Museo', 300, 21px);
 				@include transition(0.25s, 0.5s, color);
 			}
