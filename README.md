@@ -13,7 +13,7 @@ background) denotes the room is available, displaying the room's title in the
 middle and how long till the next meeting. Dark mode signifies the room is
 occupied, displaying the current event title and a remainder.
 
-<img src="https://s15.postimg.cc/yrktdnh2z/room-manager.png" width="420">
+<img src="https://s19.postimg.cc/3lo3998b5/room-manager.png">
 
 ## Run it
 
