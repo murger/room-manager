@@ -7,6 +7,6 @@ ReactDOM.render(
 		id={1}
 		title="Jupiter"
 		refresh={1000}
-		timeout={15000} />,
+		reset={15000} />,
 	document.getElementById('app')
 );

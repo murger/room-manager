@@ -31,30 +31,25 @@ class App extends React.Component {
 
     getSchedule (callback) {
         let id = this.props.id,
-            schedule = this.props.services.schedule;
+            schedule = this.props.services.schedule,
+            update = (connection, events) => {
+                let current = schedule.getCurrentEvent(),
+                    next = schedule.getNextEvent();
 
-        schedule.getToday(id).then((events) => {
-            let current = schedule.getCurrentEvent();
+                this.setState({
+                    next: next,
+                    current: current,
+                    events: (events) ? events : this.state.events,
+                    isOptsVisible: (current) ? false : this.state.isOptsVisible,
+                    hasConnection: connection
+                });
 
-            this.setState({
-                events: events,
-                current: current,
-                next: schedule.getNextEvent(),
-                isOptsVisible: (current) ? false : this.state.isOptsVisible,
-                hasConnection: true
-            });
+                (callback instanceof Function) && callback();
+            };
 
-            if (callback instanceof Function) { callback(); }
-        }).catch((err) => {
-            let current = schedule.getCurrentEvent();
-
-            this.setState({
-                hasConnection: false,
-                current: (current) ? current : this.state.current,
-            });
-
-            if (callback instanceof Function) { callback(); }
-        });
+        schedule.getToday(id)
+            .then((events) => update(true, events))
+            .catch((err) => update(false, null));
     }
 
     toggleOptions (state) {
@@ -62,12 +57,12 @@ class App extends React.Component {
 
         // Hide options on a timeout
         if (state === true) {
-            this.timeout = setTimeout(() => this.setState({
+            this.reset = setTimeout(() => this.setState({
                 isOptsVisible: false,
                 hasError: false
-            }), this.props.timeout);
-        } else if (this.timeout) {
-            clearTimeout(this.timeout);
+            }), this.props.reset);
+        } else if (this.reset) {
+            clearTimeout(this.reset);
             this.setState({ hasError: false });
         }
     }

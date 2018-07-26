@@ -10,19 +10,19 @@ export default class ScheduleServiceMockup extends ScheduleService {
                 title: 'Somewhat Boring Meeting in the Morning',
                 contact: 'Burgundy Flemming',
                 start: today + 'T06:00:00.000Z',
-                end: today + 'T07:03:50.000Z'
+                end: today + 'T08:00:00.000Z'
             }, {
                 id: 34478,
                 title: 'HR & Technical Interview',
                 contact: 'Jonquil Von Haggerston',
-                start: today + 'T09:00:00.000Z',
-                end: today + 'T10:00:00.000Z'
+                start: today + 'T08:00:00.000Z',
+                end: today + 'T09:30:00.000Z'
             }, {
                 id: 37493,
                 title: 'Weekly Catchup',
                 contact: 'Inverness McKenzie',
-                start: today + 'T10:00:00.000Z',
-                end: today + 'T11:00:00.000Z'
+                start: today + 'T09:30:00.000Z',
+                end: today + 'T10:30:00.000Z'
             }, {
                 id: 43536,
                 title: 'Happily Ever After in the Discotheque',
