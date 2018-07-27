@@ -24,7 +24,7 @@ header {
 	.connection {
 		display: none;
 
-		@keyframes blinker {
+		@keyframes blink {
 			50% { opacity: 0; }
 		}
 
@@ -41,7 +41,7 @@ header {
 			background-size: 48px;
 			opacity: 0.5;
 			transform: translateX(-50%);
-			animation: blinker 1.25s linear infinite;
+			animation: blink 1.25s linear infinite;
 			filter: var(--image-filter, invert(0));
 		}
 	}

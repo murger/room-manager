@@ -2,17 +2,6 @@ import ScheduleService from '../schedule';
 import EventEntity from '../../entities/event';
 
 export default class ScheduleServiceMockup extends ScheduleService {
-    generateID () {
-        return Math.random().toString(36).substr(2, 9);
-    }
-
-    makeDate (time) {
-        let now = new Date(),
-            today = now.toISOString().split('T')[0];
-
-        return today + 'T' + (time || utcHours + ':' + utcMins) + ':00.000Z';
-    }
-
     setupCache () {
         let events = [{
                 id: this.generateID(),
@@ -51,7 +40,7 @@ export default class ScheduleServiceMockup extends ScheduleService {
     }
 
     getToday (id, bypass) {
-        if (!this._cache) {
+        if (!this._cache.length) {
             this.setupCache();
         }
 
@@ -69,7 +58,18 @@ export default class ScheduleServiceMockup extends ScheduleService {
                 contact: null,
                 start: start.toISOString(),
                 end: end.toISOString()
-            }), 999);
+            }), 3000);
         });
+    }
+
+    generateID () {
+        return Math.random().toString(36).substr(2, 9);
+    }
+
+    makeDate (time) {
+        let now = new Date(),
+            today = now.toISOString().split('T')[0];
+
+        return today + 'T' + (time || utcHours + ':' + utcMins) + ':00.000Z';
     }
 }

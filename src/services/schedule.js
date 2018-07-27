@@ -2,10 +2,10 @@ import EventEntity from '../entities/event';
 
 export default class ScheduleService {
     constructor () {
-        this._promise = null;
-        this._cache = null;
+        this._cache = [];
         this._updated = null;
         this._expiry = 1000 * 5;
+        this._promise = null;
         this._api = 'https://meeting-room-api-emakinatr.herokuapp.com/api/v1';
     }
 

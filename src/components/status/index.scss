@@ -11,14 +11,20 @@ article {
 	align-items: center;
 	justify-content: center;
 
+	@keyframes delay-in {
+		0% { opacity: 0; }
+		25% { opacity: 0; }
+		100% { opacity: 1; }
+	}
+
 	.loading {
 		display: inline-block;
 		width: 80px;
 		height: 80px;
 
-		@keyframes dual-ring {
-			0% { transform: rotate(0deg); }
-			100% { transform: rotate(360deg); }
+		@keyframes rotate {
+			from { transform: rotate(0deg); }
+			to { transform: rotate(360deg); }
 		}
 
 		&:after {
@@ -29,7 +35,7 @@ article {
 			border-radius: 50%;
 			border: 8px solid transparent;
 			border-color: c(gray-dk) transparent c(gray-dk) transparent;
-			animation: dual-ring 0.99s linear infinite;
+			animation: rotate 1s linear infinite, delay-in 1.25s;
 		}
 	}
 
@@ -38,6 +44,7 @@ article {
 		letter-spacing: -1px;
 		text-align: center;
 		@include font('Museo', 300, 42px, 48px);
+		animation: delay-in 1.25s;
 	}
 
 	.current {
