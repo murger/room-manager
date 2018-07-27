@@ -1,5 +1,5 @@
-import ScheduleService from '../schedule';
-import EventEntity from '../../entities/event';
+import ScheduleService from '../src/services/schedule';
+import EventEntity from '../src/entities/event';
 
 export default class ScheduleServiceMockup extends ScheduleService {
     setupCache () {
@@ -7,32 +7,32 @@ export default class ScheduleServiceMockup extends ScheduleService {
                 id: this.generateID(),
                 title: 'Somewhat Boring Meeting in the Morning',
                 contact: 'Burgundy Flemming',
-                start: this.makeDate('06:00'),
-                end: this.makeDate('07:00')
+                start: this.makeISODate('06:00'),
+                end: this.makeISODate('07:00')
             }, {
                 id: this.generateID(),
                 title: 'HR & Technical Interview',
                 contact: 'Jonquil Von Haggerston',
-                start: this.makeDate('08:00'),
-                end: this.makeDate('09:30')
+                start: this.makeISODate('08:00'),
+                end: this.makeISODate('09:30')
             }, {
                 id: this.generateID(),
                 title: 'Weekly Catchup',
                 contact: 'Inverness McKenzie',
-                start: this.makeDate('09:30'),
-                end: this.makeDate('10:30')
+                start: this.makeISODate('09:30'),
+                end: this.makeISODate('10:30')
             }, {
                 id: this.generateID(),
                 title: 'Happily Ever After in the Discotheque',
                 contact: 'Bartholomew Shoe',
-                start: this.makeDate('11:30'),
-                end: this.makeDate('12:30')
+                start: this.makeISODate('12:00'),
+                end: this.makeISODate('12:30')
             }, {
                 id: this.generateID(),
                 title: 'Once Upon a Time',
                 contact: 'Girth Wiedenbauer',
-                start: this.makeDate('13:00'),
-                end: this.makeDate('14:30')
+                start: this.makeISODate('13:00'),
+                end: this.makeISODate('14:30')
             }];
 
         this._cache = [];
@@ -58,7 +58,7 @@ export default class ScheduleServiceMockup extends ScheduleService {
                 contact: null,
                 start: start.toISOString(),
                 end: end.toISOString()
-            }), 3000);
+            }), 1500);
         });
     }
 
@@ -66,10 +66,10 @@ export default class ScheduleServiceMockup extends ScheduleService {
         return Math.random().toString(36).substr(2, 9);
     }
 
-    makeDate (time) {
+    makeISODate (time) {
         let now = new Date(),
             today = now.toISOString().split('T')[0];
 
-        return today + 'T' + (time || utcHours + ':' + utcMins) + ':00.000Z';
+        return [today, time + ':00.000Z'].join('T');
     }
 }
