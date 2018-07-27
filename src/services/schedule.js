@@ -74,7 +74,7 @@ export default class ScheduleService {
         });
     }
 
-    setCurrentEvent (data) {
+    addEvent (data) {
         let event = new EventEntity(data);
 
         this._cache.push(event);

@@ -2,45 +2,74 @@ import ScheduleService from '../schedule';
 import EventEntity from '../../entities/event';
 
 export default class ScheduleServiceMockup extends ScheduleService {
-    getToday (id, bypass) {
+    generateID () {
+        return Math.random().toString(36).substr(2, 9);
+    }
+
+    makeDate (time) {
         let now = new Date(),
-            today = now.toISOString().split('T')[0],
-            events = [{
-                id: 97328,
+            today = now.toISOString().split('T')[0];
+
+        return today + 'T' + (time || utcHours + ':' + utcMins) + ':00.000Z';
+    }
+
+    setupCache () {
+        let events = [{
+                id: this.generateID(),
                 title: 'Somewhat Boring Meeting in the Morning',
                 contact: 'Burgundy Flemming',
-                start: today + 'T06:00:00.000Z',
-                end: today + 'T08:00:00.000Z'
+                start: this.makeDate('06:00'),
+                end: this.makeDate('07:00')
             }, {
-                id: 34478,
+                id: this.generateID(),
                 title: 'HR & Technical Interview',
                 contact: 'Jonquil Von Haggerston',
-                start: today + 'T08:00:00.000Z',
-                end: today + 'T09:30:00.000Z'
+                start: this.makeDate('08:00'),
+                end: this.makeDate('09:30')
             }, {
-                id: 37493,
+                id: this.generateID(),
                 title: 'Weekly Catchup',
                 contact: 'Inverness McKenzie',
-                start: today + 'T09:30:00.000Z',
-                end: today + 'T10:30:00.000Z'
+                start: this.makeDate('09:30'),
+                end: this.makeDate('10:30')
             }, {
-                id: 43536,
+                id: this.generateID(),
                 title: 'Happily Ever After in the Discotheque',
                 contact: 'Bartholomew Shoe',
-                start: today + 'T11:30:00.000Z',
-                end: today + 'T12:30:00.000Z'
+                start: this.makeDate('11:30'),
+                end: this.makeDate('12:30')
             }, {
-                id: 34573,
+                id: this.generateID(),
                 title: 'Once Upon a Time',
                 contact: 'Girth Wiedenbauer',
-                start: today + 'T13:00:00.000Z',
-                end: today + 'T14:30:00.000Z'
+                start: this.makeDate('13:00'),
+                end: this.makeDate('14:30')
             }];
 
         this._cache = [];
+        events.forEach((event) =>this._cache.push(new EventEntity(event)));
+    }
 
-        events.forEach((event) => this._cache.push(new EventEntity(event)));
+    getToday (id, bypass) {
+        if (!this._cache) {
+            this.setupCache();
+        }
 
         return Promise.resolve(this._cache);
+    }
+
+    sendBookingRequest (id, mins) {
+        let start = new Date(),
+            end = new Date(start.getTime() + (mins * (60 * 1000)));
+
+        return new Promise((resolve, reject) => {
+            setTimeout(() => resolve({
+                id: this.generateID(),
+                title: null,
+                contact: null,
+                start: start.toISOString(),
+                end: end.toISOString()
+            }), 999);
+        });
     }
 }
