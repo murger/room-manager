@@ -80,7 +80,7 @@ class App extends React.Component {
                 this.toggleOptions(false);
                 this.setState({
                     isLoading: false,
-                    current: schedule.setCurrentEvent(data)
+                    current: schedule.addEvent(data)
                 });
             } else {
                 this.setState({
