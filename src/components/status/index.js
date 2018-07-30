@@ -20,7 +20,7 @@ class Status extends React.Component {
 	}
 
 	sendBookingRequest (mins) {
-		if (this.isOptionViable(mins)) {
+		if (this.isOptionViable(mins) && !this.props.isLoading) {
 			this.props.sendBookingRequest(mins);
 		}
 	}

@@ -31,27 +31,29 @@ class App extends React.Component {
 
     getSchedule (callback) {
         let id = this.props.id,
-            schedule = this.props.services.schedule,
-            update = (connection, events) => {
-                let current = schedule.getCurrentEvent(),
-                    next = schedule.getNextEvent();
+            schedule = this.props.services.schedule;
 
-                this.setState({
-                    next: next,
-                    current: current,
-                    events: (events) ? events : this.state.events,
-                    isOptsVisible: (current) ? false : this.state.isOptsVisible,
-                    isConnected: connection
-                });
+        schedule.getToday(id).then((events) => {
+            let current = schedule.getCurrentEvent(),
+                next = schedule.getNextEvent();
 
-                if (callback instanceof Function) {
-                    callback();
-                }
-            };
+            // Hide options
+            if (current && this.state.isOptsVisible) {
+                this.toggleOptions(false);
+            }
 
-        schedule.getToday(id)
-            .then((events) => update(true, events))
-            .catch((err) => update(false, null));
+            // Update stuff
+            this.setState({
+                next: next,
+                current: current,
+                events: (events) ? events : this.state.events,
+                isConnected: Boolean(events)
+            });
+
+            if (callback instanceof Function) {
+                callback();
+            }
+        });
     }
 
     toggleOptions (state) {
@@ -59,13 +61,13 @@ class App extends React.Component {
 
         // Hide options on a timeout
         if (state === true) {
-            this.reset = setTimeout(() => this.setState({
+            this.timeout = setTimeout(() => this.setState({
                 isOptsVisible: false,
                 hasError: false
-            }), this.props.reset);
-        } else if (this.reset) {
+            }), this.props.timeout);
+        } else if (this.timeout) {
             this.setState({ hasError: false });
-            clearTimeout(this.reset);
+            clearTimeout(this.timeout);
         }
     }
 
@@ -77,28 +79,28 @@ class App extends React.Component {
 
         schedule.sendBookingRequest(id, mins).then((data) => {
             if (data) {
-                this.toggleOptions(false);
                 this.setState({
                     isLoading: false,
-                    current: schedule.addEvent(data)
+                    current: schedule.addNewEvent(data)
                 });
+                this.toggleOptions(false);
             } else {
                 this.setState({
                     isLoading: false,
-                    hasError: 'Room unavailable.'
+                    hasError: 'Room unavailable'
                 });
             }
         }).catch((err) => {
             this.setState({
                 isLoading: false,
-                hasError: 'Network unreachable.'
+                hasError: 'Network unreachable'
             });
         });
     }
 
     render () {
     	return (
-			<main className={(this.state.current ? 'busy' : '')}>
+			<main className={(this.state.current ? 'occupied' : '')}>
 				<Header
                     current={this.state.current}
                     title={this.props.title}
