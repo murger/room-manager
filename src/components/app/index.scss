@@ -17,14 +17,23 @@ main {
 	left: 50%;
 	background-color: white;
 	transform: translate(-50%, -50%);
-	@include transition(0s, 1s, background-color);
+	@include transition(0s, 1.5s, background-color);
 
-	&.busy {
+	&.occupied {
 		background-color: black;
 		--image-filter: invert(1);
 		--event-color: white;
+		--option-color: #{c(gray-dk)};
+		--remainder-color: #{c(gray)};
 		--hand-color: #{c(white-ish)};
 		--tick-color: #{c(gray-dk)};
 		--hour-color: #{c(gray)};
+	}
+
+	@keyframes delay-in {
+		0% { opacity: 0; }
+		25% { opacity: 0; }
+		30% { opacity: 1; }
+		100% { opacity: 1; }
 	}
 }

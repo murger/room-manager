@@ -3,39 +3,41 @@ import EventEntity from '../entities/event';
 export default class ScheduleService {
     constructor () {
         this._cache = [];
-        this._updated = null;
+        this._update = 0;
         this._expiry = 1000 * 5;
         this._promise = null;
         this._api = 'https://meeting-room-api-emakinatr.herokuapp.com/api/v1';
     }
 
     hasValidCache () {
-        return (this._cache && Date.now() < (this._updated + this._expiry));
+        return (this._cache && Date.now() < (this._update + this._expiry));
     }
 
-    getToday (id, bypass) {
-        if (!bypass && this.hasValidCache()) {
+    getToday (id) {
+        if (this.hasValidCache()) {
             return Promise.resolve(this._cache);
         }
 
         if (!this._promise) {
-            return fetch(this._api + '/schedule/' + id, {
+            this._promise = fetch(this._api + '/schedule/' + id, {
                 mode: 'cors',
                 cache: 'no-cache'
             })
-            .then(res => res.json())
-            .then(data => {
+            .then((res) => res.json())
+            .then((data) => {
                 this._cache = [];
 
                 for (let item of data) {
                     this._cache.push(new EventEntity(item));
                 }
 
-                this._updated = Date.now();
-                console.log('ScheduleService', this._updated);
+                this._promise = null;
+                this._update = Date.now();
+                // console.log('ScheduleService', this._update);
 
                 return this._cache;
-            });
+            })
+            .catch((err) => this._promise = null);
         }
 
         return this._promise;
@@ -69,12 +71,15 @@ export default class ScheduleService {
             headers: { 'Content-Type': 'application/json; charset=UTF-8' }
         })
         .then((response) => {
-            if (response.ok) { return response.json(); }
-            else { return false; }
+            if (response.ok) {
+                return response.json();
+            } else {
+                return null;
+            }
         });
     }
 
-    addEvent (data) {
+    addNewEvent (data) {
         let event = new EventEntity(data);
 
         this._cache.push(event);

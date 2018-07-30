@@ -11,12 +11,6 @@ article {
 	align-items: center;
 	justify-content: center;
 
-	@keyframes delay-in {
-		0% { opacity: 0; }
-		50% { opacity: 0; }
-		100% { opacity: 1; }
-	}
-
 	.loading {
 		display: inline-block;
 		width: 80px;
@@ -35,7 +29,7 @@ article {
 			border-radius: 50%;
 			border: 8px solid transparent;
 			border-color: c(gray-dk) transparent c(gray-dk) transparent;
-			animation: rotate 1s linear infinite, delay-in 0.5s;
+			animation: rotate 1s linear infinite, delay-in 0.5s ease-in;
 		}
 	}
 
@@ -44,7 +38,7 @@ article {
 		letter-spacing: -1px;
 		text-align: center;
 		@include font('Museo', 300, 42px, 48px);
-		animation: delay-in 0.5s;
+		animation: delay-in 0.5s ease-in;
 	}
 
 	.current {
@@ -60,14 +54,15 @@ article {
 		display: -webkit-box;
 		overflow: hidden;
 		text-overflow: ellipsis;
-		@include transition(0.25s, 0.5s, color);
+		@include transition(0.25s, 0.75s, color);
 	}
 
 	.remainder {
 		padding-top: 14px;
-		color: c(gray);
+		color: var(--remainder-color, c(gray-dk));
 		letter-spacing: -1px;
 		@include font('Museo', 300, 32px);
+		@include transition(0.25s, 0.75s, color);
 	}
 
 	.options {
