@@ -57,7 +57,7 @@ section {
 				top: 28px + 16px;
 				left: calc(50% - 32px / 2);
 				color: var(--hour-color, black);
-				@include font('Museo', 300, 21px);
+				@include font('Museo', 500, 21px);
 				@include transition(0.15s, 0.5s, color);
 			}
 		}

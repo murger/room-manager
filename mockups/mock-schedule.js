@@ -8,12 +8,12 @@ export default class ScheduleServiceMockup extends ScheduleService {
                 title: 'Somewhat Boring Meeting in the Morning',
                 contact: 'Burgundy Flemming',
                 start: this.makeISODate('06:00'),
-                end: this.makeISODate('07:00')
+                end: this.makeISODate('06:30')
             }, {
                 id: this.generateID(),
-                title: 'HR & Technical Interview',
+                title: 'Happily Ever After in the Discotheque',
                 contact: 'Jonquil Von Haggerston',
-                start: this.makeISODate('07:00'),
+                start: this.makeISODate('07:30'),
                 end: this.makeISODate('08:15')
             }, {
                 id: this.generateID(),
@@ -23,16 +23,16 @@ export default class ScheduleServiceMockup extends ScheduleService {
                 end: this.makeISODate('10:30')
             }, {
                 id: this.generateID(),
-                title: 'Happily Ever After in the Discotheque',
+                title: 'HR & Technical Interview',
                 contact: 'Bartholomew Shoe',
-                start: this.makeISODate('12:00'),
+                start: this.makeISODate('11:00'),
                 end: this.makeISODate('12:30')
             }, {
                 id: this.generateID(),
                 title: 'Once Upon a Time',
                 contact: 'Girth Wiedenbauer',
-                start: this.makeISODate('13:00'),
-                end: this.makeISODate('14:30')
+                start: this.makeISODate('14:30'),
+                end: this.makeISODate('16:00')
             }];
 
         this._cache = [];
@@ -47,20 +47,20 @@ export default class ScheduleServiceMockup extends ScheduleService {
         return Promise.resolve(this._cache);
     }
 
-    sendBookingRequest (id, mins) {
-        let start = new Date(),
-            end = new Date(start.getTime() + (mins * (60 * 1000)));
+    // sendBookingRequest (id, mins) {
+    //     let start = new Date(),
+    //         end = new Date(start.getTime() + (mins * (60 * 1000)));
 
-        return new Promise((resolve, reject) => {
-            setTimeout(() => resolve({
-                id: this.generateID(),
-                title: null,
-                contact: null,
-                start: start.toISOString(),
-                end: end.toISOString()
-            }), 2000);
-        });
-    }
+    //     return new Promise((resolve, reject) => {
+    //         setTimeout(() => resolve({
+    //             id: this.generateID(),
+    //             title: null,
+    //             contact: null,
+    //             start: start.toISOString(),
+    //             end: end.toISOString()
+    //         }), 2000);
+    //     });
+    // }
 
     generateID () {
         return Math.random().toString(36).substr(2, 9);
