@@ -18,7 +18,7 @@ header {
 		background-repeat: no-repeat;
 		background-position: center;
 		filter: var(--image-filter, invert(0));
-		@include transition(0.25s, 0.75s, filter);
+		@include transition(0.15s, 0.5s, filter);
 	}
 
 	.connection {
@@ -63,8 +63,7 @@ header {
 			color: var(--option-color, c(gray));
 			letter-spacing: -1px;
 			@include font('Museo', 300, 34px, 1);
-			@include transition(0.25s, 0.75s, color);
-			animation: delay-in 0.5s ease-in;
+			@include transition(0.15s, 0.5s, color);
 		}
 
 		button {
