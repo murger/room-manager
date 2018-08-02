@@ -22,7 +22,7 @@ class Header extends React.Component {
     	if (this.props.current) {
     		option = <p>{ this.props.title }</p>;
     	} else if (this.props.isLoading) {
-    		option = <p>Loading...</p>;
+    		option = <p>&nbsp;</p>;
     	} else {
     		option = this.renderBookingControls();
     	}

@@ -13,8 +13,8 @@ export default class ScheduleServiceMockup extends ScheduleService {
                 id: this.generateID(),
                 title: 'HR & Technical Interview',
                 contact: 'Jonquil Von Haggerston',
-                start: this.makeISODate('08:00'),
-                end: this.makeISODate('09:30')
+                start: this.makeISODate('07:00'),
+                end: this.makeISODate('08:15')
             }, {
                 id: this.generateID(),
                 title: 'Weekly Catchup',
@@ -58,7 +58,7 @@ export default class ScheduleServiceMockup extends ScheduleService {
                 contact: null,
                 start: start.toISOString(),
                 end: end.toISOString()
-            }), 1500);
+            }), 2000);
         });
     }
 

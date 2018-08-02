@@ -5,7 +5,7 @@ import App from './components/app';
 ReactDOM.render(
 	<App
 		id={1}
-		title="Jupiter"
+		title="Saturn"
 		refresh={1000}
 		timeout={15000} />,
 	document.getElementById('app')

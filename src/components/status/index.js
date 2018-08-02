@@ -55,7 +55,12 @@ class Status extends React.Component {
 	}
 
 	renderCurrent () {
-		let current = this.props.current;
+		let current = this.props.current,
+			remainder = (!isFinite(this.calcRemainder())) ? null : (
+				<time className="remainder">
+					{ this.renderRemainder() }
+				</time>
+			);
 
 		return (
 			<article>
@@ -64,9 +69,7 @@ class Status extends React.Component {
 						? (current.title || 'Occupied')
 						: this.props.title }
 				</h1>
-				<time className="remainder">
-					{ this.renderRemainder() }
-				</time>
+				{ remainder }
 			</article>
 		);
 	}

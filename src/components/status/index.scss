@@ -13,8 +13,8 @@ article {
 
 	.loading {
 		display: inline-block;
-		width: 80px;
-		height: 80px;
+		width: 88px;
+		height: 88px;
 
 		@keyframes rotate {
 			from { transform: rotate(0deg); }
@@ -27,9 +27,9 @@ article {
 			width: calc(100% - 8px * 2);
 			height: calc(100% - 8px * 2);
 			border-radius: 50%;
-			border: 8px solid transparent;
-			border-color: c(gray-dk) transparent c(gray-dk) transparent;
-			animation: rotate 1s linear infinite, delay-in 0.5s ease-in;
+			border: 4px solid transparent;
+			border-color: transparent transparent c(gray) transparent;
+			animation: rotate 0.5s linear infinite, delay-in 0.5s ease-in;
 		}
 	}
 
@@ -54,7 +54,7 @@ article {
 		display: -webkit-box;
 		overflow: hidden;
 		text-overflow: ellipsis;
-		@include transition(0.25s, 0.75s, color);
+		@include transition(0.25s, 0.5s, color);
 	}
 
 	.remainder {
@@ -62,7 +62,7 @@ article {
 		color: var(--remainder-color, c(gray-dk));
 		letter-spacing: -1px;
 		@include font('Museo', 300, 32px);
-		@include transition(0.25s, 0.75s, color);
+		@include transition(0.25s, 0.5s, color);
 	}
 
 	.options {

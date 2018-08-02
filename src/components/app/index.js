@@ -66,8 +66,8 @@ class App extends React.Component {
                 hasError: false
             }), this.props.timeout);
         } else if (this.timeout) {
-            this.setState({ hasError: false });
             clearTimeout(this.timeout);
+            this.setState({ hasError: false });
         }
     }
 
