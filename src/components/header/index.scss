@@ -9,7 +9,7 @@ header {
 	position: relative;
 
 	.logo {
-		width: 40px + 1px;
+		width: 40px;
 		height: 100%;
 		position: absolute;
 		top: 0px;
@@ -62,7 +62,7 @@ header {
 			padding-right: 16px;
 			color: var(--option-color, c(gray));
 			letter-spacing: -1px;
-			@include font('Museo', 300, 34px, 1);
+			@include font('Museo', 300, 36px, 1);
 			@include transition(0.15s, 0.5s, color);
 		}
 
