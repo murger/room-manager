@@ -58,10 +58,10 @@ article {
 	}
 
 	.remainder {
-		padding-top: 12px;
-		color: var(--remainder-color, c(gray));
+		padding-top: 16px;
+		color: var(--text-color, c(gray));
 		letter-spacing: -1px;
-		@include font('Museo', 300, 36px);
+		@include font('Museo', 300, 38px);
 		@include transition(0.25s, 0.5s, color);
 	}
 
