@@ -16,16 +16,16 @@ class Header extends React.Component {
 				onClick={() => this.toggleOptions(true)}>Start a meeting</button>;
 	}
 
-    render () {
-    	let option;
+	render () {
+		let option;
 
-    	if (this.props.current) {
-    		option = <p>{ this.props.title }</p>;
-    	} else if (this.props.isLoading) {
-    		option = <p>&nbsp;</p>;
-    	} else {
-    		option = this.renderBookingControls();
-    	}
+		if (this.props.current) {
+			option = <p>{ this.props.title }</p>;
+		} else if (this.props.isLoading) {
+			option = <p>&nbsp;</p>;
+		} else {
+			option = this.renderBookingControls();
+		}
 
 		return (
 			<header>
