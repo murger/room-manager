@@ -1,14 +1,14 @@
 import React from 'react';
-import mockups from '../../mockups';
+import mockup from '../../mockup';
 import services from './';
 
 const injectServices = (Component) => {
-    return class ServicedComponent extends React.Component {
-        render () {
-            return <Component {...this.props}
-            	services={(process.env.mockups) ? mockups : services} />;
-        }
-    }
+	return class ServicedComponent extends React.Component {
+		render () {
+			return <Component {...this.props}
+				services={(process.env.mockup) ? mockup : services} />;
+		}
+	}
 };
 
 export default injectServices;
