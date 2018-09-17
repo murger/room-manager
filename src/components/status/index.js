@@ -34,7 +34,7 @@ class Status extends React.Component {
 
 		return (isFinite(remainder))
 			? [total, label + suffix].join(' ')
-			: null;
+			: '';
 	}
 
 	renderOptions () {
@@ -56,7 +56,7 @@ class Status extends React.Component {
 
 	renderCurrent () {
 		let current = this.props.current,
-			remainder = (!isFinite(this.calcRemainder())) ? null : (
+			remainder = (
 				<time className="remainder">
 					{ this.renderRemainder() }
 				</time>

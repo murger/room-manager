@@ -3,20 +3,20 @@
 @import '../../assets/fonts.scss';
 
 header {
-	width: calc(100% - 40px * 2);
-	height: 90px;
-	margin: 40px;
+	width: calc(100% - 60px * 2);
+	height: 120px;
+	margin: 60px;
 	position: relative;
 
 	.logo {
-		width: 40px;
+		width: 60px;
 		height: 100%;
 		position: absolute;
 		top: 0px;
 		left: 0px;
 		background-image: url('../../assets/images/logo.svg');
 		background-repeat: no-repeat;
-		background-position: center;
+		background-position: left center;
 		filter: var(--image-filter, invert(0));
 		@include transition(0.15s, 0.5s, filter);
 	}
@@ -59,10 +59,9 @@ header {
 
 		p {
 			padding-top: 2px;
-			padding-right: 16px;
 			color: var(--text-color, c(gray));
 			letter-spacing: -1px;
-			@include font('Museo', 300, 38px, 1);
+			@include font('Museo', 300, 42px, 1);
 			@include transition(0.15s, 0.5s, color);
 		}
 
@@ -71,7 +70,7 @@ header {
 			padding: 18px 30px;
 			padding-top: 20px;
 			letter-spacing: -1px;
-			@include font('Museo', 300, 34px, 1);
+			@include font('Museo', 300, 36px, 1);
 			border: 2px solid transparent;
 			border-radius: 9px;
 			outline: none;

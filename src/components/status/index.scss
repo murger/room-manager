@@ -4,8 +4,8 @@
 
 article {
 	width: 100%;
-	height: calc(100% - (90px + 40px * 2) - 130px - 36px);
-	padding-bottom: 36px;
+	height: calc(100% - (120px + 60px * 2) - 150px - 60px);
+	padding-bottom: 60px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -42,13 +42,13 @@ article {
 	}
 
 	.current {
-		max-width: 65%;
-		max-height: calc(80px * 2);
+		max-width: 60%;
+		max-height: calc(94px * 2);
 		margin: 0;
 		color: var(--event-color, black);
 		letter-spacing: -1px;
 		text-align: center;
-		@include font('Museo', 500, 72px, 80px);
+		@include font('Museo', 500, 78px, 94px);
 		-webkit-box-orient: vertical;
 		-webkit-line-clamp: 2;
 		display: -webkit-box;
@@ -58,6 +58,7 @@ article {
 	}
 
 	.remainder {
+		min-height: 16px;
 		padding-top: 16px;
 		color: var(--text-color, c(gray));
 		letter-spacing: -1px;
@@ -76,7 +77,7 @@ article {
 			display: inline-block;
 			text-align: center;
 			letter-spacing: -1px;
-			@include font('Museo', 600, 90px);
+			@include font('Museo', 600, 96px);
 			border-radius: 9px;
 
 			&:active:not(.is-disabled) {
