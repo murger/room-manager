@@ -6,7 +6,7 @@ class Timeline extends React.Component {
 		super(props);
 
 		this.state = {
-			widthPerHour: 90,
+			widthPerHour: (57 * 2) + 2,
 			timespan: [...Array(11).keys()].map((x) => {
 				return (x + 9 > 12) ? x - 3 : x + 9;
 			})
@@ -29,7 +29,7 @@ class Timeline extends React.Component {
 				left = ((start.getHours() - hourFirst) * xHour) +
 					((start.getMinutes() * xHour) / 60),
 				width = Math.ceil((end.getTime() - start.getTime()) /
-					(1000 * 60)) * (90 / 60);
+					(1000 * 60)) * (xHour / 60);
 
 			return (
 				<li key={i} style={{ left, width }}><span /></li>
