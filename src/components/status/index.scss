@@ -43,18 +43,23 @@ article {
 
 	.current {
 		max-width: 60%;
-		max-height: calc(94px * 2);
+		max-height: calc(98px * 2);
 		margin: 0;
 		color: var(--event-color, black);
 		letter-spacing: -1px;
 		text-align: center;
-		@include font('Museo', 500, 78px, 94px);
+		@include font('Museo', 500, 84px, 98px);
 		-webkit-box-orient: vertical;
 		-webkit-line-clamp: 2;
 		display: -webkit-box;
 		overflow: hidden;
 		text-overflow: ellipsis;
 		@include transition(0.25s, 0.5s, color);
+
+		em {
+			font-style: normal;
+			font-size: 96px;
+		}
 	}
 
 	.remainder {

@@ -9,7 +9,7 @@ header {
 	position: relative;
 
 	.logo {
-		width: 60px;
+		width: 50px;
 		height: 100%;
 		position: absolute;
 		top: 0px;
@@ -67,10 +67,9 @@ header {
 
 		button {
 			margin: 0px;
-			padding: 18px 30px;
-			padding-top: 20px;
+			padding: 22px 32px;
 			letter-spacing: -1px;
-			@include font('Museo', 300, 36px, 1);
+			@include font('Museo', 300, 34px, 1);
 			border: 2px solid transparent;
 			border-radius: 9px;
 			outline: none;
