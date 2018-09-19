@@ -5,13 +5,13 @@ export default class ScheduleServiceMockup extends ScheduleService {
 	setupCache () {
 		let events = [{
 				id: this.generateID(),
-				title: 'Somewhat Boring Meeting in the Morning',
+				title: 'Weekly Catchup',
 				contact: 'Burgundy Flemming',
 				start: this.makeISODate('06:00'),
 				end: this.makeISODate('06:30')
 			}, {
 				id: this.generateID(),
-				title: 'Weekly Catchup in the Discotheque',
+				title: 'Somewhat Boring Meeting in the Morning',
 				contact: 'Jonquil Von Haggerston',
 				start: this.makeISODate('07:00'),
 				end: this.makeISODate('09:00')
