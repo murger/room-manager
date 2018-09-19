@@ -5,9 +5,10 @@
 	"main": "index.js",
 	"scripts": {
 		"clean": "rimraf ./dist ./.cache",
-		"dev": "npm run clean && cross-env mockup=true id=$id title=$title parcel ./src/index.html",
-		"stage": "npm run clean && cross-env id=$id title=$title parcel ./src/index.html",
-		"build": "npm run clean && cross-env id=$id title=$title parcel build ./src/index.html --no-source-maps"
+		"watch": "parcel ./src/index.html",
+		"dev": "npm run clean && cross-env mockup=true npm run watch",
+		"stage": "npm run clean && npm run watch",
+		"build": "npm run clean && parcel build ./src/index.html --no-source-maps"
 	},
 	"author": "Gürhan Mermer <gmermer@emakina.ch>",
 	"license": "MIT",
