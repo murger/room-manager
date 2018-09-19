@@ -77,12 +77,12 @@ article {
 		list-style: none;
 
 		li {
-			margin: 0 40px;
-			padding: 20px 30px;
+			margin: 0 50px;
+			padding: 20px 40px;
 			display: inline-block;
 			text-align: center;
 			letter-spacing: -1px;
-			@include font('Museo', 600, 96px);
+			@include font('Museo', 600, 102px);
 			border-radius: 9px;
 
 			&:active:not(.is-disabled) {
@@ -97,12 +97,12 @@ article {
 			&.is-disabled { color: c(gray); }
 
 			span {
-				margin: 8px auto;
+				margin: 10px auto;
 				margin-bottom: 0;
 				display: block;
 				color: c(gray);
 				letter-spacing: -1px;
-				@include font('Museo', 300, 36px);
+				@include font('Museo', 300, 38px);
 			}
 		}
 	}
