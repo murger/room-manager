@@ -9,6 +9,7 @@ section {
 	text-align: center;
 
 	$tipSize: 12px;
+	$handSize: 14px;
 	$eventColour: c(blue);
 
 	.hand {
@@ -16,10 +17,10 @@ section {
 		height: 0;
 		position: absolute;
 		top: 0px;
-		border-left: $tipSize solid transparent;
-		border-right: $tipSize solid transparent;
-		border-top: $tipSize solid var(--hand-color, black);
-		transform: translateX(-$tipSize + 62px);
+		border-left: $handSize solid transparent;
+		border-right: $handSize solid transparent;
+		border-top: $handSize solid var(--hand-color, black);
+		transform: translateX(-$handSize + 57px); // (.range > li) margin
 		@include transition(0.15s, 0.5s, opacity, border-color, left);
 	}
 
