@@ -6,8 +6,8 @@ let params = new URLSearchParams(window.location.search);
 
 ReactDOM.render(
 	<App
-		id={params.get('id') || 1}
-		title={params.get('title') || "Meeting Room"}
+		id={params.get('id') || 0}
+		title={params.get('title') || "Room"}
 		refresh={1000}
 		timeout={15000} />,
 	document.getElementById('app')
