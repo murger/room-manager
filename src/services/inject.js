@@ -1,5 +1,5 @@
 import React from 'react';
-import mockup from '../../mockup';
+import mockup from '../../data';
 import services from './';
 
 const injectServices = (Component) => {

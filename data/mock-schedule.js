@@ -8,12 +8,12 @@ export default class ScheduleServiceMockup extends ScheduleService {
 				title: 'Somewhat Boring Meeting in the Morning',
 				contact: 'Burgundy Flemming',
 				start: this.makeISODate('06:00'),
-				end: this.makeISODate('07:00')
+				end: this.makeISODate('06:30')
 			}, {
 				id: this.generateID(),
-				title: 'Weekly Catchup',
+				title: 'Weekly Catchup in the Discotheque',
 				contact: 'Jonquil Von Haggerston',
-				start: this.makeISODate('07:30'),
+				start: this.makeISODate('07:00'),
 				end: this.makeISODate('09:00')
 			}, {
 				id: this.generateID(),
