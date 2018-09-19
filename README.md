@@ -25,6 +25,6 @@ use `npm run stage` and `npm run build` for deployment.
 Change the API address via `src/services/schedule.js` or play around with the
 mockup data in `data/mock-schedule.js`.
 
-You may find room details within `src/index.js` where `id` is the calendar ID of
-the room and `title` is the display name. Set `id` and `title` before build
-commands to specify an ID and a title for the room: `id=5 title=Europa npm run dev`.
+You may find default room details in `src/index.js` where `id` is the calendar ID of
+the room and `title` is the display name. Set `id` and `title` in query string
+to specify an ID and a title for the room: `/?id=2&title=Jupiter`
