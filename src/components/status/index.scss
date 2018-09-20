@@ -37,7 +37,7 @@ article {
 		color: c(gray);
 		letter-spacing: -1px;
 		text-align: center;
-		@include font('Museo', 300, 46px, 46px);
+		@include font('Museo', 300, 54px, 54px);
 		animation: delay-in 0.5s ease-in;
 	}
 
