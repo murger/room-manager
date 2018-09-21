@@ -15,6 +15,7 @@ section {
 	.hand {
 		width: 0;
 		height: 0;
+		margin-left: 3px;
 		position: absolute;
 		top: 0px;
 		border-left: $handSize solid transparent;
