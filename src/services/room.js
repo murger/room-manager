@@ -1,11 +1,9 @@
 import DeviceEntity from '../entities/device';
+import RoomDetails from '../rooms.json';
 
 export default class RoomService {
 	constructor () {
-		this._data = [
-			{ mac: null, id: 0, title: 'Outer Space' },
-			{ mac: '9C-0E-4A-17-4C-8C', id: 99, title: 'Saturn' }
-		];
+		this._data = RoomDetails;
 	}
 
 	getDetails (mac) {
