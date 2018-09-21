@@ -34,10 +34,11 @@ article {
 	}
 
 	.error {
+		margin-bottom: 80px;
 		color: c(gray);
 		letter-spacing: -0.020em;
 		text-align: center;
-		@include font('Museo Sans', 300, 54px, 54px);
+		@include font('Museo Sans', 300, 56px, 56px);
 		animation: delay-in 0.5s ease-in;
 	}
 

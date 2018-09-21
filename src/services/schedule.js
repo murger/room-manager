@@ -19,7 +19,7 @@ export default class ScheduleService {
 		}
 
 		if (!this._promise) {
-			this._promise = fetch(this._api + '/schedule/' + id, {
+			this._promise = fetch([this._api, 'schedule', id].join('/'), {
 				mode: 'cors',
 				cache: 'no-cache'
 			})
@@ -33,7 +33,6 @@ export default class ScheduleService {
 
 				this._promise = null;
 				this._update = Date.now();
-				// console.log('ScheduleService', this._update);
 
 				return this._cache;
 			})

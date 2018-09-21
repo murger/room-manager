@@ -1,7 +1,7 @@
-import RoomService from '../src/services/room';
+import DeviceServiceMockup from './mock-device';
 import ScheduleServiceMockup from './mock-schedule';
 
 export default {
-	room: new RoomService(),
+	device: new DeviceServiceMockup(),
 	schedule: new ScheduleServiceMockup()
 };

@@ -6,7 +6,7 @@ export default class ScheduleServiceMockup extends ScheduleService {
 		let events = [{
 				id: this.generateID(),
 				title: 'Weekly Catchup',
-				contact: 'Burgundy Flemming',
+				contact: 'Alper Tunga Gülbahar',
 				start: this.makeISODate('06:00'),
 				end: this.makeISODate('06:30')
 			}, {
@@ -20,7 +20,7 @@ export default class ScheduleServiceMockup extends ScheduleService {
 				title: 'HR & Technical Interview',
 				contact: 'Inverness McKenzie',
 				start: this.makeISODate('10:00'),
-				end: this.makeISODate('11:00')
+				end: this.makeISODate('10:30')
 			}, {
 				id: this.generateID(),
 				title: 'Happily Ever After in the Discotheque',
@@ -36,7 +36,7 @@ export default class ScheduleServiceMockup extends ScheduleService {
 			}];
 
 		this._cache = [];
-		events.forEach((event) =>this._cache.push(new EventEntity(event)));
+		events.forEach((event) => this._cache.push(new EventEntity(event)));
 	}
 
 	getToday (id) {

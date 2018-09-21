@@ -95,7 +95,7 @@ class Status extends React.Component {
 			isOptsVisible = this.props.isOptsVisible,
 			isLoading = this.props.isLoading;
 
-		if (error && isOptsVisible) {
+		if (error) {
 			return this.renderError(error);
 		} else if (isLoading) {
 			return this.renderLoading();

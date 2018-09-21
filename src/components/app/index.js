@@ -2,7 +2,7 @@ import React from 'react';
 import Header from '../header';
 import Status from '../status';
 import Timeline from '../timeline';
-import injectServices from '../../services/inject';
+import injectServices from '../../service';
 import './index.scss';
 
 class App extends React.Component {
@@ -22,20 +22,43 @@ class App extends React.Component {
 		};
 	}
 
+	showFatalError () {
+		this.setState({
+			isLoading: false,
+			hasError: 'Unknown device'
+		});
+	}
+
 	componentWillUnmount () {
 		clearInterval(this.timer);
 	}
 
 	componentDidMount () {
-		let room = this.props.services.room.getDetails(this.props.mac);
+		let mac = this.props.mac,
+			device = this.props.services.device;
 
-		this.setState({
-			id: room.id,
-			title: room.title
+		if (!mac) {
+			return this.showFatalError();
+		}
+
+		device.getDetails(mac).then((room) => {
+			if (!room.id) {
+				return this.showFatalError();
+			}
+
+			// Setup room
+			this.setState({
+				id: room.id,
+				title: room.title
+			});
+
+			// Start polling
+			this.getSchedule(() => this.setState({ isLoading: false }));
+			this.timer = setInterval(() =>
+				this.getSchedule(), this.props.refresh);
+		}).catch((err) => {
+			return this.showFatalError();
 		});
-
-		this.getSchedule(() => this.setState({ isLoading: false }));
-		this.timer = setInterval(() => this.getSchedule(), this.props.refresh);
 	}
 
 	getSchedule (callback) {
@@ -116,6 +139,7 @@ class App extends React.Component {
 					isOptsVisible={this.state.isOptsVisible}
 					isLoading={this.state.isLoading}
 					isConnected={this.state.isConnected}
+					hasError={this.state.hasError}
 					toggleOptions={this.toggleOptions.bind(this)} />
 				<Status
 					next={this.state.next}
