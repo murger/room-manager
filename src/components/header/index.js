@@ -21,9 +21,7 @@ class Header extends React.Component {
 
 		if (this.props.current) {
 			option = <p>{ this.props.current.contact || this.props.title }</p>;
-		} else if (this.props.hasError && !this.props.isOptsVisible) {
-			option = <p>&nbsp;</p>;
-		} else if (this.props.isLoading) {
+		} else if (this.props.isLoading || !this.props.isActive) {
 			option = <p>&nbsp;</p>;
 		} else {
 			option = this.renderBookingControls();

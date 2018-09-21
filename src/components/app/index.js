@@ -15,18 +15,12 @@ class App extends React.Component {
 			events: [],
 			current: null,
 			next: null,
+			isActive: false,
 			isOptsVisible: false,
 			isLoading: true,
 			isConnected: true,
 			hasError: false
 		};
-	}
-
-	showFatalError () {
-		this.setState({
-			isLoading: false,
-			hasError: 'Unknown device'
-		});
 	}
 
 	componentWillUnmount () {
@@ -49,7 +43,8 @@ class App extends React.Component {
 			// Setup room
 			this.setState({
 				id: room.id,
-				title: room.title
+				title: room.title,
+				isActive: true,
 			});
 
 			// Start polling
@@ -58,6 +53,14 @@ class App extends React.Component {
 				this.getSchedule(), this.props.refresh);
 		}).catch((err) => {
 			return this.showFatalError();
+		});
+	}
+
+	showFatalError () {
+		this.setState({
+			isActive: false,
+			isLoading: false,
+			hasError: 'Device unknown'
 		});
 	}
 
@@ -136,15 +139,16 @@ class App extends React.Component {
 				<Header
 					current={this.state.current}
 					title={this.state.title}
+					isActive={this.state.isActive}
 					isOptsVisible={this.state.isOptsVisible}
 					isLoading={this.state.isLoading}
 					isConnected={this.state.isConnected}
-					hasError={this.state.hasError}
 					toggleOptions={this.toggleOptions.bind(this)} />
 				<Status
 					next={this.state.next}
 					current={this.state.current}
 					title={this.state.title}
+					isActive={this.state.isActive}
 					isOptsVisible={this.state.isOptsVisible}
 					isLoading={this.state.isLoading}
 					hasError={this.state.hasError}
