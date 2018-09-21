@@ -67,7 +67,7 @@ class Status extends React.Component {
 				<h1 className="current">
 					{ (current)
 						? (current.title || 'Occupied')
-						: this.props.title }
+						: 'Available' }
 				</h1>
 				{ remainder }
 			</article>
