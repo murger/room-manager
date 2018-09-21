@@ -81,7 +81,7 @@ class App extends React.Component {
 	}
 
 	sendBookingRequest (mins) {
-		let id = this.props.id,
+		let id = this.state.id,
 			schedule = this.props.services.schedule;
 
 		this.setState({ isLoading: true });
