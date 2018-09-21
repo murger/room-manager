@@ -37,7 +37,7 @@ article {
 		color: c(gray);
 		letter-spacing: -1px;
 		text-align: center;
-		@include font('Museo', 300, 54px, 54px);
+		@include font('Museo Sans', 300, 54px, 54px);
 		animation: delay-in 0.5s ease-in;
 	}
 
@@ -48,7 +48,7 @@ article {
 		color: var(--event-color, black);
 		letter-spacing: -1px;
 		text-align: center;
-		@include font('Museo', 500, 84px, 98px);
+		@include font('Museo Sans', 500, 84px, 98px);
 		-webkit-box-orient: vertical;
 		-webkit-line-clamp: 2;
 		display: -webkit-box;
@@ -64,10 +64,10 @@ article {
 
 	.remainder {
 		min-height: 16px;
-		padding-top: 16px;
+		padding-top: 20px;
 		color: var(--text-color, c(gray));
 		letter-spacing: -1px;
-		@include font('Museo', 300, 38px);
+		@include font('Museo Sans', 300, 40px);
 		@include transition(0.25s, 0.5s, color);
 	}
 
@@ -82,7 +82,7 @@ article {
 			display: inline-block;
 			text-align: center;
 			letter-spacing: -1px;
-			@include font('Museo', 600, 102px);
+			@include font('Museo Sans', 600, 102px);
 			border-radius: 9px;
 
 			&:active:not(.is-disabled) {
@@ -102,7 +102,7 @@ article {
 				display: block;
 				color: c(gray);
 				letter-spacing: -1px;
-				@include font('Museo', 300, 38px);
+				@include font('Museo Sans', 300, 38px);
 			}
 		}
 	}

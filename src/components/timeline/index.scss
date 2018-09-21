@@ -61,7 +61,7 @@ section {
 				top: 28px + 16px + 8px;
 				left: calc(50% - 32px / 2);
 				color: var(--tick-color, c(gray-dk));
-				@include font('Museo', 500, 22px);
+				@include font('Museo Sans', 500, 22px);
 				@include transition(0.15s, 0.5s, color);
 			}
 		}
