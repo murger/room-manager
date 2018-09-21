@@ -48,12 +48,12 @@ export default class EventEntity {
 			end = this.end.getTime();
 
 		return Math.ceil((end - now) / (1000 * 60));
-	};
+	}
 
 	get until () {
 		let now = Date.now(),
 			start = this.start.getTime();
 
 		return Math.ceil((start - now) / (1000 * 60));
-	};
+	}
 }

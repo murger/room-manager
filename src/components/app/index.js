@@ -10,6 +10,8 @@ class App extends React.Component {
 		super(props);
 
 		this.state = {
+			id: null,
+			title: null,
 			events: [],
 			current: null,
 			next: null,
@@ -25,12 +27,19 @@ class App extends React.Component {
 	}
 
 	componentDidMount () {
+		let room = this.props.services.room.getDetails(this.props.mac);
+
+		this.setState({
+			id: room.id,
+			title: room.title
+		});
+
 		this.getSchedule(() => this.setState({ isLoading: false }));
 		this.timer = setInterval(() => this.getSchedule(), this.props.refresh);
 	}
 
 	getSchedule (callback) {
-		let id = this.props.id,
+		let id = this.state.id,
 			schedule = this.props.services.schedule;
 
 		schedule.getToday(id).then((events) => {
@@ -103,7 +112,7 @@ class App extends React.Component {
 			<main className={(this.state.current ? 'occupied' : '')}>
 				<Header
 					current={this.state.current}
-					title={this.props.title}
+					title={this.state.title}
 					isOptsVisible={this.state.isOptsVisible}
 					isLoading={this.state.isLoading}
 					isConnected={this.state.isConnected}
@@ -111,7 +120,7 @@ class App extends React.Component {
 				<Status
 					next={this.state.next}
 					current={this.state.current}
-					title={this.props.title}
+					title={this.state.title}
 					isOptsVisible={this.state.isOptsVisible}
 					isLoading={this.state.isLoading}
 					hasError={this.state.hasError}

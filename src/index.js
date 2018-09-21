@@ -5,9 +5,7 @@ import App from './components/app';
 let params = new URLSearchParams(window.location.search);
 
 ReactDOM.render(
-	<App
-		id={params.get('id') || 0}
-		title={params.get('title') || "Room"}
+	<App mac={params.get('mac')}
 		refresh={1000}
 		timeout={15000} />,
 	document.getElementById('app')
