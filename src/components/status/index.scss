@@ -35,7 +35,7 @@ article {
 
 	.error {
 		color: c(gray);
-		letter-spacing: -1px;
+		letter-spacing: -0.020em;
 		text-align: center;
 		@include font('Museo Sans', 300, 54px, 54px);
 		animation: delay-in 0.5s ease-in;
@@ -46,7 +46,7 @@ article {
 		max-height: calc(98px * 2);
 		margin: 0;
 		color: var(--event-color, black);
-		letter-spacing: -1px;
+		letter-spacing: -0.025em;
 		text-align: center;
 		@include font('Museo Sans', 500, 84px, 98px);
 		-webkit-box-orient: vertical;
@@ -66,7 +66,7 @@ article {
 		min-height: 16px;
 		padding-top: 20px;
 		color: var(--text-color, c(gray));
-		letter-spacing: -1px;
+		letter-spacing: -0.020em;
 		@include font('Museo Sans', 300, 40px);
 		@include transition(0.25s, 0.5s, color);
 	}
@@ -81,7 +81,7 @@ article {
 			padding: 20px 40px;
 			display: inline-block;
 			text-align: center;
-			letter-spacing: -1px;
+			letter-spacing: -0.020em;
 			@include font('Museo Sans', 600, 102px);
 			border-radius: 9px;
 
@@ -101,7 +101,7 @@ article {
 				margin-bottom: 0;
 				display: block;
 				color: c(gray);
-				letter-spacing: -1px;
+				letter-spacing: -0.020em;
 				@include font('Museo Sans', 300, 38px);
 			}
 		}
