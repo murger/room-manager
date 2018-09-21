@@ -20,7 +20,7 @@ class Header extends React.Component {
 		let option;
 
 		if (this.props.current) {
-			option = <p>{ this.props.title }</p>;
+			option = <p>{ this.props.current.contact || this.props.title }</p>;
 		} else if (this.props.isLoading) {
 			option = <p>&nbsp;</p>;
 		} else {
