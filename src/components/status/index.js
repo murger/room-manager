@@ -1,10 +1,14 @@
 import React from 'react';
+import { inject, observer } from 'mobx-react';
+import users from '../../users.json';
 import './index.scss';
 
+@inject('store')
+@observer
 class Status extends React.Component {
 	calcRemainder () {
-		let current = this.props.current,
-			next = this.props.next;
+		let current = this.props.store.current,
+			next = this.props.store.next;
 
 		return (current)
 			? -current.remainder
@@ -20,8 +24,8 @@ class Status extends React.Component {
 	}
 
 	sendBookingRequest (mins) {
-		if (this.isOptionViable(mins) && !this.props.isLoading) {
-			this.props.sendBookingRequest(mins);
+		if (this.isOptionViable(mins) && !this.props.store.isLoading) {
+			this.props.store.sendBookingRequest(mins);
 		}
 	}
 
@@ -55,21 +59,30 @@ class Status extends React.Component {
 	}
 
 	renderCurrent () {
-		let current = this.props.current,
-			remainder = (
-				<time className="remainder">
-					{ this.renderRemainder() }
-				</time>
-			);
+		let current = this.props.store.current;
 
 		return (
 			<article>
 				<h1 className="current">
 					{ (current)
-						? (current.title || 'Occupied')
+						? current.title || 'Occupied'
 						: 'Available' }
 				</h1>
-				{ remainder }
+				<time className="remainder">
+					{ this.renderRemainder() }
+				</time>
+			</article>
+		);
+	}
+
+	renderUsers () {
+		return (
+			<article>
+				<ul className="users">
+					{ users.map((user, idx) => {
+                		return <li key={idx}>{ user.name }</li>;
+                	})}
+				</ul>
 			</article>
 		);
 	}
@@ -91,19 +104,17 @@ class Status extends React.Component {
 	}
 
 	render () {
-		let error = this.props.hasError,
-			isOptsVisible = this.props.isOptsVisible,
-			isLoading = this.props.isLoading;
+		let error = this.props.store.hasError;
 
 		if (error) {
 			return this.renderError(error);
-		} else if (isLoading) {
+		} else if (this.props.store.isLoading) {
 			return this.renderLoading();
+		} else if (this.props.store.isServing) {
+			return this.renderOptions();
+		} else {
+			return this.renderCurrent();
 		}
-
-		return (isOptsVisible)
-			? this.renderOptions()
-			: this.renderCurrent();
 	}
 };
 

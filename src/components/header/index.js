@@ -1,13 +1,17 @@
 import React from 'react';
+import { inject, observer } from 'mobx-react';
+import titleize from 'titleize';
 import './index.scss';
 
+@inject('store')
+@observer
 class Header extends React.Component {
 	toggleOptions (state) {
-		this.props.toggleOptions(state);
+		this.props.store.toggleOptions(state);
 	}
 
 	renderBookingControls () {
-		return (this.props.isOptsVisible)
+		return (this.props.store.isServing)
 			? <button
 				className="cancel"
 				onClick={() => this.toggleOptions(false)}>Go back</button>
@@ -17,11 +21,13 @@ class Header extends React.Component {
 	}
 
 	render () {
-		let option;
+		let option,
+			current = this.props.store.current,
+			room = this.props.store.room;
 
-		if (this.props.current) {
-			option = <p>{ this.props.current.contact || this.props.title }</p>;
-		} else if (this.props.isLoading || !this.props.isActive) {
+		if (current) {
+			option = <p>{ current.contact || titleize(room.title) }</p>;
+		} else if (this.props.store.isLoading || !this.props.store.isActive) {
 			option = <p>&nbsp;</p>;
 		} else {
 			option = this.renderBookingControls();
@@ -30,7 +36,8 @@ class Header extends React.Component {
 		return (
 			<header>
 				<div className="logo" />
-				<span className="connection" data-status={this.props.isConnected} />
+				<span className="connection"
+					data-status={this.props.store.isConnected} />
 				<div className="option">{ option }</div>
 			</header>
 		);

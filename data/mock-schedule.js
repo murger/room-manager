@@ -7,32 +7,32 @@ export default class ScheduleServiceMockup extends ScheduleService {
 				id: this.generateID(),
 				title: 'Weekly Catchup',
 				contact: 'Alper Tunga Gülbahar',
-				start: this.makeISODate('06:00'),
-				end: this.makeISODate('06:30')
+				start: this.makeDate('09:00'),
+				end: this.makeDate('10:30')
 			}, {
 				id: this.generateID(),
 				title: 'Somewhat Boring Meeting in the Morning',
 				contact: 'Jonquil Von Haggerston',
-				start: this.makeISODate('07:00'),
-				end: this.makeISODate('09:00')
+				start: this.makeDate('10:30'),
+				end: this.makeDate('12:00')
 			}, {
 				id: this.generateID(),
 				title: 'HR & Technical Interview',
 				contact: 'Inverness McKenzie',
-				start: this.makeISODate('10:00'),
-				end: this.makeISODate('10:30')
+				start: this.makeDate('13:00'),
+				end: this.makeDate('14:00')
 			}, {
 				id: this.generateID(),
 				title: 'Happily Ever After in the Discotheque',
 				contact: 'Bartholomew Shoe',
-				start: this.makeISODate('11:00'),
-				end: this.makeISODate('12:30')
+				start: this.makeDate('14:00'),
+				end: this.makeDate('15:30')
 			}, {
 				id: this.generateID(),
 				title: 'Once Upon a Time',
 				contact: 'Girth Wiedenbauer',
-				start: this.makeISODate('13:00'),
-				end: this.makeISODate('15:00')
+				start: this.makeDate('17:30'),
+				end: this.makeDate('18:30')
 			}];
 
 		this._cache = [];
@@ -66,10 +66,11 @@ export default class ScheduleServiceMockup extends ScheduleService {
 		return Math.random().toString(36).substr(2, 9);
 	}
 
-	makeISODate (time) {
-		let now = new Date(),
+	makeDate (time) {
+		let tz = '+03:00',
+			now = new Date(),
 			today = now.toISOString().split('T')[0];
 
-		return [today, time + ':00.000Z'].join('T');
+		return [today, time + ':00' + tz].join('T');
 	}
 }

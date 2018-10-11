@@ -18,7 +18,7 @@ export default class DeviceService {
 
 				return new RoomEntity(data);
 			})
-			.catch((err) => this._promise = null);
+			.catch(() => this._promise = null);
 		}
 
 		return this._promise;

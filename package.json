@@ -5,23 +5,28 @@
 	"main": "index.js",
 	"scripts": {
 		"clean": "rimraf ./dist ./.cache",
-		"watch": "parcel ./src/index.html",
-		"dev": "npm run clean && cross-env mockup=true npm run watch",
-		"stage": "npm run clean && npm run watch",
+		"bundle": "parcel ./src/index.html",
+		"dev": "npm run clean && cross-env mockup=true npm run bundle",
+		"start": "npm run clean && npm run bundle",
 		"build": "npm run clean && parcel build ./src/index.html --no-source-maps"
 	},
 	"author": "Gürhan Mermer <g.mermer@emakina.com.tr>",
 	"license": "MIT",
 	"dependencies": {
-		"babel-preset-env": "^1.7.0",
-		"babel-preset-react": "^6.24.1",
-		"node-sass": "^4.9.0",
-		"parcel-bundler": "^1.9.3",
+		"mobx": "^5.5.0",
+		"mobx-react": "^5.2.8",
 		"react": "^16.4.1",
-		"react-dom": "^16.4.1"
+		"react-dom": "^16.4.1",
+		"titleize": "^1.0.1"
 	},
 	"devDependencies": {
+		"babel-plugin-transform-class-properties": "^6.24.1",
+		"babel-plugin-transform-decorators-legacy": "^1.3.5",
+		"babel-preset-env": "^1.7.0",
+		"babel-preset-react": "^6.24.1",
 		"cross-env": "^5.2.0",
+		"node-sass": "^4.9.0",
+		"parcel-bundler": "^1.9.3",
 		"rimraf": "^2.6.2"
 	}
 }
