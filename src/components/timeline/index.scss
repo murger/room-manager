@@ -10,12 +10,11 @@ section {
 
 	$tipSize: 12px;
 	$handSize: 14px;
-	$eventColour: c(blue);
 
 	.hand {
 		width: 0;
 		height: 0;
-		margin-left: 3px;
+		margin-left: $handSize;
 		position: absolute;
 		top: 0px;
 		border-left: $handSize solid transparent;
@@ -92,7 +91,12 @@ section {
 				top: 0px;
 				left: $tipSize;
 				right: $tipSize;
-				background-color: $eventColour;
+				background-color: c(blue);
+				opacity: 0.65;
+			}
+
+			&.is-active {
+				span, &:before, &:after { opacity: 1; }
 			}
 
 			&:before, &:after {
@@ -103,16 +107,17 @@ section {
 				top: 0px;
 				border-top: 9px solid transparent;
 				border-bottom: 9px solid transparent;
+				opacity: 0.65;
 			}
 
 			&:before {
 				left: 0px;
-				border-right: $tipSize solid #{$eventColour};
+				border-right: $tipSize solid c(blue);
 			}
 
 			&:after {
 				right: 0px;
-				border-left: $tipSize solid #{$eventColour};
+				border-left: $tipSize solid c(blue);
 			}
 		}
 	}

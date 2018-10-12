@@ -19,14 +19,10 @@ class StateStore {
 
 	@action setupDevice (mac) {
 		services.device.getDetails(mac).then(room => {
-			if (!room.id) {
-				this.isUnknown = true;
-			} else {
-				this.room = room;
-				this.isActive = true;
-				this.pollSchedule(() => this.isLoading = false);
-				this.timer = setInterval(() => this.pollSchedule(), this.delay);
-			}
+			this.room = room;
+			this.isActive = true;
+			this.pollSchedule(() => this.isLoading = false);
+			this.timer = setInterval(() => this.pollSchedule(), this.delay);
 		}).catch(err => {
 			this.isUnknown = true;
 			this.isLoading = false;
@@ -93,6 +89,7 @@ class StateStore {
 				this.hasError = 'Room unavailable';
 			}
 		}).catch(err => {
+			this.isServing = true;
 			this.isLoading = false;
 			this.hasError = 'Network unreachable';
 			console.log(err);

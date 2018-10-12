@@ -36,7 +36,7 @@ export default class ScheduleService {
 
 				return this._cache;
 			})
-			.catch((err) => this._promise = null);
+			.catch(() => this._promise = null);
 		}
 
 		return this._promise;
@@ -45,7 +45,7 @@ export default class ScheduleService {
 	getCurrentEvent () {
 		let now = Date.now();
 
-		return this._cache.find((event) => {
+		return this._cache.find(event => {
 			let start = event.start.getTime(),
 				end = event.end.getTime();
 
@@ -56,7 +56,7 @@ export default class ScheduleService {
 	getNextEvent () {
 		let now = Date.now();
 
-		return this._cache.find((event) => {
+		return this._cache.find(event => {
 			return (event.start.getTime() > now);
 		});
 	}
@@ -68,13 +68,10 @@ export default class ScheduleService {
 			cache: 'no-cache',
 			body: JSON.stringify({ mins }),
 			headers: { 'Content-Type': 'application/json; charset=UTF-8' }
-		})
-		.then((response) => {
-			if (response.ok) {
-				return response.json();
-			} else {
-				return null;
-			}
+		}).then(response => {
+			return (response.ok)
+				? response.json()
+				: null;
 		});
 	}
 

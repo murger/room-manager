@@ -45,10 +45,10 @@ article {
 		max-width: 60%;
 		max-height: calc(98px * 2);
 		margin: 0;
-		color: var(--event-color, black);
+		color: var(--current-color, black);
 		letter-spacing: -0.025em;
 		text-align: center;
-		@include font('Museo Sans', 500, 84px, 98px);
+		@include font('Museo Sans', 600, 84px, 98px);
 		-webkit-box-orient: vertical;
 		-webkit-line-clamp: 2;
 		display: -webkit-box;
@@ -63,7 +63,6 @@ article {
 	}
 
 	.remainder {
-		min-height: 16px;
 		padding-top: 20px;
 		color: var(--text-color, c(gray));
 		letter-spacing: -0.020em;

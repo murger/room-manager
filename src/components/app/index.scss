@@ -22,7 +22,7 @@ main {
 	&.occupied {
 		background-color: black;
 		--image-filter: invert(1);
-		--event-color: white;
+		--current-color: white;
 		--text-color: #{c(gray)};
 		--hand-color: #{c(white-ish)};
 		--tick-color: #{c(gray-dk)};
