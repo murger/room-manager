@@ -6,21 +6,8 @@ import './index.scss';
 @inject('store')
 @observer
 class Status extends React.Component {
-	calcRemainder () {
-		let current = this.props.store.current,
-			next = this.props.store.next;
-
-		return (current)
-			? -current.remainder
-			: (next)
-				? next.until
-				: Infinity;
-	}
-
 	isOptionViable (mins) {
-		let remainder = this.calcRemainder();
-
-		return (mins < remainder);
+		return (mins < this.props.store.remainder);
 	}
 
 	sendBookingRequest (mins) {
@@ -30,7 +17,7 @@ class Status extends React.Component {
 	}
 
 	renderRemainder () {
-		let remainder = Math.abs(this.calcRemainder()),
+		let remainder = Math.abs(this.props.store.remainder),
 			showHrs = (remainder > 120),
 			total = (showHrs) ? Math.round(remainder / 60) : remainder,
 			label = (showHrs) ? 'hr' : 'min',
@@ -66,7 +53,7 @@ class Status extends React.Component {
 				<h1 className="current">
 					{ (current)
 						? current.title || 'Occupied'
-						: 'Available' }
+						: this.props.store.room.title || 'Available' }
 				</h1>
 				<time className="remainder">
 					{ this.renderRemainder() }

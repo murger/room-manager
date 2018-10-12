@@ -10,6 +10,7 @@ class StateStore {
 	@observable events = [];
 	@observable current = null;
 	@observable next = null;
+	@observable remainder = Infinity;
 	@observable isActive = false;
 	@observable isUnknown = false;
 	@observable isServing = false;
@@ -49,6 +50,7 @@ class StateStore {
 			this.current = current;
 			this.events = (events) ? events : this.events;
 			this.isConnected = Boolean(events);
+			this.updateRemainder();
 
 			// We will call you
 			if (callback instanceof Function) { callback(); }
@@ -56,6 +58,15 @@ class StateStore {
 			this.isConnected = false;
 			console.log(err);
 		});
+	}
+
+	updateRemainder () {
+		let current = this.current,
+			next = this.next;
+
+		this.remainder = (current)
+			? -current.remainder
+			: (next) ? next.until : Infinity;
 	}
 
 	@action toggleOptions (toggle) {
