@@ -17,13 +17,7 @@ class App extends React.Component {
 	}
 
 	componentDidMount () {
-		let mac = this.props.mac;
-
-		if (!mac) {
-			this.isUnknown = true;
-		} else {
-			this.props.store.setupDevice(mac);
-		}
+		this.props.store.setupDevice(this.props.mac);
 	}
 
 	render () {

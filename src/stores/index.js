@@ -20,16 +20,24 @@ class StateStore {
 
 	@action setupDevice (mac) {
 		services.device.getDetails(mac).then(room => {
+			if (!room) {
+				return this.failSetup();
+			}
+
 			this.room = room;
 			this.isActive = true;
 			this.pollSchedule(() => this.isLoading = false);
 			this.timer = setInterval(() => this.pollSchedule(), this.delay);
 		}).catch(err => {
-			this.isUnknown = true;
-			this.isLoading = false;
-			this.hasError = 'Device unknown';
+			this.failSetup();
 			console.log(err);
 		});
+	}
+
+	failSetup () {
+		this.isUnknown = true;
+		this.isLoading = false;
+		this.hasError = 'Device unknown';
 	}
 
 	@action pollSchedule (callback) {
