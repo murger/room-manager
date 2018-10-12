@@ -8,7 +8,7 @@ whether the room is available or not.
 
 ## UI
 
-We've opt'ed for a simple look in order to blend in, light mode (white
+We have opt'ed for a simple look in order to blend in, light mode (white
 background) denotes the room is available, displaying the room's title in the
 middle and how long till the next meeting. Dark mode signifies the room is
 occupied, displaying the current event title and a remainder.
@@ -17,14 +17,13 @@ occupied, displaying the current event title and a remainder.
 
 ## Build it
 
-We're using [Parcel](https://parceljs.org/) to bundle the project, have an `npm i`
+We're using [Parcel](https://parceljs.org/) to bundle the project, do an `npm i`
 to get the dependencies, then in order to run it with the built-in mockup
 data, use the command `npm run dev`. If you'd rather test it through the API,
-use `npm run stage` and `npm run build` for deployment.
+use `npm start` and `npm run build` for deployment.
 
-Change the API address via `src/services/schedule.js` or play around with the
+Change the API address within `src/services/index.js` or play around with the
 mockup data in `data/mock-schedule.js`.
 
-You may find default room details in `src/index.js` where `id` is the calendar ID of
-the room and `title` is the display name. Set `id` and `title` in query string
-to specify an ID and a title for the room: `/?id=2&title=Jupiter`
+Do successfully initiliase out of the dev mode, set the mac id via query
+string: `/?mac=XX-XX-XX-XX-XX-XX`
