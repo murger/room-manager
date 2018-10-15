@@ -44,6 +44,7 @@ article {
 	.current {
 		max-width: 60%;
 		max-height: calc(98px * 2);
+		padding-bottom: 20px;
 		margin: 0;
 		color: var(--current-color, black);
 		letter-spacing: -0.025em;
@@ -68,12 +69,11 @@ article {
 	}
 
 	.remainder {
-		padding-top: 20px;
 		color: var(--text-color, c(gray));
 		letter-spacing: -0.020em;
-		@include font('Museo Sans', 300, 40px);
+		@include font('Museo Sans', 300, 40px, 1);
 		@include transition(0.15s, 0.5s, color);
-		animation: slide-up 0.10s ease-out;
+		animation: slide-up 0.15s ease-out;
 		overflow: hidden;
 	}
 

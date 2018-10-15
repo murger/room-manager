@@ -78,11 +78,6 @@ section {
 		font-size: 0;
 		list-style: none;
 
-		@keyframes slide-up {
-			0% { height: 0px; }
-			100% { height: 40px; }
-		}
-
 		li {
 			height: 100%;
 			position: absolute;
