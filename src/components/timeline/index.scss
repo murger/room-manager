@@ -78,11 +78,17 @@ section {
 		font-size: 0;
 		list-style: none;
 
+		@keyframes slide-up {
+			0% { height: 0px; }
+			100% { height: 40px; }
+		}
+
 		li {
 			height: 100%;
 			position: absolute;
 			font-size: 0;
 			overflow: hidden;
+			animation: delay-in 0.15s ease-in;
 			// opacity: 0.75;
 
 			span {
