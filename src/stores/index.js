@@ -11,32 +11,39 @@ class StateStore {
 	@observable current = null;
 	@observable next = null;
 	@observable remainder = Infinity;
-	@observable isActive = false;
-	@observable isUnknown = false;
 	@observable isServing = false;
 	@observable isLoading = true;
 	@observable isConnected = true;
 	@observable hasError = false;
 
-	@action setupDevice (mac) {
-		services.device.getDetails(mac).then(room => {
+	@action setupDevice () {
+		let mac = this.getMACAddress();
+
+		(mac) && services.device.getDetails(mac).then(room => {
 			if (!room) {
-				return this.failSetup();
+				return this.haltSetup();
 			}
 
 			this.room = room;
-			this.isActive = true;
-			this.pollSchedule(() => this.isLoading = false);
+			this.isLoading = false;
 			this.timer = setInterval(() => this.pollSchedule(), this.delay);
-		}).catch(err => {
-			this.failSetup();
-			console.log(err);
+		}).catch(() => {
+			this.haltSetup();
 		});
 	}
 
-	failSetup () {
-		this.isUnknown = true;
-		this.isLoading = false;
+	getMACAddress () {
+		let params = new URLSearchParams(window.location.search),
+			mac = params.get('mac');
+
+		if (!mac) {
+			this.haltSetup();
+		}
+
+		return mac;
+	}
+
+	haltSetup () {
 		this.hasError = 'Device unknown';
 	}
 
@@ -44,6 +51,7 @@ class StateStore {
 		let id = this.room.id,
 			schedule = services.schedule;
 
+		this.updateRemainder();
 		schedule.getToday(id).then((events) => {
 			let current = schedule.getCurrentEvent(),
 				next = schedule.getNextEvent();
@@ -58,13 +66,11 @@ class StateStore {
 			this.current = current;
 			this.events = (events) ? events : this.events;
 			this.isConnected = Boolean(events);
-			this.updateRemainder();
 
 			// We will call you
 			if (callback instanceof Function) { callback(); }
-		}).catch(err => {
+		}).catch(() => {
 			this.isConnected = false;
-			console.log(err);
 		});
 	}
 
@@ -107,11 +113,10 @@ class StateStore {
 				this.isLoading = false;
 				this.hasError = 'Room unavailable';
 			}
-		}).catch(err => {
+		}).catch(() => {
 			this.isServing = true;
 			this.isLoading = false;
 			this.hasError = 'Network unreachable';
-			console.log(err);
 		});
 	}
 }

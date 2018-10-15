@@ -8,23 +8,15 @@ import './index.scss';
 @inject('store')
 @observer
 class App extends React.Component {
-	constructor (props) {
-		super(props);
-	}
-
-	componentWillUnmount () {
-		clearInterval(this.timer);
-	}
-
 	componentDidMount () {
-		this.props.store.setupDevice(this.props.mac);
+		this.props.store.setupDevice();
 	}
 
 	render () {
-		let state = (this.props.store.current ? 'occupied' : '');
+		let mode = (this.props.store.current ? 'occupied' : '');
 
 		return (
-			<main className={state}>
+			<main className={mode}>
 				<Header />
 				<Status />
 				<Timeline />

@@ -17,16 +17,16 @@ class Status extends React.Component {
 		}
 	}
 
-	renderRemainder () {
+	calcRemainder () {
 		let remainder = Math.abs(this.props.store.remainder),
 			showHrs = (remainder > 120),
 			total = (showHrs) ? Math.round(remainder / 60) : remainder,
-			label = (showHrs) ? 'hr' : 'min',
+			unit = (showHrs) ? 'hr' : 'min',
 			suffix = (total > 1) ? 's' : '';
 
 		return (isFinite(remainder))
-			? [total, label + suffix].join(' ')
-			: '';
+			? [total, unit + suffix].join(' ')
+			: null;
 	}
 
 	renderOptions () {
@@ -48,7 +48,8 @@ class Status extends React.Component {
 
 	renderCurrent () {
 		let current = this.props.store.current,
-			room = this.props.store.room;
+			room = this.props.store.room,
+			remainder = this.calcRemainder();
 
 		return (
 			<article>
@@ -57,9 +58,9 @@ class Status extends React.Component {
 						? current.title || 'Occupied'
 						: (room) ?  titleize(room.title) : 'Available' }
 				</h1>
-				<time className="remainder">
-					{ this.renderRemainder() }
-				</time>
+				{ remainder && <time className="remainder">
+					{ remainder }
+				</time> }
 			</article>
 		);
 	}

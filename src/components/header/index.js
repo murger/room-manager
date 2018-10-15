@@ -27,7 +27,7 @@ class Header extends React.Component {
 
 		if (current) {
 			option = <p>{ current.contact || titleize(room.title) }</p>;
-		} else if (this.props.store.isLoading || !this.props.store.isActive) {
+		} else if (this.props.store.isLoading) {
 			option = <p>&nbsp;</p>;
 		} else {
 			option = this.renderBookingControls();

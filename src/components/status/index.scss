@@ -54,7 +54,7 @@ article {
 		display: -webkit-box;
 		overflow: hidden;
 		text-overflow: ellipsis;
-		@include transition(0.25s, 0.5s, color);
+		@include transition(0.15s, 0.5s, color);
 
 		em {
 			font-style: normal;
@@ -62,12 +62,19 @@ article {
 		}
 	}
 
+	@keyframes slide-up {
+		0% { height: 0px; }
+		100% { height: 40px; }
+	}
+
 	.remainder {
 		padding-top: 20px;
 		color: var(--text-color, c(gray));
 		letter-spacing: -0.020em;
 		@include font('Museo Sans', 300, 40px);
-		@include transition(0.25s, 0.5s, color);
+		@include transition(0.15s, 0.5s, color);
+		animation: slide-up 0.10s ease-out;
+		overflow: hidden;
 	}
 
 	.users {
