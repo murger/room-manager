@@ -72,7 +72,7 @@ article {
 		color: var(--text-color, c(gray));
 		letter-spacing: -0.020em;
 		@include font('Museo Sans', 300, 40px, 1);
-		@include transition(0.15s, 0.5s, color);
+		@include transition(0.15s, 0.5s, color, height);
 		animation: slide-up 0.15s ease-out;
 		overflow: hidden;
 	}

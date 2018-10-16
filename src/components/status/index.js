@@ -1,7 +1,7 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
 import titleize from 'titleize';
-import users from '../../users.json';
+// import users from '../../../data/users.json';
 import './index.scss';
 
 @inject('store')
@@ -65,17 +65,17 @@ class Status extends React.Component {
 		);
 	}
 
-	renderUsers () {
-		return (
-			<article>
-				<ul className="users">
-					{ users.map((user, idx) => {
-                		return <li key={idx}>{ user.name }</li>;
-                	})}
-				</ul>
-			</article>
-		);
-	}
+	// renderUsers () {
+	// 	return (
+	// 		<article>
+	// 			<ul className="users">
+	// 				{ users.map((user, idx) => {
+    //             		return <li key={idx}>{ user.name }</li>;
+    //             	})}
+	// 			</ul>
+	// 		</article>
+	// 	);
+	// }
 
 	renderLoading () {
 		return (

@@ -16,19 +16,25 @@ class StateStore {
 	@observable isConnected = true;
 	@observable hasError = false;
 
+	err = {
+		device: 'Device unknown',
+		room: 'Room unavailable',
+		network: 'Network unreachable',
+	};
+
 	@action setupDevice () {
 		let mac = this.getMACAddress();
 
 		(mac) && services.device.getDetails(mac).then(room => {
 			if (!room) {
-				return this.haltSetup();
+				return this.setError(this.err.device);
 			}
 
 			this.room = room;
 			this.isLoading = false;
 			this.timer = setInterval(() => this.pollSchedule(), this.delay);
 		}).catch(() => {
-			this.haltSetup();
+			this.setError(this.err.device);
 		});
 	}
 
@@ -37,14 +43,14 @@ class StateStore {
 			mac = params.get('mac');
 
 		if (!mac) {
-			this.haltSetup();
+			this.setError(this.err.device);
 		}
 
 		return mac;
 	}
 
-	haltSetup () {
-		this.hasError = 'Device unknown';
+	setError (val) {
+		this.hasError = val;
 	}
 
 	@action pollSchedule (callback) {
@@ -90,10 +96,10 @@ class StateStore {
 		if (toggle === true) {
 			this.idler = setTimeout(() => {
 				this.isServing = false;
-				this.hasError = false;
+				this.setError(false);
 			}, this.timeout);
 		} else if (this.idler) {
-			this.hasError = false;
+			this.setError(false);
 			clearTimeout(this.idler);
 		}
 	}
@@ -111,12 +117,12 @@ class StateStore {
 				this.toggleOptions(false);
 			} else {
 				this.isLoading = false;
-				this.hasError = 'Room unavailable';
+				this.setError(this.err.room);
 			}
 		}).catch(() => {
 			this.isServing = true;
 			this.isLoading = false;
-			this.hasError = 'Network unreachable';
+			this.setError(this.err.network);
 		});
 	}
 }
