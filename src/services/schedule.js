@@ -74,12 +74,4 @@ export default class ScheduleService {
 				: null;
 		});
 	}
-
-	addNewEvent (data) {
-		let event = new EventEntity(data);
-
-		this._cache.push(event);
-
-		return event;
-	}
 }

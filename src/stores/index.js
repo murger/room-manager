@@ -113,7 +113,6 @@ class StateStore {
 		schedule.sendBookingRequest(id, mins).then(data => {
 			if (data) {
 				this.isLoading = false;
-				this.current = schedule.addNewEvent(data);
 				this.toggleOptions(false);
 			} else {
 				this.isLoading = false;
