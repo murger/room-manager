@@ -49,7 +49,7 @@ article {
 		color: var(--current-color, black);
 		letter-spacing: -0.025em;
 		text-align: center;
-		@include font('Museo Sans', 600, 84px, 98px);
+		@include font('Museo Sans', 500, 84px, 98px);
 		-webkit-box-orient: vertical;
 		-webkit-line-clamp: 2;
 		display: -webkit-box;
@@ -65,13 +65,13 @@ article {
 
 	@keyframes slide-up {
 		0% { height: 0px; }
-		100% { height: 40px; }
+		100% { height: 38px; }
 	}
 
 	.remainder {
 		color: var(--text-color, c(gray));
 		letter-spacing: -0.020em;
-		@include font('Museo Sans', 300, 40px, 1);
+		@include font('Museo Sans', 300, 38px, 1);
 		@include transition(0.15s, 0.5s, color, height);
 		animation: slide-up 0.15s ease-out;
 		overflow: hidden;
