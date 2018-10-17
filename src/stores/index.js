@@ -4,7 +4,7 @@ import services from '../services';
 class StateStore {
 	timer = null;
 	delay = 1000;
-	timeout = 1000 * 15;
+	timeout = 1000 * 10;
 
 	@observable room = null;
 	@observable events = [];

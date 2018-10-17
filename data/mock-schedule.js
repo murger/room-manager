@@ -51,14 +51,14 @@ export default class ScheduleServiceMockup extends ScheduleService {
 		let start = new Date(),
 			end = new Date(start.getTime() + (mins * (60 * 1000)));
 
-		return new Promise((resolve, reject) => {
+		return new Promise((resolve) => {
 			setTimeout(() => resolve({
 				id: this.generateID(),
 				title: null,
 				contact: null,
 				start: start.toISOString(),
 				end: end.toISOString()
-			}), 2000);
+			}), 3000);
 		});
 	}
 
