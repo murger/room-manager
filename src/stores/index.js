@@ -32,6 +32,7 @@ class StateStore {
 
 			this.room = room;
 			this.isLoading = false;
+			this.pollSchedule();
 			this.timer = setInterval(() => this.pollSchedule(), this.delay);
 		}).catch(() => {
 			this.setError(this.err.device);
@@ -62,19 +63,17 @@ class StateStore {
 			let current = schedule.getCurrentEvent(),
 				next = schedule.getNextEvent();
 
-			// Hide options
-			if (current && this.isServing) {
-				this.toggleOptions(false);
-			}
-
 			// Update stuff
 			this.next = next;
 			this.current = current;
 			this.events = (events) ? events : this.events;
 			this.isConnected = Boolean(events);
 
-			// We will call you
-			if (callback instanceof Function) { callback(); }
+			// Hide options
+			if (current && (this.isServing || this.isLoading)) {
+				this.isLoading = false;
+				this.toggleOptions(false);
+			}
 		}).catch(() => {
 			this.isConnected = false;
 		});
@@ -113,15 +112,19 @@ class StateStore {
 		schedule.sendBookingRequest(id, mins).then(data => {
 			if (data) {
 				this.isLoading = false;
+				this.current = schedule.addNewEvent(data);
 				this.toggleOptions(false);
 			} else {
 				this.isLoading = false;
 				this.setError(this.err.room);
 			}
 		}).catch(() => {
-			this.isServing = true;
 			this.isLoading = false;
-			this.setError(this.err.network);
+
+			if (!this.current) {
+				this.isServing = true;
+				this.setError(this.err.network);
+			}
 		});
 	}
 }

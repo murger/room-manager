@@ -69,8 +69,9 @@ header {
 		button {
 			margin: 0px;
 			padding: 22px 32px;
+			padding-top: 24px;
 			letter-spacing: -0.020em;
-			@include font('Museo Sans', 300, 36px, 1);
+			@include font('Museo Sans', 300, 32px, 1);
 			border: 2px solid transparent;
 			border-radius: 9px;
 			outline: none;
