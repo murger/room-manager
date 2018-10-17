@@ -43,24 +43,19 @@ article {
 
 	.current {
 		max-width: 60%;
-		max-height: calc(98px * 2);
+		max-height: calc(96px * 2);
 		padding-bottom: 20px;
 		margin: 0;
 		color: var(--current-color, black);
 		letter-spacing: -0.025em;
 		text-align: center;
-		@include font('Museo Sans', 500, 84px, 98px);
+		@include font('Museo Sans', 500, 82px, 96px);
 		-webkit-box-orient: vertical;
 		-webkit-line-clamp: 2;
 		display: -webkit-box;
 		overflow: hidden;
 		text-overflow: ellipsis;
 		@include transition(0.15s, 0.5s, color);
-
-		em {
-			font-style: normal;
-			font-size: 96px;
-		}
 	}
 
 	@keyframes slide-up {
