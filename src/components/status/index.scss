@@ -48,7 +48,7 @@ article {
 		color: var(--current-color, black);
 		letter-spacing: -0.025em;
 		text-align: center;
-		@include font('Museo Sans', 500, 82px, 96px);
+		@include font('Museo Sans', 500, 80px, 96px);
 		-webkit-box-orient: vertical;
 		-webkit-line-clamp: 2;
 		display: -webkit-box;
