@@ -62,7 +62,7 @@ header {
 			padding-top: 2px;
 			color: var(--text-color, c(gray));
 			letter-spacing: -0.020em;
-			@include font('Museo Sans', 300, 36px, 1);
+			@include font('Museo Sans', 300, 38px, 1);
 			@include transition(0.15s, 0.5s, color);
 		}
 
@@ -71,7 +71,7 @@ header {
 			padding: 22px 32px;
 			padding-top: 24px;
 			letter-spacing: -0.020em;
-			@include font('Museo Sans', 300, 36px, 1);
+			@include font('Museo Sans', 300, 34px, 1);
 			border: 2px solid transparent;
 			border-radius: 9px;
 			outline: none;
