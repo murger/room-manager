@@ -6,7 +6,7 @@ export default class DeviceService {
 		this._promise = null;
 	}
 
-	getDetails (mac) {
+	getRoomDetails (mac) {
 		if (!this._promise) {
 			this._promise = fetch([this._api, 'device', mac].join('/'), {
 				mode: 'cors',
@@ -16,7 +16,7 @@ export default class DeviceService {
 			.then((data) => {
 				this._promise = null;
 
-				return new RoomEntity(data);
+				return (!data.error) ? new RoomEntity(data) : data;
 			})
 			.catch(() => this._promise = null);
 		}

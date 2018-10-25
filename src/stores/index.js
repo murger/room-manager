@@ -25,8 +25,8 @@ class StateStore {
 	@action setupDevice () {
 		let mac = this.getMACAddress();
 
-		(mac) && services.device.getDetails(mac).then(room => {
-			if (!room) {
+		(mac) && services.device.getRoomDetails(mac).then(room => {
+			if (!room || room.error) {
 				return this.setError(this.err.device);
 			}
 
@@ -59,15 +59,19 @@ class StateStore {
 			schedule = services.schedule;
 
 		this.updateRemainder();
-		schedule.getToday(id).then((events) => {
+		schedule.getToday(id).then(events => {
+			if (!events || events.error) {
+				return this.isConnected = false;
+			}
+
 			let current = schedule.getCurrentEvent(),
 				next = schedule.getNextEvent();
 
 			// Update stuff
 			this.next = next;
 			this.current = current;
-			this.events = (events) ? events : this.events;
-			this.isConnected = Boolean(events);
+			this.events = events;
+			this.isConnected = true;
 
 			// Hide options
 			if (current && (this.isServing || this.isLoading)) {

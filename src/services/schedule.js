@@ -23,16 +23,20 @@ export default class ScheduleService {
 				mode: 'cors',
 				cache: 'no-cache'
 			})
-			.then((res) => res.json())
-			.then((data) => {
+			.then(res => res.json())
+			.then(data => {
+				this._promise = null;
+
+				if (data.error) {
+					return data;
+				}
+
 				this._cache = [];
+				this._update = Date.now();
 
 				for (let item of data) {
 					this._cache.push(new EventEntity(item));
 				}
-
-				this._promise = null;
-				this._update = Date.now();
 
 				return this._cache;
 			})
