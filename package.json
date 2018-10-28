@@ -6,7 +6,7 @@
 	"scripts": {
 		"clean": "rimraf ./dist ./.cache",
 		"bundle": "parcel ./src/index.html",
-		"dev": "npm run clean && cross-env mockup=true npm run bundle",
+		"mockup": "npm run clean && cross-env mockup=true npm run bundle",
 		"start": "npm run clean && npm run bundle",
 		"build": "npm run clean && parcel build ./src/index.html --no-source-maps --detailed-report"
 	},
