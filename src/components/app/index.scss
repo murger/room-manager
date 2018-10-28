@@ -10,22 +10,29 @@ html, body {
 }
 
 main {
+	--bg-color: white;
+	--current-color: black;
+	--text-color: #{c(gray)};
+	--tick-color: #{c(gray-lt)};
+	--hour-color: #{c(gray-dk)};
+	--icon-filter: none;
+
 	width: 1280px;
 	height: 800px;
 	position: absolute;
 	top: 50%;
 	left: 50%;
-	background-color: white;
+	background-color: var(--bg-color);
 	transform: translate(-50%, -50%);
 	@include transition(0s, 0.5s, background-color);
 
-	&.occupied {
-		background-color: black;
-		--image-filter: invert(1);
+	&.busy {
+		--bg-color: black;
 		--current-color: white;
-		--text-color: #{c(gray)};
-		--hand-color: #{c(white-ish)};
+		--text-color: #{c(gray-mid)};
 		--tick-color: #{c(gray-dk)};
+		--hour-color: #{c(gray-mid)};
+		--icon-filter: invert(1);
 	}
 
 	@keyframes delay-in {

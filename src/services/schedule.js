@@ -13,7 +13,7 @@ export default class ScheduleService {
 		return (this._cache && Date.now() < (this._update + this._expiry));
 	}
 
-	getToday (id) {
+	getEvents (id) {
 		if (this.hasValidCache()) {
 			return Promise.resolve(this._cache);
 		}
@@ -27,7 +27,9 @@ export default class ScheduleService {
 			.then(data => {
 				this._promise = null;
 
-				if (data.error) {
+				if (!data) {
+					return null;
+				} else if (data.error) {
 					return data;
 				}
 
@@ -35,7 +37,7 @@ export default class ScheduleService {
 				this._update = Date.now();
 
 				for (let item of data) {
-					this._cache.push(new EventEntity(item));
+					this.addNewEvent(item);
 				}
 
 				return this._cache;
@@ -44,6 +46,14 @@ export default class ScheduleService {
 		}
 
 		return this._promise;
+	}
+
+	addNewEvent (data) {
+		let event = new EventEntity(data);
+
+		this._cache.push(event);
+
+		return event;
 	}
 
 	getCurrentEvent () {
@@ -66,24 +76,12 @@ export default class ScheduleService {
 	}
 
 	sendBookingRequest (id, mins) {
-		return fetch(this._api + '/schedule/' + id, {
+		return fetch([this._api, 'schedule', id].join('/'), {
 			mode: 'cors',
 			method: 'POST',
 			cache: 'no-cache',
 			body: JSON.stringify({ mins }),
 			headers: { 'Content-Type': 'application/json; charset=UTF-8' }
-		}).then(response => {
-			return (response.ok)
-				? response.json()
-				: null;
-		});
-	}
-
-	addNewEvent (data) {
-		let event = new EventEntity(data);
-
-		this._cache.push(event);
-
-		return event;
+		}).then(response => response.json());
 	}
 }

@@ -19,7 +19,7 @@ section {
 		top: 0px;
 		border-left: $handSize solid transparent;
 		border-right: $handSize solid transparent;
-		border-top: $handSize solid var(--hand-color, black);
+		border-top: $handSize solid var(--current-color);
 		transform: translateX(-$handSize + 57px); // (.range > li) margin
 		@include transition(0.15s, 0.5s, opacity, border-color, left);
 	}
@@ -48,7 +48,7 @@ section {
 				position: absolute;
 				top: 0px;
 				left: calc(50% - 1px);
-				background-color: var(--tick-color, c(gray));
+				background-color: var(--tick-color);
 				@include transition(0.15s, 0.5s, background-color);
 			}
 
@@ -60,8 +60,8 @@ section {
 				position: absolute;
 				top: 28px + 16px + 8px;
 				left: calc(50% - 32px / 2);
-				color: var(--tick-color, c(gray-dk));
-				@include font('Museo Sans', 500, 22px);
+				color: var(--hour-color);
+				@include font('Museo Sans', 300, 22px);
 				@include transition(0.15s, 0.5s, color);
 			}
 		}

@@ -11,7 +11,7 @@ class Header extends React.Component {
 	}
 
 	renderBookingControls () {
-		return (this.props.store.isServing)
+		return (this.props.store.isBooking)
 			? <button
 				className="cancel"
 				onClick={() => this.toggleOptions(false)}>Go back</button>
@@ -38,7 +38,7 @@ class Header extends React.Component {
 				<div className="logo" />
 				<span className="connection"
 					data-status={this.props.store.isConnected} />
-				<div className="option">{ option }</div>
+				<div className="controls">{ option }</div>
 			</header>
 		);
 	}

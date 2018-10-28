@@ -12,11 +12,17 @@ export default class DeviceService {
 				mode: 'cors',
 				cache: 'no-cache'
 			})
-			.then((res) => res.json())
-			.then((data) => {
+			.then(res => res.json())
+			.then(data => {
 				this._promise = null;
 
-				return (!data.error) ? new RoomEntity(data) : data;
+				if (!data) {
+					return null;
+				} else if (data.error) {
+					return data;
+				}
+
+				return new RoomEntity(data);
 			})
 			.catch(() => this._promise = null);
 		}

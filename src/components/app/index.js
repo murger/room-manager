@@ -13,7 +13,7 @@ class App extends React.Component {
 	}
 
 	render () {
-		let mode = (this.props.store.current ? 'occupied' : '');
+		let mode = (this.props.store.current ? 'busy' : '');
 
 		return (
 			<main className={mode}>

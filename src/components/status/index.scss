@@ -33,11 +33,10 @@ article {
 	}
 
 	.error {
-		margin-bottom: 80px;
-		color: c(gray);
+		color: c(gray-mid);
 		letter-spacing: -0.020em;
 		text-align: center;
-		@include font('Museo Sans', 300, 56px, 56px);
+		@include font('Museo Sans', 300, 54px, 1);
 		animation: delay-in 0.5s ease-in;
 	}
 
@@ -45,7 +44,7 @@ article {
 		max-width: 60%;
 		max-height: calc(96px * 2);
 		margin: 0;
-		color: var(--current-color, black);
+		color: var(--current-color);
 		letter-spacing: -0.025em;
 		text-align: center;
 		@include font('Museo Sans', 500, 80px, 96px);
@@ -64,51 +63,12 @@ article {
 
 	.remainder {
 		padding-top: 16px;
-		color: var(--text-color, c(gray));
+		color: var(--text-color);
 		letter-spacing: -0.020em;
 		@include font('Museo Sans', 300, 38px, 1);
 		@include transition(0.15s, 0.5s, color, height, padding-top);
 		animation: slide-up 0.15s ease-out;
 		overflow: hidden;
-	}
-
-	.users {
-		width: 60%;
-		max-height: 100%;
-		padding: 0;
-		margin: 0;
-		position: relative;
-		top: -16px;
-		list-style: none;
-		text-align: center;
-		overflow: scroll;
-
-		li {
-			letter-spacing: -0.020em;
-			@include font('Museo Sans', 300, 32px, 1.25);
-			opacity: 0.4;
-
-			&.selected {
-				font-size: 54px;
-				font-weight: 500;
-				opacity: 1;
-			}
-
-			&.step-1 {
-				font-size: 40px;
-				opacity: 0.6;
-			}
-
-			&.step-3 {
-				font-size: 24px;
-				opacity: 0.2;
-			}
-
-			&.step-4 {
-				font-size: 12px;
-				opacity: 0.2;
-			}
-		}
 	}
 
 	.options {

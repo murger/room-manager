@@ -11,32 +11,19 @@ class StateStore {
 	@observable current = null;
 	@observable next = null;
 	@observable remainder = Infinity;
-	@observable isServing = false;
+	@observable isBooking = false;
 	@observable isLoading = true;
 	@observable isConnected = true;
 	@observable hasError = false;
 
 	err = {
-		device: 'Device unknown',
-		room: 'Room unavailable',
-		network: 'Network unreachable',
+		api: 'API error',
+		mac: 'Device unknown',
+		network: 'Network error',
 	};
 
-	@action setupDevice () {
-		let mac = this.getMACAddress();
-
-		(mac) && services.device.getRoomDetails(mac).then(room => {
-			if (!room || room.error) {
-				return this.setError(this.err.device);
-			}
-
-			this.room = room;
-			this.isLoading = false;
-			this.pollSchedule();
-			this.timer = setInterval(() => this.pollSchedule(), this.delay);
-		}).catch(() => {
-			this.setError(this.err.device);
-		});
+	setError (val) {
+		this.hasError = val;
 	}
 
 	getMACAddress () {
@@ -44,42 +31,30 @@ class StateStore {
 			mac = params.get('mac');
 
 		if (!mac) {
-			this.setError(this.err.device);
+			this.setError(this.err.mac);
 		}
 
 		return mac;
 	}
 
-	setError (val) {
-		this.hasError = val;
-	}
+	@action setupDevice () {
+		let mac = this.getMACAddress();
 
-	@action pollSchedule (callback) {
-		let id = this.room.id,
-			schedule = services.schedule;
+		(mac) && services.device.getRoomDetails(mac).then(data => {
+			this.isLoading = false;
 
-		this.updateRemainder();
-		schedule.getToday(id).then(events => {
-			if (!events || events.error) {
-				return this.isConnected = false;
+			if (!data) {
+				return this.setError(this.err.api);
+			} else if (data.error) {
+				return this.setError(data.error);
 			}
 
-			let current = schedule.getCurrentEvent(),
-				next = schedule.getNextEvent();
-
-			// Update stuff
-			this.next = next;
-			this.current = current;
-			this.events = events;
-			this.isConnected = true;
-
-			// Hide options
-			if (current && (this.isServing || this.isLoading)) {
-				this.isLoading = false;
-				this.toggleOptions(false);
-			}
-		}).catch(() => {
-			this.isConnected = false;
+			this.room = data;
+			this.pollSchedule();
+			this.timer = setInterval(() => this.pollSchedule(), this.delay);
+		}).catch(err => {
+			this.isLoading = false;
+			this.setError(this.err.network);
 		});
 	}
 
@@ -92,19 +67,31 @@ class StateStore {
 			: (next) ? next.until : Infinity;
 	}
 
-	@action toggleOptions (toggle) {
-		this.isServing = toggle;
+	@action pollSchedule (callback) {
+		let id = this.room.id,
+			schedule = services.schedule;
 
-		// Hide options on a timeout
-		if (toggle === true) {
-			this.idler = setTimeout(() => {
-				this.isServing = false;
-				this.setError(false);
-			}, this.timeout);
-		} else if (this.idler) {
-			this.setError(false);
-			clearTimeout(this.idler);
-		}
+		this.updateRemainder();
+
+		schedule.getEvents(id).then(data => {
+			if (!data || data.error) {
+				return this.isConnected = false;
+			}
+
+			// Update stuff
+			this.events = data;
+			this.next = schedule.getNextEvent();
+			this.current = schedule.getCurrentEvent();
+			this.isConnected = true;
+
+			// Hide options on current
+			if (this.current && (this.isBooking || this.isLoading)) {
+				this.isLoading = false;
+				this.toggleOptions(false);
+			}
+		}).catch(err => {
+			this.isConnected = false;
+		});
 	}
 
 	@action sendBookingRequest (mins) {
@@ -114,22 +101,38 @@ class StateStore {
 		this.isLoading = true;
 
 		schedule.sendBookingRequest(id, mins).then(data => {
-			if (data) {
-				this.isLoading = false;
+			this.isLoading = false;
+
+			if (!data) {
+				this.setError(this.err.api);
+			} else if (data.error) {
+				this.setError(data.error);
+			} else if (!this.current) {
 				this.current = schedule.addNewEvent(data);
 				this.toggleOptions(false);
-			} else {
-				this.isLoading = false;
-				this.setError(this.err.room);
 			}
-		}).catch(() => {
+		}).catch(err => {
 			this.isLoading = false;
 
 			if (!this.current) {
-				this.isServing = true;
 				this.setError(this.err.network);
 			}
 		});
+	}
+
+	@action toggleOptions (toggle) {
+		this.isBooking = toggle;
+
+		// Hide options on a timeout
+		if (toggle === true) {
+			this.idleTimeout = setTimeout(() => {
+				this.isBooking = false;
+				this.setError(false);
+			}, this.timeout);
+		} else if (this.idleTimeout) {
+			this.setError(false);
+			clearTimeout(this.idleTimeout);
+		}
 	}
 }
 

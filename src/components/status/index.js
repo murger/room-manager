@@ -65,18 +65,6 @@ class Status extends React.Component {
 		);
 	}
 
-	// renderUsers () {
-	// 	return (
-	// 		<article>
-	// 			<ul className="users">
-	// 				{ users.map((user, idx) => {
-    //             		return <li key={idx}>{ user.name }</li>;
-    //             	})}
-	// 			</ul>
-	// 		</article>
-	// 	);
-	// }
-
 	renderLoading () {
 		return (
 			<article>
@@ -100,7 +88,7 @@ class Status extends React.Component {
 			return this.renderError(error);
 		} else if (this.props.store.isLoading) {
 			return this.renderLoading();
-		} else if (this.props.store.isServing) {
+		} else if (this.props.store.isBooking) {
 			return this.renderOptions();
 		} else {
 			return this.renderCurrent();
