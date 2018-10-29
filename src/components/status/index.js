@@ -24,7 +24,7 @@ class Status extends React.Component {
 			unit = (showHrs) ? 'hr' : 'min',
 			suffix = (total > 1) ? 's' : '';
 
-		return (isFinite(remainder))
+		return (isFinite(remainder) && remainder > 0)
 			? [total, unit + suffix].join(' ')
 			: null;
 	}
