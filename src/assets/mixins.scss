@@ -1,3 +1,7 @@
+@function c($key) {
+	@return map-get($colours, $key);
+}
+
 @mixin font($family: Sans-serif, $weight: 300, $size: 1.0em, $height: 1) {
 	font-size: $size;
 	font-family: $family;
