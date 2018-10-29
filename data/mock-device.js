@@ -3,7 +3,6 @@ import RoomEntity from '../src/entities/room';
 
 export default class DeviceServiceMockup extends DeviceService {
 	getRoomDetails (mac) {
-		console.log(mac);
 		return Promise.resolve(new RoomEntity({
 			id: Infinity,
 			title: 'Jupiter'

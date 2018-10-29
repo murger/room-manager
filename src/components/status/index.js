@@ -55,10 +55,10 @@ class Status extends React.Component {
 			<article>
 				<h1 className="current">
 					{ (current)
-						? current.title || 'Occupied'
-						: (room) ?  titleize(room.title) : 'Available' }
+						? current.title || 'Meeting'
+						: (room) ? titleize(room.title) : 'Available' }
 				</h1>
-				{ remainder && <time className="remainder">
+				{ (remainder) && <time className="remainder">
 					{ remainder }
 				</time> }
 			</article>

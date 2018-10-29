@@ -54,7 +54,7 @@ export default class ScheduleServiceMockup extends ScheduleService {
 		return new Promise((resolve) => {
 			setTimeout(() => resolve({
 				id: this.generateID(),
-				title: null,
+				title: 'Meeting',
 				contact: null,
 				start: start.toISOString(),
 				end: end.toISOString()
