@@ -1,22 +1,6 @@
 @import '../../assets/mixins.scss';
 @import '../../assets/theme.scss';
 
-@font-face {
-	font-family: 'Museo Sans';
-	src: url('../../assets/fonts/museo300.woff2') format('woff2'),
-	url('../../assets/fonts/museo300.woff') format('woff');
-	font-weight: 300;
-	font-style: normal;
-}
-
-@font-face {
-	font-family: 'Museo Sans';
-	src: url('../../assets/fonts/museo500.woff2') format('woff2'),
-	url('../../assets/fonts/museo500.woff') format('woff');
-	font-weight: 500;
-	font-style: normal;
-}
-
 :root {
 	--bg-color: white;
 	--current-color: black;
@@ -24,6 +8,22 @@
 	--tick-color: #{c(gray-lt)};
 	--hour-color: #{c(gray-dk)};
 	--icon-filter: none;
+
+	@font-face {
+		font-family: 'Museo Sans';
+		src: url('../../assets/fonts/museo300.woff2') format('woff2'),
+		url('../../assets/fonts/museo300.woff') format('woff');
+		font-weight: 300;
+		font-style: normal;
+	}
+
+	@font-face {
+		font-family: 'Museo Sans';
+		src: url('../../assets/fonts/museo500.woff2') format('woff2'),
+		url('../../assets/fonts/museo500.woff') format('woff');
+		font-weight: 500;
+		font-style: normal;
+	}
 
 	@keyframes fade-in {
 		from { opacity: 0; }
@@ -38,31 +38,32 @@
 		from { transform: rotate(0deg); }
 		to { transform: rotate(360deg); }
 	}
-}
 
-html, body {
-	margin: 0;
-	background-color: #333;
-	user-select: none;
-	font: 300 16px/22px Helvetica, Arial, Sans-serif;
-}
+	body {
+		margin: 0;
+		user-select: none;
+		background-color: #333;
+		@include font('Museo Sans', 300, 38px, 1);
 
-main {
-	width: 1280px;
-	height: 800px;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	background-color: var(--bg-color);
-	transform: translate(-50%, -50%);
-	@include transition(0s, 0.5s, background-color);
+		main {
+			width: 1280px;
+			height: 800px;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			overflow: hidden;
+			background-color: var(--bg-color);
+			transform: translate(-50%, -50%);
+			@include transition(0s, 0.5s, background-color);
 
-	&.busy {
-		--bg-color: black;
-		--current-color: white;
-		--text-color: #{c(gray-mid)};
-		--tick-color: #{c(gray-dk)};
-		--hour-color: #{c(gray-mid)};
-		--icon-filter: invert(1);
+			&.busy {
+				--bg-color: black;
+				--current-color: white;
+				--text-color: #{c(gray-mid)};
+				--tick-color: #{c(gray-dk)};
+				--hour-color: #{c(gray-mid)};
+				--icon-filter: invert(1);
+			}
+		}
 	}
 }

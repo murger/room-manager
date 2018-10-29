@@ -6,7 +6,6 @@ section {
 	height: 160px;
 	position: relative;
 	text-align: center;
-	overflow: hidden;
 
 	$tipSize: 12px;
 	$handSize: 14px;
@@ -69,7 +68,7 @@ section {
 
 	.schedule {
 		width: calc(100% - 60px * 2);
-		height: 18px;
+		height: 20px;
 		position: absolute;
 		left: 70px;
 		top: 52px;
@@ -106,8 +105,8 @@ section {
 				height: 0;
 				position: absolute;
 				top: 0px;
-				border-top: 9px solid transparent;
-				border-bottom: 9px solid transparent;
+				border-top: 10px solid transparent;
+				border-bottom: 10px solid transparent;
 				opacity: 0.65;
 			}
 
