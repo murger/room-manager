@@ -39,7 +39,7 @@ export default class ScheduleServiceMockup extends ScheduleService {
 		events.forEach((event) => this._cache.push(new EventEntity(event)));
 	}
 
-	getToday (id) {
+	getEvents (id) {
 		if (!this._cache.length) {
 			this.setupCache();
 		}
