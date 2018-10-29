@@ -72,17 +72,17 @@ article {
 		list-style: none;
 
 		li {
-			margin: 0 50px;
-			padding: 20px 40px;
+			margin: 0 64px;
+			padding: 40px;
 			display: inline-block;
 			text-align: center;
 			letter-spacing: -0.020em;
-			@include font('Museo Sans', 600, 102px);
+			@include font('Museo Sans', 600, 112px, 96px);
 			border-radius: 9px;
 
 			&:active:not(.is-disabled) {
 				color: white;
-				background-color: black;
+				background-color: c(blue);
 
 				span {
 					color: inherit;
@@ -97,7 +97,7 @@ article {
 				display: block;
 				color: c(gray);
 				letter-spacing: -0.020em;
-				@include font('Museo Sans', 300, 38px);
+				@include font('Museo Sans', 300, 42px, 38px);
 			}
 		}
 	}
