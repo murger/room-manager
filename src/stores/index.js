@@ -74,14 +74,15 @@ class StateStore {
 		this.updateRemainder();
 
 		schedule.getEvents(id).then(data => {
+			this.next = schedule.getNextEvent();
+			this.current = schedule.getCurrentEvent();
+
 			if (!data || data.error) {
 				return this.isConnected = false;
 			}
 
 			// Update stuff
 			this.events = data;
-			this.next = schedule.getNextEvent();
-			this.current = schedule.getCurrentEvent();
 			this.isConnected = true;
 
 			// Hide options on current
