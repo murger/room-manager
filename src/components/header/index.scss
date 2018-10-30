@@ -37,7 +37,7 @@ header {
 			background-size: 56px;
 			opacity: 0.5;
 			transform: translateX(-50%);
-			animation: blink 1.25s linear infinite;
+			animation: blink 2s step-start infinite;
 			filter: var(--icon-filter);
 		}
 	}
