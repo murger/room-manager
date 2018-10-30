@@ -81,7 +81,7 @@ article {
 
 			&:active:not(.is-disabled) {
 				color: white;
-				background-color: c(blue);
+				background-color: var(--accent-color);
 
 				span {
 					color: inherit;
