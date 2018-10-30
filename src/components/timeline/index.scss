@@ -91,7 +91,7 @@ section {
 				top: 0px;
 				left: $tipSize;
 				right: $tipSize;
-				background-color: c(blue);
+				background-color: var(--accent-color);
 				opacity: 0.65;
 			}
 
@@ -112,12 +112,12 @@ section {
 
 			&:before {
 				left: 0px;
-				border-right: $tipSize solid c(blue);
+				border-right: $tipSize solid var(--accent-color);
 			}
 
 			&:after {
 				right: 0px;
-				border-left: $tipSize solid c(blue);
+				border-left: $tipSize solid var(--accent-color);
 			}
 		}
 	}

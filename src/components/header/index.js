@@ -6,6 +6,24 @@ import './index.scss';
 @inject('store')
 @observer
 class Header extends React.Component {
+	constructor (props) {
+		super(props);
+		this.aidx = 0;
+	}
+
+	cycleAccentColours () {
+		let root = document.documentElement,
+			colours = ['#0099ff', '#33cc33', '#ff00aa'];
+
+		this.aidx++;
+
+		if (this.aidx > colours.length - 1) {
+			this.aidx = 0;
+		}
+
+		root.style.setProperty('--accent-color', colours[this.aidx]);
+	}
+
 	toggleOptions (state) {
 		this.props.store.toggleOptions(state);
 	}
@@ -35,7 +53,8 @@ class Header extends React.Component {
 
 		return (
 			<header>
-				<div className="logo" />
+				<div className="logo"
+					onClick={() => this.cycleAccentColours()} />
 				<span className="connection"
 					data-status={this.props.store.isConnected} />
 				<div className="controls">{ option }</div>

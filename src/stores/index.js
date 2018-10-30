@@ -67,22 +67,20 @@ class StateStore {
 			: (next) ? next.until : Infinity;
 	}
 
-	@action pollSchedule (callback) {
+	@action pollSchedule () {
 		let id = this.room.id,
 			schedule = services.schedule;
 
 		this.updateRemainder();
 
 		schedule.getEvents(id).then(data => {
-			this.next = schedule.getNextEvent();
-			this.current = schedule.getCurrentEvent();
-
 			if (!data || data.error) {
-				return this.isConnected = false;
+				this.isConnected = false;
 			}
 
-			// Update stuff
-			this.events = data;
+			this.events = (data) ? data : this.events;
+			this.next = schedule.getNextEvent();
+			this.current = schedule.getCurrentEvent();
 			this.isConnected = true;
 
 			// Hide options on current

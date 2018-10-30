@@ -73,13 +73,13 @@ header {
 			animation: fade-in 0.5s ease-in;
 
 			&.book {
-				color: c(blue);
+				color: var(--accent-color);
 				background-color: transparent;
-				border-color: c(blue);
+				border-color: var(--accent-color);
 
 				&:active {
 					color: white;
-					background-color: c(blue);
+					background-color: var(--accent-color);
 				}
 			}
 
