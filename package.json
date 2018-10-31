@@ -13,20 +13,21 @@
 	"author": "Gürhan Mermer <g.mermer@emakina.com.tr>",
 	"license": "AGPL-3.0",
 	"dependencies": {
-		"mobx": "^5.5.0",
-		"mobx-react": "^5.2.8",
-		"react": "^16.4.1",
-		"react-dom": "^16.4.1",
+		"mobx": "^5.5.2",
+		"mobx-react": "^5.3.6",
+		"react": "^16.6.0",
+		"react-dom": "^16.6.0",
 		"titleize": "^1.0.1"
 	},
 	"devDependencies": {
+		"babel-core": "^6.26.3",
 		"babel-plugin-transform-class-properties": "^6.24.1",
 		"babel-plugin-transform-decorators-legacy": "^1.3.5",
 		"babel-preset-env": "^1.7.0",
 		"babel-preset-react": "^6.24.1",
 		"cross-env": "^5.2.0",
-		"node-sass": "^4.9.0",
-		"parcel-bundler": "^1.9.3",
+		"node-sass": "^4.9.4",
+		"parcel-bundler": "^1.10.3",
 		"rimraf": "^2.6.2"
 	}
 }
