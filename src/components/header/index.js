@@ -13,29 +13,25 @@ class Header extends React.Component {
 
 	cycleAccentColours () {
 		let root = document.documentElement,
-			colours = ['#0099ff', '#33cc66', '#ffaa33', '#ff00ff'];
+			colours = ['#0099ff', '#ff00cc', '#33cc66'];
 
-		this.aidx++;
-
-		if (this.aidx > colours.length - 1) {
+		if (++this.aidx > colours.length - 1) {
 			this.aidx = 0;
 		}
 
 		root.style.setProperty('--accent-color', colours[this.aidx]);
 	}
 
-	toggleOptions (state) {
-		this.props.store.toggleOptions(state);
-	}
-
 	renderBookingControls () {
+		let toggleOpts = (state) => this.props.store.toggleOptions(state);
+
 		return (this.props.store.isBooking)
 			? <button
 				className="cancel"
-				onClick={() => this.toggleOptions(false)}>Go back</button>
+				onClick={() => toggleOpts(false)}>Cancel</button>
 			: <button
 				className="book"
-				onClick={() => this.toggleOptions(true)}>Start a meeting</button>;
+				onClick={() => toggleOpts(true)}>Start a meeting</button>;
 	}
 
 	render () {

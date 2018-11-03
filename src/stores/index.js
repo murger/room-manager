@@ -122,8 +122,8 @@ class StateStore {
 	@action toggleOptions (toggle) {
 		this.isBooking = toggle;
 
-		// Hide options on a timeout
-		if (toggle === true) {
+		if (toggle) {
+			// Hide options on a timeout
 			this.idleTimeout = setTimeout(() => {
 				this.isBooking = false;
 				this.setError(false);

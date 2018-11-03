@@ -66,19 +66,19 @@ header {
 			padding: 22px 32px;
 			padding-top: 24px;
 			letter-spacing: -0.020em;
+			color: white;
 			@include font('Museo Sans', 300, 36px, 1);
+			background-color: var(--accent-color);
 			border: 2px solid transparent;
 			border-radius: 9px;
 			outline: none;
 
 			&.book {
-				color: var(--accent-color);
-				background-color: transparent;
-				border-color: var(--accent-color);
 
 				&:active {
-					color: white;
-					background-color: var(--accent-color);
+					color: var(--accent-color);
+					background-color: white;
+					border-color: var(--accent-color);
 				}
 			}
 
