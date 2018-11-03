@@ -8,8 +8,8 @@ class Timeline extends React.Component {
 	constructor (props) {
 		super(props);
 		this.hourWidth = (56 * 2) + 2;
-		this.timespan = [...Array(11).keys()].map(x =>
-			(x + 9 > 12) ? x - 3 : x + 9);
+		this.timespan = [...Array(11).keys()]
+			.map(x => (x + 9 > 12) ? x - 3 : x + 9);
 	}
 
 	renderTicks () {
@@ -21,16 +21,15 @@ class Timeline extends React.Component {
 	renderSchedule () {
 		let events = this.props.store.events,
 			hFirst = this.timespan[0],
-			xHour = this.hourWidth,
 			current = this.props.store.current;
 
 		return events.map((event, i) => {
 			let start = event.start,
 				end = event.end,
-				left = ((start.getHours() - hFirst) * xHour) +
-					((start.getMinutes() * xHour) / 60),
-				width = Math.ceil((end.getTime() - start.getTime()) /
-					(1000 * 60)) * (xHour / 60),
+				xHour = (start.getHours() - hFirst) * this.hourWidth,
+				left = xHour + ((start.getMinutes() * this.hourWidth) / 60),
+				diff = Math.ceil((end.getTime() - start.getTime()) / (1000 * 60)),
+				width = diff * (this.hourWidth / 60),
 				isActive = (current && event.id === current.id);
 
 			return (
@@ -43,16 +42,16 @@ class Timeline extends React.Component {
 
 	calcHandStyle () {
 		let now = new Date(),
-			hNow = now.getHours(),
+			hour = now.getHours(),
 			hFirst = this.timespan[0],
 			hLast = this.timespan.slice(-1)[0] + 12,
-			xHour = this.hourWidth,
-			xHand = ((hNow - hFirst) * xHour) +
-				((now.getMinutes() * xHour) / 60);
+			xHand = ((hour - hFirst) * this.hourWidth) +
+				((now.getMinutes() * this.hourWidth) / 60),
+			isWithinBounds = (hour >= hFirst && hour < hLast);
 
 		return {
 			left: xHand,
-			opacity: +(hNow >= hFirst && hNow < hLast)
+			opacity: +(isWithinBounds)
 		};
 	}
 
