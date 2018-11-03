@@ -16,8 +16,7 @@
 		"mobx": "^5.5.2",
 		"mobx-react": "^5.3.6",
 		"react": "^16.6.0",
-		"react-dom": "^16.6.0",
-		"titleize": "^1.0.1"
+		"react-dom": "^16.6.0"
 	},
 	"devDependencies": {
 		"babel-core": "^6.26.3",

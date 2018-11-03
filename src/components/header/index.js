@@ -1,6 +1,5 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
-import titleize from 'titleize';
 import './index.scss';
 
 @inject('store')
@@ -40,7 +39,7 @@ class Header extends React.Component {
 			room = this.props.store.room;
 
 		if (current) {
-			option = <p>{ current.contact || titleize(room.title) }</p>;
+			option = <p>{ current.contact || room.title }</p>;
 		} else if (this.props.store.isLoading) {
 			option = <p>&nbsp;</p>;
 		} else {

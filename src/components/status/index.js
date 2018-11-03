@@ -1,6 +1,5 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
-import titleize from 'titleize';
 // import users from '../../../data/users.json';
 import './index.scss';
 
@@ -55,8 +54,10 @@ class Status extends React.Component {
 			<article>
 				<h1 className="current">
 					{ (current)
-						? current.title || 'Meeting'
-						: (room) ? titleize(room.title) : 'Available' }
+						? current.title || 'Occupied'
+						: (room)
+							? room.title
+							: 'Available' }
 				</h1>
 				{ (remainder) && <time className="remainder">
 					{ remainder }
@@ -90,9 +91,9 @@ class Status extends React.Component {
 			return this.renderLoading();
 		} else if (this.props.store.isBooking) {
 			return this.renderOptions();
-		} else {
-			return this.renderCurrent();
 		}
+
+		return this.renderCurrent();
 	}
 };
 
