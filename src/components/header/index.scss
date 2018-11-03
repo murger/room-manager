@@ -9,7 +9,7 @@ header {
 	position: relative;
 
 	.logo {
-		width: 56px;
+		width: 54px;
 		height: 100%;
 		position: absolute;
 		top: 0px;
@@ -72,6 +72,7 @@ header {
 			border: 2px solid transparent;
 			border-radius: 9px;
 			outline: none;
+			@include transition(0s, 0.2s, background-color, color);
 
 			&.book {
 
