@@ -39,6 +39,7 @@ section {
 			display: inline-block;
 			position: relative;
 
+			/* tick */
 			&:before {
 				content: '';
 				width: 2px;
@@ -51,6 +52,7 @@ section {
 				@include transition(0.15s, 0.5s, background-color);
 			}
 
+			/* hour */
 			&:after {
 				content: attr(data-id);
 				width: 32px;
@@ -60,7 +62,7 @@ section {
 				top: 28px + 16px + 8px;
 				left: calc(50% - 32px / 2);
 				color: var(--hour-color);
-				@include font('Museo Sans', 300, 22px);
+				@include font('Museo Sans', 500, 22px);
 				@include transition(0.15s, 0.5s, color);
 			}
 		}
