@@ -22,7 +22,8 @@ article {
 			border-radius: 50%;
 			border: 8px solid transparent;
 			border-color: c(gray-lt) transparent transparent transparent;
-			animation: rotate 0.5s linear infinite, fade-in 0.0s ease-in;
+			animation: rotate 0.5s linear infinite,
+				fade-in 0.2s ease-in;
 		}
 	}
 
@@ -31,7 +32,7 @@ article {
 		letter-spacing: -0.020em;
 		text-align: center;
 		@include font('Museo Sans', 300, 54px, 1);
-		animation: fade-in 0.5s ease-in;
+		animation: fade-in 0.2s ease-in;
 	}
 
 	.current {
@@ -47,7 +48,8 @@ article {
 		display: -webkit-box;
 		overflow: hidden;
 		text-overflow: ellipsis;
-		@include transition(0.15s, 0.5s, color);
+		animation: fade-in 0.2s ease-in;
+		@include transition(0.2s, 0.5s, color);
 	}
 
 	@keyframes slide-up {
@@ -60,8 +62,8 @@ article {
 		color: var(--text-color);
 		letter-spacing: -0.020em;
 		@include font('Museo Sans', 300, 38px, 1);
-		@include transition(0.15s, 0.5s, color, height, padding-top);
-		animation: slide-up 0.15s ease-out;
+		@include transition(0.2s, 0.5s, color, height, padding-top);
+		animation: slide-up 0.2s ease-out;
 		overflow: hidden;
 	}
 
@@ -78,6 +80,7 @@ article {
 			letter-spacing: -0.020em;
 			@include font('Museo Sans', 600, 112px, 96px);
 			border-radius: 9px;
+			animation: fade-in 0.2s ease-in;
 
 			&:active:not(.is-disabled) {
 				color: white;
