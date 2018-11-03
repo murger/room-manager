@@ -63,34 +63,32 @@ header {
 
 		button {
 			margin: 0px;
-			padding: 22px 32px;
-			padding-top: 24px;
+			padding: 20px 30px;
+			padding-top: 23px;
 			letter-spacing: -0.020em;
 			color: white;
 			@include font('Museo Sans', 300, 36px, 1);
 			background-color: var(--accent-color);
-			border: 2px solid transparent;
+			border: 3px solid transparent;
 			border-radius: 9px;
 			outline: none;
 			@include transition(0s, 0.2s, background-color, color);
 
 			&.book {
-
 				&:active {
-					color: var(--accent-color);
-					background-color: white;
-					border-color: var(--accent-color);
+					/* color: var(--accent-color);
+					background-color: transparent; */
 				}
 			}
 
 			&.cancel {
-				color: black;
-				background-color: transparent;
-				border-color: black;
+				color: white;
+				background-color: c(gray);
+				/* border-color: black; */
 
 				&:active {
-					color: white;
-					background-color: black;
+					/* color: black;
+					background-color: transparent; */
 				}
 			}
 		}

@@ -86,7 +86,6 @@ section {
 			font-size: 0;
 			overflow: hidden;
 			animation: fade-in 0.25s ease-in;
-			// opacity: 0.75;
 
 			span {
 				height: 100%;
@@ -96,6 +95,7 @@ section {
 				right: $tipSize;
 				background-color: var(--accent-color);
 				opacity: 0.65;
+				@include transition(0s, 0.2s, background-color);
 			}
 
 			&.is-active {
@@ -111,6 +111,7 @@ section {
 				border-top: 10px solid transparent;
 				border-bottom: 10px solid transparent;
 				opacity: 0.65;
+				@include transition(0s, 0.2s, border-color);
 			}
 
 			&:before {
