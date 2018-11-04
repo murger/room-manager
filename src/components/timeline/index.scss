@@ -60,7 +60,7 @@ section {
 				height: 28px;
 				margin: 0 auto;
 				position: absolute;
-				top: 36px + 16px + 12px;
+				top: 36px + 16px + 10px;
 				left: calc(50% - 32px / 2);
 				color: var(--hour-color);
 				@include font('Museo Sans', 500, 22px);
