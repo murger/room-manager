@@ -78,16 +78,18 @@ article {
 			display: inline-block;
 			text-align: center;
 			letter-spacing: -0.020em;
+			color: black;
 			@include font('Museo Sans', 600, 112px, 96px);
 			border-radius: 9px;
 			animation: fade-in 0.2s ease-in;
+			@include transition(0s, 0.2s, background-color, color);
 
 			&:active:not(.is-disabled) {
 				color: white;
 				background-color: var(--accent-color);
 
 				span {
-					color: inherit;
+					opacity: 1;
 				}
 			}
 
@@ -97,9 +99,10 @@ article {
 				margin: 10px auto;
 				margin-bottom: 0;
 				display: block;
-				color: c(gray);
 				letter-spacing: -0.020em;
 				@include font('Museo Sans', 300, 42px, 38px);
+				opacity: 0.45;
+				@include transition(0s, 0.2s, opacity);
 			}
 		}
 	}
