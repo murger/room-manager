@@ -7,14 +7,14 @@ export default class ScheduleServiceMockup extends ScheduleService {
 				id: this.generateID(),
 				title: 'Weekly Catchup',
 				contact: 'Alper Tunga Gülbahar',
-				start: this.makeDate('09:00'),
+				start: this.makeDate('09:30'),
 				end: this.makeDate('10:30')
 			}, {
 				id: this.generateID(),
 				title: 'Somewhat Boring Meeting in the Morning',
 				contact: 'Jonquil Von Haggerston',
 				start: this.makeDate('10:30'),
-				end: this.makeDate('12:00')
+				end: this.makeDate('11:30')
 			}, {
 				id: this.generateID(),
 				title: 'HR & Technical Interview',
@@ -31,8 +31,8 @@ export default class ScheduleServiceMockup extends ScheduleService {
 				id: this.generateID(),
 				title: 'Once Upon a Time',
 				contact: 'Girth Wiedenbauer',
-				start: this.makeDate('17:30'),
-				end: this.makeDate('18:30')
+				start: this.makeDate('17:00'),
+				end: this.makeDate('18:00')
 			}];
 
 		this._cache = [];
