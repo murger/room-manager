@@ -23,7 +23,7 @@ article {
 			border: 8px solid transparent;
 			border-color: c(gray-lt) transparent transparent transparent;
 			animation: rotate 0.5s linear infinite,
-				fade-in 0.2s ease-in;
+				fade-in 0.15s ease-in;
 		}
 	}
 
@@ -32,7 +32,7 @@ article {
 		letter-spacing: -0.020em;
 		text-align: center;
 		@include font('Museo Sans', 300, 54px, 1);
-		animation: fade-in 0.2s ease-in;
+		animation: fade-in 0.15s ease-in;
 	}
 
 	.current {
@@ -48,7 +48,7 @@ article {
 		display: -webkit-box;
 		overflow: hidden;
 		text-overflow: ellipsis;
-		animation: fade-in 0.2s ease-in;
+		animation: fade-in 0.15s ease-in;
 		@include transition(0.2s, 0.5s, color);
 	}
 
@@ -63,7 +63,7 @@ article {
 		letter-spacing: -0.020em;
 		@include font('Museo Sans', 300, 38px, 1);
 		@include transition(0.2s, 0.5s, color, height, padding-top);
-		animation: slide-up 0.2s ease-out;
+		animation: slide-up 0.15s ease-out;
 		overflow: hidden;
 	}
 

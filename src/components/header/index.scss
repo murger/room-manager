@@ -72,7 +72,7 @@ header {
 			border: 3px solid transparent;
 			border-radius: 9px;
 			outline: none;
-			@include transition(0s, 0.2s, background-color, color);
+			@include transition(0s, 0.15s, background-color, color);
 
 			&.book {
 				&:active {
