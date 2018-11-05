@@ -20,7 +20,7 @@ section {
 		border-left: $handSize solid transparent;
 		border-right: $handSize solid transparent;
 		border-top: $handSize solid var(--current-color);
-		transform: translateX(-$handSize + 57px); // (.range > li) margin
+		transform: translateX(-$handSize + 56px); // (.range > li) margin
 		@include transition(0.15s, 0.5s, opacity, border-color, left);
 	}
 
