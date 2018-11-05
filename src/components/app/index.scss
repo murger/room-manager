@@ -10,6 +10,11 @@
 	--accent-color: #{c(blue)};
 	--icon-filter: none;
 
+	--tick-space: 56px;
+	--tick-width: 2px;
+	--hand-size: 14px;
+	--event-angle: 12px;
+
 	@font-face {
 		font-family: 'Museo Sans';
 		src: url('../../assets/fonts/museo300.woff2') format('woff2'),

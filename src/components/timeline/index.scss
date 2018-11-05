@@ -8,19 +8,16 @@ section {
 	margin-top: 10px;
 	text-align: center;
 
-	$tipSize: 12px;
-	$handSize: 14px;
-
 	.hand {
 		width: 0;
 		height: 0;
-		margin-left: $handSize;
+		margin-left: var(--hand-size);
 		position: absolute;
 		top: 0px;
-		border-left: $handSize solid transparent;
-		border-right: $handSize solid transparent;
-		border-top: $handSize solid var(--current-color);
-		transform: translateX(-$handSize + 56px); // (.range > li) margin
+		border-left: var(--hand-size) solid transparent;
+		border-right: var(--hand-size) solid transparent;
+		border-top: var(--hand-size) solid var(--current-color);
+		transform: translateX(calc(var(--tick-space) - var(--hand-size)));
 		@include transition(0.15s, 0.5s, opacity, border-color, left);
 	}
 
@@ -32,9 +29,9 @@ section {
 		list-style: none;
 
 		li {
-			width: 2px;
+			width: var(--tick-width);
 			height: 44px;
-			margin: 0 56px;
+			margin: 0 var(--tick-space);
 			margin-top: 50px;
 			padding-top: 28px + 18px;
 			display: inline-block;
@@ -91,8 +88,8 @@ section {
 				height: 100%;
 				position: absolute;
 				top: 0px;
-				left: $tipSize;
-				right: $tipSize;
+				left: var(--event-angle);
+				right: var(--event-angle);
 				background-color: var(--accent-color);
 				opacity: 0.65;
 				@include transition(0s, 0.2s, background-color);
@@ -116,12 +113,12 @@ section {
 
 			&:before {
 				left: 0px;
-				border-right: $tipSize solid var(--accent-color);
+				border-right: var(--event-angle) solid var(--accent-color);
 			}
 
 			&:after {
 				right: 0px;
-				border-left: $tipSize solid var(--accent-color);
+				border-left: var(--event-angle) solid var(--accent-color);
 			}
 		}
 	}

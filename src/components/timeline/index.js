@@ -7,7 +7,12 @@ import './index.scss';
 class Timeline extends React.Component {
 	constructor (props) {
 		super(props);
-		this.hourWidth = (56 * 2) + 2;
+
+		let body = getComputedStyle(document.body),
+			tickSpace = parseInt(body.getPropertyValue('--tick-space')),
+			tickWidth = parseInt(body.getPropertyValue('--tick-width'));
+
+		this.hourWidth = (tickSpace * 2) + tickWidth;
 		this.timespan = [...Array(11).keys()]
 			.map(x => (x + 9 > 12) ? x - 3 : x + 9);
 	}
