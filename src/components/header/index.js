@@ -12,7 +12,7 @@ class Header extends React.Component {
 
 	cycleAccentColours () {
 		let root = document.documentElement,
-			colours = ['#0099ff', '#33cc66', '#ff00cc'];
+			colours = ['#0099ff', '#33cc66', '#ff00cc', '#ffaa00'];
 
 		if (++this.aidx > colours.length - 1) {
 			this.aidx = 0;
